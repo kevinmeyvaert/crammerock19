@@ -1,0 +1,45 @@
+.wrapper {
+  max-width: 1060px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+  .wrapper p {
+    font-family: "Arial";
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 0;
+    color: #2E4C5D;
+  }
+
+  .wrapper h2 {
+    color: #F0986B;
+    font-family: 'Oswald';
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .wrapper img {
+    max-width: 100%;
+  }
+
+  .wrapper a {
+    color: #2E4C5D;
+    text-decoration: underline;
+  }
+
+  .wrapper ul {
+    display: block;
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+
+  .wrapper ul li {
+    margin-bottom: 10px;
+    font-family: "Arial";
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: none;
+    color: #2E4C5D;
+  }

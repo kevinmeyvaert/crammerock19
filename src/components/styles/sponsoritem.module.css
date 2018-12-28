@@ -1,0 +1,18 @@
+.container {
+  width: 10%;
+  padding: 10px;
+}
+
+.container a span {
+  display: none;
+}
+
+.logo {
+  max-width: 100%;
+}
+
+@media only screen and (max-width: 730px) {
+  .container {
+    width: 20%;
+  }
+}

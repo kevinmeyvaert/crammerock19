@@ -1,0 +1,40 @@
+.wrap {
+  box-sizing: border-box;
+  width: 50%;
+  font-family: "Arial";
+  font-size: 16px;
+  line-height: 24px;
+  padding: 20px;
+  color: #2E4C5D;
+  border-radius: 5px;
+}
+
+  .wrap h2 {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-family: 'Oswald';
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  .wrap h2 span {
+    background-color: #A5D7DD;
+    padding: 3px 10px;
+    box-decoration-break: clone;
+  }
+
+.leesmeer a {
+  color: #F0986B;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.image {
+  max-width: 100%;
+}
+
+@media only screen and (max-width: 730px) {
+  .wrap {
+    width: 100%;
+  }
+}
