@@ -5,10 +5,11 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
+import { Template, Header } from '../components';
+
 import styles from './styles/news-post.module.css';
-import Header from '../components/header';
+
 import { ellipsis } from '../util';
-import Template from '../components/layout';
 import { config } from '../config';
 
 const NewsPostTemplate = (props) => {

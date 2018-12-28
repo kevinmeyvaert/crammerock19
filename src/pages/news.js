@@ -6,9 +6,8 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import styles from './styles/news.module.css';
-import Header from '../components/header';
-import NewsItem from '../components/newsItem';
-import Template from '../components/layout';
+
+import { Template, Header, NewsItem } from '../components';
 
 import { ellipsis } from '../util';
 import { config } from '../config';

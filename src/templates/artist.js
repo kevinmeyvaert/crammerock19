@@ -5,11 +5,12 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
+import { Template, Header } from '../components';
+
 import { getTimeFromContentfulResponse } from '../util';
-import Header from '../components/header';
-import styles from './styles/artist.module.css';
-import Template from '../components/layout';
 import { config } from '../config';
+
+import styles from './styles/artist.module.css';
 
 const isAvailable = (propValue: string): boolean => propValue && propValue.length > 0;
 

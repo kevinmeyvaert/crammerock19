@@ -6,8 +6,8 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import styles from './styles/news.module.css';
-import Header from '../components/header';
-import Template from '../components/layout';
+
+import { Template, Header } from '../components';
 
 import { config } from '../config';
 import type { TSettings } from '../types';

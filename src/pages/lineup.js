@@ -5,10 +5,12 @@ import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import Header from '../components/header';
-import Template from '../components/layout';
-import LineUpFilter from '../components/lineUpFilter';
-import LineUpItem from '../components/lineUpItem';
+import {
+  Template,
+  Header,
+  LineUpFilter,
+  LineUpItem,
+} from '../components';
 
 import styles from './styles/lineup.module.css';
 import { randomArrayValue } from '../util';

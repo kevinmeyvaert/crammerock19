@@ -5,8 +5,7 @@ import Helmet from 'react-helmet';
 import ReactContactForm from 'react-mail-form';
 
 import styles from './styles/contact.module.css';
-import Header from '../components/header';
-import Template from '../components/layout';
+import { Template, Header } from '../components';
 import { config } from '../config';
 
 const Contact = () => (

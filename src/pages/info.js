@@ -6,8 +6,7 @@ import Link from 'gatsby-link';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import Header from '../components/header';
-import Template from '../components/layout';
+import { Template, Header } from '../components';
 
 import { randomArrayValue } from '../util';
 import styles from './styles/info.module.css';

@@ -5,10 +5,12 @@ import Link from 'gatsby-link';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import Header from '../components/header';
-import NewsItem from '../components/newsItem';
-import Image from '../components/image';
-import Template from '../components/layout';
+import {
+  Template,
+  Header,
+  NewsItem,
+  Image,
+} from '../components';
 
 import { ellipsis } from '../util';
 import styles from './styles/index.module.css';

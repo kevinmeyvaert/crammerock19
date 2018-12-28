@@ -5,9 +5,7 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import Header from '../components/header';
-import SponsorItem from '../components/sponsorItem';
-import Template from '../components/layout';
+import { Template, Header, SponsorItem } from '../components';
 
 import styles from './styles/partners.module.css';
 import { config } from '../config';

@@ -5,9 +5,9 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import Header from '../components/header';
+import { Template, Header } from '../components';
+
 import styles from './styles/page.module.css';
-import Template from '../components/layout';
 import { config } from '../config';
 
 const PageTemplate = (props) => {
