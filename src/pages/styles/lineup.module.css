@@ -22,26 +22,4 @@
   .artistWrapper img {
     width: 100%;
   }
-
-.artistNode {
-  width: 30%;
-  padding: 5px;
-  animation: fadein .5s;
-}
-
-  .artistNode a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-@media only screen and (max-width: 730px) {
-  .artistNode {
-    width: 100%;
-    padding: 5px;
-  }
-}
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+  

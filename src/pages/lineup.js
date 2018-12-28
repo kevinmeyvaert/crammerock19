@@ -2,17 +2,16 @@
 
 import React, { useState } from 'react';
 import get from 'lodash/get';
-import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import Image from '../components/image';
 import Header from '../components/header';
 import Template from '../components/layout';
 import LineUpFilter from '../components/lineUpFilter';
+import LineUpItem from '../components/lineUpItem';
 
 import styles from './styles/lineup.module.css';
-import { randomArrayValue, getTimeFromContentfulResponse } from '../util';
+import { randomArrayValue } from '../util';
 import { config } from '../config';
 
 const LineUp = (props) => {
@@ -51,48 +50,32 @@ const LineUp = (props) => {
 
   return lineuppagina && (
     <Template>
-      <div>
-        <Header
-          title="Line-up"
-          image={randomArtist.headerImage.file.url}
-          video={(randomArtist.headerVideo && randomArtist.headerVideo.file.url) || null}
-          link={`/lineup/${randomArtist.slug}`}
-          cta={`Maak kennis met ${randomArtist.name}`}
+      <Header
+        title="Line-up"
+        image={randomArtist.headerImage.file.url}
+        video={(randomArtist.headerVideo && randomArtist.headerVideo.file.url) || null}
+        link={`/lineup/${randomArtist.slug}`}
+        cta={`Maak kennis met ${randomArtist.name}`}
+      />
+      <Helmet title={`Lineup | ${config.siteName}`} />
+      <div className={styles.wrapper}>
+        <LineUpFilter
+          dagindeling={dagindeling}
+          podiumIndeling={podiumIndeling}
+          onFilterLineUp={handleFilterLineUp}
+          onFilterStage={handleFilterStage}
+          dayFilter={dayFilter}
+          stageFilter={stageFilter}
         />
-        <Helmet title={`Lineup | ${config.siteName}`} />
-        <div className={styles.wrapper}>
-          <LineUpFilter
-            dagindeling={dagindeling}
-            podiumIndeling={podiumIndeling}
-            onFilterLineUp={handleFilterLineUp}
-            onFilterStage={handleFilterStage}
-            dayFilter={dayFilter}
-            stageFilter={stageFilter}
-          />
-          <div className={styles.artistWrapper}>
-            {artistArray.map((artist) => {
-              const { node } = artist;
-              return (
-                <div className={styles.artistNode} key={node.slug}>
-                  <Link
-                    to={`/lineup/${node.slug}`}
-                  >
-                    <Image
-                      width={600}
-                      height={333}
-                      src={node.headerImage.file.url}
-                      alt={node.name}
-                    />
-                    <p>
-                      {node.name}
-                      {!dayFilter && dagindeling && ` | ${node.day}`}
-                      {dayFilter && stageFilter && ` | ${getTimeFromContentfulResponse(node.showStart)}`}
-                    </p>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
+        <div className={styles.artistWrapper}>
+          {artistArray.map(artist => (
+            <LineUpItem
+              artist={artist}
+              dayFilter={dayFilter}
+              dagindeling={dagindeling}
+              stageFilter={stageFilter}
+            />
+          ))}
         </div>
       </div>
     </Template>

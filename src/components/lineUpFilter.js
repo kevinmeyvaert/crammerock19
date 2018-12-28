@@ -1,6 +1,17 @@
+// @flow
+
 import React from 'react';
 
 import styles from './styles/lineupfilter.module.css';
+
+type TProps = {
+  dagindeling: boolean,
+  podiumIndeling: boolean,
+  onFilterLineUp: Function,
+  onFilterStage: Function,
+  dayFilter: string | undefined,
+  stageFilter: string | undefined,
+}
 
 const LineUpFilter = ({
   dagindeling,
@@ -9,7 +20,7 @@ const LineUpFilter = ({
   onFilterStage,
   dayFilter,
   stageFilter,
-}) => (
+}: TProps) => (
   <>
     {dagindeling && (
       <div className={styles.filterWrapper}>
