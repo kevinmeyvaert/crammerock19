@@ -1,0 +1,41 @@
+.filterWrapper {
+  background-color: #A7D7DC;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.stageFilterWrapper {
+  background-color: #EC9873;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.button {
+  border-bottom-color: #304C5B;
+  border-bottom-width: thick;
+}
+
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+  /* cursor: default; */
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none; /* for button */
+     -moz-user-select: none;
+      -ms-user-select: none;
+  padding: 5px 0px;
+  margin: 0 15px;
+  color: white;
+  box-sizing: border-box;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}

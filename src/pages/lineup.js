@@ -9,6 +9,7 @@ import { graphql } from 'gatsby';
 import Image from '../components/image';
 import Header from '../components/header';
 import Template from '../components/layout';
+import LineUpFilter from '../components/lineUpFilter';
 
 import styles from './styles/lineup.module.css';
 import { randomArrayValue, getTimeFromContentfulResponse } from '../util';
@@ -20,12 +21,12 @@ const LineUp = (props) => {
   const [stageFilter, setStageFilter] = useState(undefined);
 
   // State Manipulation Fn
-  const setFilter = (day, stage) => {
+  const handleFilter = (day, stage) => {
     setDayFilter(day);
     setStageFilter(stage);
   };
-  const onFilterLineUp = day => (day === 'ABC' ? setDayFilter(undefined) : setFilter(day, undefined));
-  const onFilterStage = stage => (stage === 'all' ? setStageFilter(undefined) : setStageFilter(stage));
+  const handleFilterLineUp = day => (day === 'ABC' ? setDayFilter(undefined) : handleFilter(day, undefined));
+  const handleFilterStage = stage => (stage === 'all' ? setStageFilter(undefined) : setStageFilter(stage));
 
   // Local helper Fn
   const artistFilterFn = (artist) => {
@@ -60,23 +61,14 @@ const LineUp = (props) => {
         />
         <Helmet title={`Lineup | ${config.siteName}`} />
         <div className={styles.wrapper}>
-          {dagindeling && (
-            <div className={styles.filterWrapper}>
-              <button type="button" className={styles.button} onClick={() => onFilterLineUp('ABC')} style={{ borderBottomStyle: dayFilter === undefined ? 'solid' : 'initial' }}>ABC</button>
-              <button type="button" className={styles.button} onClick={() => onFilterLineUp('Vrijdag')} style={{ borderBottomStyle: dayFilter === 'Vrijdag' ? 'solid' : 'initial' }}>Vrijdag</button>
-              <button type="button" className={styles.button} onClick={() => onFilterLineUp('Zaterdag')} style={{ borderBottomStyle: dayFilter === 'Zaterdag' ? 'solid' : 'initial' }}>Zaterdag</button>
-              <a href="/dl/timetable.pdf" target="_blank"><button type="button" className={styles.button}>Timetable (PDF)</button></a>
-            </div>
-          )}
-          {podiumIndeling
-          && dayFilter && (
-            <div className={styles.stageFilterWrapper}>
-              <button type="button" className={styles.button} onClick={() => onFilterStage('all')} style={{ borderBottomStyle: stageFilter === undefined ? 'solid' : 'initial' }}>Alle Podia</button>
-              <button type="button" className={styles.button} onClick={() => onFilterStage('Main South')} style={{ borderBottomStyle: stageFilter === 'Main South' ? 'solid' : 'initial' }}>Main South</button>
-              <button type="button" className={styles.button} onClick={() => onFilterStage('Main North')} style={{ borderBottomStyle: stageFilter === 'Main North' ? 'solid' : 'initial' }}>Main North</button>
-              <button type="button" className={styles.button} onClick={() => onFilterStage('Club')} style={{ borderBottomStyle: stageFilter === 'Club' ? 'solid' : 'initial' }}>Club</button>
-            </div>
-          )}
+          <LineUpFilter
+            dagindeling={dagindeling}
+            podiumIndeling={podiumIndeling}
+            onFilterLineUp={handleFilterLineUp}
+            onFilterStage={handleFilterStage}
+            dayFilter={dayFilter}
+            stageFilter={stageFilter}
+          />
           <div className={styles.artistWrapper}>
             {artistArray.map((artist) => {
               const { node } = artist;
