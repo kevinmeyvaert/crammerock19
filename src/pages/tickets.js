@@ -6,9 +6,10 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import styles from './styles/news.module.css';
-import Header from '../components/header';
-import Template from '../components/layout';
 
+import { Template, Header } from '../components';
+
+import { config } from '../config';
 import type { TSettings } from '../types';
 
 type TProps = {
@@ -25,7 +26,7 @@ const Tickets = (props: TProps) => {
           title="Tickets"
           image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
         />
-        <Helmet title="Tickets | Crammerock 2019" />
+        <Helmet title={`Tickets | ${config.siteName}`} />
         <div className={styles.wrapper}>
           <div className={styles.row}>
             <div style={{ width: '100%', textAlign: 'left' }}>

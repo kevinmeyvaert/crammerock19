@@ -6,6 +6,7 @@ import Link from 'gatsby-link';
 
 import Image from './image';
 import styles from './styles/header.module.css';
+import { config } from '../config';
 
 type THeaderProps = {
   title: string,
@@ -48,21 +49,23 @@ const Header = ({
     <div className={styles.headerContent}>
       <div className={styles.logoContainer}>
         <Link to="/">
-          <img src="/cr_logo.png" className={styles.logo} alt="Crammerock 2019" />
+          <img src="/cr_logo.png" className={styles.logo} alt={config.siteName} />
         </Link>
       </div>
       <div className={styles.titleContainer}>
         <div className={styles.titleWrap}>
-          <h1 className={styles.title}><span>{title}</span></h1><br />
+          <h1 className={styles.title}><span>{title}</span></h1>
+          <br />
           {subTitle && (subTitle.length > 0) && <h2 className={styles.subTitle}><span>{subTitle}</span></h2>}
         </div>
         <div>
-          {cta && (cta.length > 0) &&
+          {cta && (cta.length > 0) && (
             <Link to={link}>
               <h3 className={styles.cta}>
                 <span>{cta}</span>
               </h3>
             </Link>
+          )
           }
         </div>
       </div>

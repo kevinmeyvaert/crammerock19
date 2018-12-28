@@ -5,9 +5,10 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
+import { Template, Header } from '../components';
+
 import styles from './styles/infoItem.module.css';
-import Header from '../components/header';
-import Template from '../components/layout';
+import { config } from '../config';
 
 class InfoItemTemplate extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class InfoItemTemplate extends React.Component {
             cta="Terug naar info"
             link="/info"
           />
-          <Helmet title={`${info.title} | Crammerock 2019`} />
+          <Helmet title={`${info.title} | ${config.siteName}`} />
           <div className={styles.wrapper}>
             {info.introCopy && (
             <div

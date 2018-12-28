@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import SponsorItem from '../components/sponsorItem';
+import SponsorItem from './sponsorItem';
 
 import styles from './styles/sponsors.module.css';
 import type { TSponsor } from '../types';

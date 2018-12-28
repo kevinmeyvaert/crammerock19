@@ -65,6 +65,3 @@ public
 
 # contentful config file
 .contentful.json
-
-# config
-src/config

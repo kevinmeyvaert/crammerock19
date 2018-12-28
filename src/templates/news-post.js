@@ -5,10 +5,12 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
+import { Template, Header } from '../components';
+
 import styles from './styles/news-post.module.css';
-import Header from '../components/header';
+
 import { ellipsis } from '../util';
-import Template from '../components/layout';
+import { config } from '../config';
 
 const NewsPostTemplate = (props) => {
   const post = get(props, 'data.contentfulNews');
@@ -19,10 +21,10 @@ const NewsPostTemplate = (props) => {
           title={ellipsis(post.title, 50)}
           image={post.featuredImage.file.url}
         />
-        <Helmet title={`${post.title} | Crammerock 2019`}>
+        <Helmet title={`${post.title} | ${config.siteName}`}>
           <meta property="og:type" content="website" />
           <meta property="og:image" content={post.featuredImage.file.url} />
-          <meta property="og:title" content={`${post.title} | Crammerock 2019`} />
+          <meta property="og:title" content={`${post.title} | ${config.siteName}`} />
           <meta property="og:url" content={`https://crammerock.be/nieuws/${post.slug}`} />
           <meta property="og:site_name" content="Crammerock.be" />
         </Helmet>

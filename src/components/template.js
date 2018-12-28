@@ -14,6 +14,7 @@ import Sponsors from './sponsors';
 import base from './styles/base.css'; // eslint-disable-line
 import { useRemoveServiceWorker } from '../hooks';
 import { isIE } from '../util';
+import { config } from '../config';
 
 type TProps = {
   children: ?React.Node,
@@ -63,7 +64,7 @@ const Template = (props: TProps) => {
         return (
           <Container>
             <Helmet
-              title="Crammerock 2019"
+              title={config.siteName}
               meta={[
                 {
                   property: 'og:type',
@@ -75,7 +76,7 @@ const Template = (props: TProps) => {
                 },
                 {
                   property: 'og:title',
-                  content: 'Crammerock 2019',
+                  content: config.siteName,
                 },
                 {
                   property: 'og:description',
@@ -99,7 +100,7 @@ const Template = (props: TProps) => {
                 },
                 {
                   name: 'twitter:title',
-                  content: 'Crammerock 2019',
+                  content: config.siteName,
                 },
                 {
                   name: 'twitter:image',
