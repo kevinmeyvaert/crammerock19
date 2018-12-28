@@ -12,6 +12,7 @@ import Template from '../components/layout';
 
 import styles from './styles/lineup.module.css';
 import { randomArrayValue, getTimeFromContentfulResponse } from '../util';
+import { config } from '../config';
 
 class LineUp extends React.Component {
   state = {
@@ -51,11 +52,11 @@ class LineUp extends React.Component {
           <Header
             title="Line-up"
             image={randomArtist.headerImage.file.url}
-            video={randomArtist.headerVideo && randomArtist.headerVideo.file.url || null}
+            video={(randomArtist.headerVideo && randomArtist.headerVideo.file.url) || null}
             link={`/lineup/${randomArtist.slug}`}
             cta={`Maak kennis met ${randomArtist.name}`}
           />
-          <Helmet title="Lineup | Crammerock 2019" />
+          <Helmet title={`Lineup | ${config.siteName}`} />
           <div className={styles.wrapper}>
             {dagindeling && (
               <div className={styles.filterWrapper}>

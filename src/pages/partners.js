@@ -10,6 +10,7 @@ import SponsorItem from '../components/sponsorItem';
 import Template from '../components/layout';
 
 import styles from './styles/partners.module.css';
+import { config } from '../config';
 
 const Partners = (props) => {
   const sponsors = get(props, 'data.allContentfulSponsors.edges');
@@ -19,7 +20,7 @@ const Partners = (props) => {
         <Header
           title="Partners"
         />
-        <Helmet title="Partners | Crammerock 2019" />
+        <Helmet title={`Partners | ${config.siteName}`} />
         <div className={styles.wrapper}>
           <div className={styles.row}>
             <div className={styles.sponsorRow}>

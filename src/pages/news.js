@@ -11,6 +11,7 @@ import NewsItem from '../components/newsItem';
 import Template from '../components/layout';
 
 import { ellipsis } from '../util';
+import { config } from '../config';
 
 const NewsIndex = (props) => {
   const posts = get(props, 'data.allContentfulNews.edges');
@@ -24,7 +25,7 @@ const NewsIndex = (props) => {
           link={`/news/${latestPost.slug}`}
           cta="Lees meer"
         />
-        <Helmet title="Nieuws | Crammerock 2019" />
+        <Helmet title={`Nieuws | ${config.siteName}`} />
         <div className={styles.wrapper}>
           <div className={styles.row}>
             {posts.map(({ node }) => (

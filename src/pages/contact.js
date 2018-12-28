@@ -7,6 +7,7 @@ import ReactContactForm from 'react-mail-form';
 import styles from './styles/contact.module.css';
 import Header from '../components/header';
 import Template from '../components/layout';
+import { config } from '../config';
 
 const Contact = () => (
   <Template>
@@ -15,7 +16,7 @@ const Contact = () => (
         title="Contact"
         image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
       />
-      <Helmet title="Contact | Crammerock 2019" />
+      <Helmet title={`Contact | ${config.siteName}`} />
       <div className={styles.wrapper}>
         <h2>Contacteer Crammerock</h2>
         <div className={styles.row}>

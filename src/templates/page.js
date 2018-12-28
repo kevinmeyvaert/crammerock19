@@ -8,10 +8,10 @@ import { graphql } from 'gatsby';
 import Header from '../components/header';
 import styles from './styles/page.module.css';
 import Template from '../components/layout';
+import { config } from '../config';
 
 const PageTemplate = (props) => {
   const page = get(props, 'data.contentfulPages');
-  const siteTitle = 'Crammerock 2019';
 
   return (
     <Template>
@@ -22,7 +22,7 @@ const PageTemplate = (props) => {
           image={page.headerImage.file.url}
           video={page.headerVideo && page.headerVideo.file.url}
         />
-        <Helmet title={`${page.title} | ${siteTitle}`} />
+        <Helmet title={`${page.title} | ${config.siteName}`} />
         <div className={styles.wrapper}>
           <div
             dangerouslySetInnerHTML={{

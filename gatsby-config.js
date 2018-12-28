@@ -23,10 +23,6 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
-  siteMetadata: {
-    title: 'Crammerock 2019',
-    siteUrl: 'https://crammerock.be',
-  },
   plugins: [
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
