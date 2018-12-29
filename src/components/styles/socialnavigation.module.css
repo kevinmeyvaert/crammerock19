@@ -1,0 +1,11 @@
+.icon {
+  width: 2Opx;
+  height: 20px;
+}
+
+.navigationItem {
+  margin: 0 10px;
+}
+  .navigationItem a {
+    color: currentColor;
+  }

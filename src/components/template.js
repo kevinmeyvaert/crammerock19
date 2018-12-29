@@ -10,6 +10,7 @@ import Container from './container';
 import Navigation from './navigation';
 import Footer from './footer';
 import Sponsors from './sponsors';
+import SocialNavigation from './socialNavigation';
 
 import base from './styles/base.css'; // eslint-disable-line
 import { useRemoveServiceWorker } from '../hooks';
@@ -118,7 +119,10 @@ const Template = (props: TProps) => {
             />
             {isIE() && <IEmessage />}
             <Navigation settings={settings} />
-            {props.children}
+            <SocialNavigation />
+            <div style={{ background: 'white', paddingBottom: '20px' }}>
+              {props.children}
+            </div>
             <Footer />
             <Sponsors sponsors={sponsors} />
           </Container>

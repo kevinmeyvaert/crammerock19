@@ -16,25 +16,23 @@ const NewsPostTemplate = (props) => {
   const post = get(props, 'data.contentfulNews');
   return (
     <Template>
-      <div style={{ background: '#fff' }}>
-        <Header
-          title={ellipsis(post.title, 50)}
-          image={post.featuredImage.file.url}
+      <Header
+        title={ellipsis(post.title, 50)}
+        image={post.featuredImage.file.url}
+      />
+      <Helmet title={`${post.title} | ${config.siteName}`}>
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={post.featuredImage.file.url} />
+        <meta property="og:title" content={`${post.title} | ${config.siteName}`} />
+        <meta property="og:url" content={`https://crammerock.be/nieuws/${post.slug}`} />
+        <meta property="og:site_name" content="Crammerock.be" />
+      </Helmet>
+      <div className={styles.wrapper}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: post.post.childMarkdownRemark.html,
+          }}
         />
-        <Helmet title={`${post.title} | ${config.siteName}`}>
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content={post.featuredImage.file.url} />
-          <meta property="og:title" content={`${post.title} | ${config.siteName}`} />
-          <meta property="og:url" content={`https://crammerock.be/nieuws/${post.slug}`} />
-          <meta property="og:site_name" content="Crammerock.be" />
-        </Helmet>
-        <div className={styles.wrapper}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: post.post.childMarkdownRemark.html,
-            }}
-          />
-        </div>
       </div>
     </Template>
   );

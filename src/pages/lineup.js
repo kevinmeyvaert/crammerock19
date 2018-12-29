@@ -72,6 +72,7 @@ const LineUp = (props) => {
         <div className={styles.artistWrapper}>
           {artistArray.map(artist => (
             <LineUpItem
+              key={artist.node.slug}
               artist={artist}
               dayFilter={dayFilter}
               dagindeling={dagindeling}

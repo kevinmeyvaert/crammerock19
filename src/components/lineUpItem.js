@@ -29,13 +29,15 @@ const LineUpItem = ({
       <Link
         to={`/lineup/${node.slug}`}
       >
-        <Image
-          width={600}
-          height={333}
-          src={node.headerImage.file.url}
-          alt={node.name}
-        />
-        <p>
+        <div className={styles.image}>
+          <Image
+            width={300}
+            height={300}
+            src={node.headerImage.file.url}
+            alt={node.name}
+          />
+        </div>
+        <p className={styles.description}>
           {node.name}
           {!dayFilter && dagindeling && ` | ${node.day}`}
           {dayFilter && stageFilter && ` | ${getTimeFromContentfulResponse(node.showStart)}`}

@@ -20,54 +20,57 @@ const Navigation = (props: TProps) => {
   const { infopagina, lineuppagina, ticketpagina } = settings[0].node;
 
   return (
-    <nav>
-      <ul className={!showNav ? styles.hideNav : styles.showNav}>
-        <li>
-          <Link
-            to="/"
-            activeStyle={{
-              borderBottom: 'thick solid #A3D7DD',
-            }}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/news"
-            activeStyle={{
-              borderBottom: 'thick solid #A3D7DD',
-            }}
-          >
-            Nieuws
-          </Link>
-        </li>
-        {lineuppagina && (
+    <nav className={styles.navigationWrapper}>
+      {showNav && (
+        <ul className={styles.navigation}>
           <li>
             <Link
-              to="/lineup"
+              to="/"
               activeStyle={{
                 borderBottom: 'thick solid #A3D7DD',
               }}
             >
-              Line-up
+              Home
             </Link>
           </li>
-        )}
-        {infopagina && (
           <li>
             <Link
-              to="/info"
+              to="/news"
               activeStyle={{
                 borderBottom: 'thick solid #A3D7DD',
               }}
             >
-              Info
+              Nieuws
             </Link>
           </li>
-        )}
-      </ul>
-      <ul>
+          {lineuppagina && (
+            <li>
+              <Link
+                to="/lineup"
+                activeStyle={{
+                  borderBottom: 'thick solid #A3D7DD',
+                }}
+              >
+                Line-up
+              </Link>
+            </li>
+          )}
+          {infopagina && (
+            <li>
+              <Link
+                to="/info"
+                activeStyle={{
+                  borderBottom: 'thick solid #A3D7DD',
+                }}
+              >
+                Info
+              </Link>
+            </li>
+          )}
+        </ul>
+      )}
+      
+      {/* <ul>
         {ticketpagina && (
           <div className={styles.tickets}>
             <Link
@@ -82,7 +85,7 @@ const Navigation = (props: TProps) => {
             Herbeleef Crammerock!
           </a>
         </div>
-      </ul>
+      </ul> */}
       <img src="/bars.svg" className={styles.icon} alt="Open navigatie" onClick={handleToggeNav} />
     </nav>
   );

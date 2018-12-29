@@ -31,52 +31,24 @@ class InfoItemTemplate extends React.Component {
     const { activeBlock } = this.state;
     return (
       <Template>
-        <div style={{ background: '#fff' }}>
-          <Header
-            title={info.title}
-            image={info.headerImage.file.url}
-            cta="Terug naar info"
-            link="/info"
+        <Header
+          title={info.title}
+          image={info.headerImage.file.url}
+          cta="Terug naar info"
+          link="/info"
+        />
+        <Helmet title={`${info.title} | ${config.siteName}`} />
+        <div className={styles.wrapper}>
+          {info.introCopy && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: info.introCopy.childMarkdownRemark.html,
+            }}
           />
-          <Helmet title={`${info.title} | ${config.siteName}`} />
-          <div className={styles.wrapper}>
-            {info.introCopy && (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: info.introCopy.childMarkdownRemark.html,
-              }}
-            />
-            )
-            }
-            {info.infoBlocks && info.infoBlocks.map((block) => {
-              if (activeBlock === block.title) {
-                return (
-                  <div
-                    className={styles.block}
-                    key={block.title}
-                    onClick={() => this.handleSectionClick(block)}
-                    role="button"
-                  >
-                    <h2>
-                      {block.title}
-                      {' '}
-                      <span>
-                        &#x25BC;
-                      </span>
-                    </h2>
-                    <div className={styles.content}>
-                      {block.content && (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: block.content.childMarkdownRemark.html,
-                        }}
-                      />
-                      )
-                    }
-                    </div>
-                  </div>
-                );
-              }
+          )
+          }
+          {info.infoBlocks && info.infoBlocks.map((block) => {
+            if (activeBlock === block.title) {
               return (
                 <div
                   className={styles.block}
@@ -88,13 +60,39 @@ class InfoItemTemplate extends React.Component {
                     {block.title}
                     {' '}
                     <span>
-                      &#x25BA;
+                      &#x25BC;
                     </span>
                   </h2>
+                  <div className={styles.content}>
+                    {block.content && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: block.content.childMarkdownRemark.html,
+                      }}
+                    />
+                    )
+                  }
+                  </div>
                 </div>
               );
-            })}
-          </div>
+            }
+            return (
+              <div
+                className={styles.block}
+                key={block.title}
+                onClick={() => this.handleSectionClick(block)}
+                role="button"
+              >
+                <h2>
+                  {block.title}
+                  {' '}
+                  <span>
+                    &#x25BA;
+                  </span>
+                </h2>
+              </div>
+            );
+          })}
         </div>
       </Template>
     );

@@ -17,25 +17,23 @@ const NewsIndex = (props) => {
   const latestPost = posts[0].node;
   return (
     <Template>
-      <div style={{ background: '#fff' }}>
-        <Header
-          title={ellipsis(latestPost.title, 50)}
-          image={latestPost.featuredImage.file.url}
-          link={`/news/${latestPost.slug}`}
-          cta="Lees meer"
-        />
-        <Helmet title={`Nieuws | ${config.siteName}`} />
-        <div className={styles.wrapper}>
-          <div className={styles.row}>
-            {posts.map(({ node }) => (
-              <NewsItem
-                title={node.title}
-                content={node.post.childMarkdownRemark.html}
-                slug={node.slug}
-                key={node.slug}
-              />
-            ))}
-          </div>
+      <Header
+        title={ellipsis(latestPost.title, 50)}
+        image={latestPost.featuredImage.file.url}
+        link={`/news/${latestPost.slug}`}
+        cta="Lees meer"
+      />
+      <Helmet title={`Nieuws | ${config.siteName}`} />
+      <div className={styles.wrapper}>
+        <div className={styles.row}>
+          {posts.map(({ node }) => (
+            <NewsItem
+              title={node.title}
+              content={node.post.childMarkdownRemark.html}
+              slug={node.slug}
+              key={node.slug}
+            />
+          ))}
         </div>
       </div>
     </Template>

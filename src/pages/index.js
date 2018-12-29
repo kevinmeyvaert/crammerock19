@@ -24,28 +24,26 @@ const RootIndex = (props) => {
   const randomArtist: TArtist = useGetRandomArtistInterval(artists, 5000);
   return (
     <Template>
-      <div>
-        <Header
-          title={ellipsis(headerData.title, 50)}
-          image={headerData.featuredImage.file.url}
-          link={`/news/${headerData.slug}`}
-          cta="Lees meer"
-        />
-        <div className={styles.wrapper}>
-          <div className={styles.row}>
-            {news.slice(1, 2).map(({ node }) => (
-              <NewsItem
-                title={node.title}
-                content={node.post.childMarkdownRemark.html}
-                slug={node.slug}
-                key={node.slug}
-              />
-            ))}
-            <div className={styles.randomArtist}>
-              <Image width={800} height={533} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
-              <h2><Link to={`/lineup/${randomArtist.slug}`}><span>{randomArtist.name}</span></Link></h2>
-              <h3><Link to="/lineup"><span>Ontdek de lineup!</span></Link></h3>
-            </div>
+      <Header
+        title={ellipsis(headerData.title, 50)}
+        image={headerData.featuredImage.file.url}
+        link={`/news/${headerData.slug}`}
+        cta="Lees meer"
+      />
+      <div className={styles.wrapper}>
+        <div className={styles.row}>
+          {news.slice(1, 2).map(({ node }) => (
+            <NewsItem
+              title={node.title}
+              content={node.post.childMarkdownRemark.html}
+              slug={node.slug}
+              key={node.slug}
+            />
+          ))}
+          <div className={styles.randomArtist}>
+            <Image width={800} height={533} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
+            <h2><Link to={`/lineup/${randomArtist.slug}`}><span>{randomArtist.name}</span></Link></h2>
+            <h3><Link to="/lineup"><span>Ontdek de lineup!</span></Link></h3>
           </div>
         </div>
       </div>
