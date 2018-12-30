@@ -3,7 +3,9 @@
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0 20px;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .row {
@@ -13,6 +15,15 @@
   box-sizing: border-box;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.showAll {
+  background-color: #F0986B;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  align-self: center;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 730px) {

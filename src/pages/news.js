@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import React, { useState } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -13,7 +13,7 @@ import { ellipsis } from '../util';
 import { config } from '../config';
 
 const NewsIndex = (props) => {
-  const posts = get(props, 'data.allContentfulNews.edges');
+  const [posts, setPosts] = useState(get(props, 'data.allContentfulNews.edges').slice(0, 6));
   const latestPost = posts[0].node;
   return (
     <Template>
@@ -32,9 +32,19 @@ const NewsIndex = (props) => {
               content={node.post.childMarkdownRemark.html}
               slug={node.slug}
               key={node.slug}
+              date={node.publishDate}
             />
           ))}
         </div>
+        {Object.keys(posts).length <= 6 && (
+          <button
+            type="button"
+            className={styles.showAll}
+            onClick={() => setPosts(get(props, 'data.allContentfulNews.edges'))}
+          >
+            Toon oudere berichten
+          </button>
+        )}
       </div>
     </Template>
   );
