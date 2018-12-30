@@ -33,17 +33,14 @@ const RootIndex = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.row}>
           {news.slice(1, 2).map(({ node }) => (
-            <NewsItem
-              title={node.title}
-              content={node.post.childMarkdownRemark.html}
-              slug={node.slug}
-              key={node.slug}
-            />
+            <div className={styles.indexItem}>
+              <Image width={800} height={333} src={node.featuredImage.file.url} alt={node.title} />
+              <h2><Link to={`/news/${node.slug}`}><span>{node.title}</span></Link></h2>
+            </div>
           ))}
-          <div className={styles.randomArtist}>
-            <Image width={800} height={533} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
+          <div className={styles.indexItem}>
+            <Image width={800} height={333} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
             <h2><Link to={`/lineup/${randomArtist.slug}`}><span>{randomArtist.name}</span></Link></h2>
-            <h3><Link to="/lineup"><span>Ontdek de lineup!</span></Link></h3>
           </div>
         </div>
       </div>

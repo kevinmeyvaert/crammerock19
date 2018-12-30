@@ -10,7 +10,6 @@
 
   .image::before {
     position: absolute;
-    z-index: 2;
     width: calc(100% - 4px);
     height: calc(100% - 7px);
     border: 2px solid #EE986F;

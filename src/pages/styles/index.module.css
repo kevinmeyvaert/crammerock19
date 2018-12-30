@@ -11,69 +11,53 @@
   width: 100%;
   flex-direction: row;
   box-sizing: border-box;
-  align-items: flex-start;
+  align-items: stretch;
+  justify-content: space-around;
 }
 
-.randomArtist {
-  width: 50%;
-  padding: 0 20px;
+.indexItem {
+  align-self: flex-start;
+  width: 48%;
   box-sizing: border-box;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
-.randomArtist img {
+.indexItem img {
   max-width: 100%;
 }
 
-.randomArtist h2 {
+.indexItem h2 {
+  position: absolute;
+  z-index: 3;
   color: #FFFFFF;
   text-transform: uppercase;
   margin: 0;
   font-family: 'Oswald';
   font-size: 24px;
-  transform: translateY(-20px);
 }
-  .randomArtist h2 a {
-    color: #FFFFFF;
+  .indexItem h2 a {
+    color: #2F4C5C;
     text-decoration: none;
   }
 
-  .randomArtist h2 span {
-    background-color: #F0986B;
+  .indexItem h2 span {
+    background-color: #A5D7DC;
     padding: 3px 10px;
     box-decoration-break: clone;
     font-family: 'Oswald';
     font-size: 24px;
   }
 
-.randomArtist h3 {
-  color: #FFFFFF;
-  font-family: 'Arial';
-  font-size: 16px;
-  font-weight: 300;
-  transform: translateY(-20px);
-}
-  .randomArtist h3 a {
-    color: #FFFFFF;
-    text-decoration: none;
-  }
-
-  .randomArtist h3 span {
-    background-color: #2E4C5D;
-    padding: 5px 7px;
-    box-decoration-break: clone;
-  }
-
 @media only screen and (max-width: 730px) {
   .row {
     flex-direction: column;
   }
-  .randomArtist {
+  .indexItem {
     width: 100%;
     padding: 0;
   }
