@@ -13,7 +13,7 @@ type TProps = {
 };
 
 const Navigation = (props: TProps) => {
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(typeof window !== 'undefined' && window.innerWidth > 730);
   const handleToggeNav = () => setShowNav(!showNav);
 
   const { settings } = props;
@@ -67,26 +67,25 @@ const Navigation = (props: TProps) => {
               </Link>
             </li>
           )}
-        </ul>
-      )}
-      
-      {/* <ul>
-        {ticketpagina && (
-          <div className={styles.tickets}>
+          {ticketpagina && (
+          <li className={styles.tickets}>
             <Link
               to="/tickets"
             >
               Koop Tickets
             </Link>
-          </div>
-        )}
-        <div className={styles.tickets}>
-          <a href="https://www.youtube.com/user/CrammerockOfficial" target="_blank" rel="noopener noreferrer">
-            Herbeleef Crammerock!
-          </a>
-        </div>
-      </ul> */}
-      <img src="/bars.svg" className={styles.icon} alt="Open navigatie" onClick={handleToggeNav} />
+          </li>
+          )}
+          <li className={styles.tickets}>
+            <a href="https://www.youtube.com/user/CrammerockOfficial" target="_blank" rel="noopener noreferrer">
+              Herbeleef Crammerock!
+            </a>
+          </li>
+        </ul>
+      )}
+      <div className={styles.mobileToggle}>
+        <img src="/bars.svg" className={styles.icon} alt="Open navigatie" onClick={handleToggeNav} />
+      </div>
     </nav>
   );
 };

@@ -6,7 +6,7 @@
   justify-content: flex-end;
 }
 
-.icon {
+.mobileToggle {
   display: none;
 }
 
@@ -25,6 +25,7 @@
 .navigation {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   list-style: none;
   font-size: 20px;
   background-color: #FFFFFF;
@@ -53,12 +54,25 @@ ul li a {
 
 @media only screen and (max-width: 730px) {
   .icon {
-    display: flex;
-    margin: 10px 10px 10px;
-    align-self: flex-end;   
+    width: 30px;
+    height: 30px;
+    margin: 10px 10px 10px;  
   }
 
-  nav {
+  .mobileToggle {
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .navigationWrapper {
+    display: flex;
+    height: auto;
+    flex-direction: column-reverse;
+  }
+
+  .navigation {
+    padding-top: 30px;
     height: auto;
     flex-direction: column-reverse;
   }

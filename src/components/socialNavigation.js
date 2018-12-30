@@ -12,7 +12,7 @@ const SocialNavigation = () => {
       flexDirection: 'row',
       justifyContent: 'flex-end',
       margin: '0',
-      padding: '10px 20px 10px',
+      padding: '15px 20px 10px',
     }}
     >
       <li className={styles.navigationItem}>
