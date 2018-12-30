@@ -21,6 +21,9 @@ const Navigation = (props: TProps) => {
 
   return (
     <nav className={styles.navigationWrapper}>
+      <div className={styles.mobileToggle}>
+        <img src="/bars.svg" className={styles.icon} alt="Open navigatie" onClick={handleToggeNav} />
+      </div>
       {showNav && (
         <ul className={styles.navigation}>
           <li>
@@ -83,9 +86,6 @@ const Navigation = (props: TProps) => {
           </li>
         </ul>
       )}
-      <div className={styles.mobileToggle}>
-        <img src="/bars.svg" className={styles.icon} alt="Open navigatie" onClick={handleToggeNav} />
-      </div>
     </nav>
   );
 };

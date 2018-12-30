@@ -3,6 +3,9 @@
   margin-bottom: 40px;
   width: 100%;
   min-height: 320px;
+  box-shadow: 0px -10px 10px 0px rgba(0,0,0,.2);
+  position: relative;
+  z-index: 2;
 }
 
 .headerImage, .mobileHeaderImage {
@@ -94,10 +97,11 @@
   top: 0;
 }
 .logo {
+  position: relative;
   width: 250px;
-  z-index: 5;
+  z-index: 10;
   transition: .5s;
-  transform: translateY(-70px) rotate(-2deg) translateX(20px);
+  transform: translateY(-90px) rotate(-2deg) translateX(20px);
 }
 
 .headerEnd {
@@ -139,6 +143,7 @@
   .header {
     min-height: 320px;
     height: auto;
+    margin-bottom: 10px;
   }
   .mobileHeaderImage {
     display: block;
