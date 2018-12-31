@@ -66,12 +66,11 @@
 
 .indexItem h2 {
   position: absolute;
-  z-index: 3;
   color: #FFFFFF;
   text-transform: uppercase;
   margin: 0;
-  font-family: 'Oswald';
-  font-size: 24px;
+  width: 80%;
+  text-align: center;
 }
   .indexItem h2 a {
     color: #2F4C5C;
@@ -90,8 +89,11 @@
   .row {
     flex-direction: column;
   }
-  .indexItem {
+  .row a {
     width: 100%;
     padding: 0;
+  }
+  .indexItem h2 span {
+    font-size: 20px;
   }
 }

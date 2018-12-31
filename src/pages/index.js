@@ -33,7 +33,7 @@ const RootIndex = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.row}>
           {news.slice(1, 2).map(({ node }) => (
-            <Link to={`/news/${node.slug}`}>
+            <Link to={`/news/${node.slug}`} key={node.slug}>
               <div className={styles.indexItem}>
                 <Image width={800} height={333} src={node.featuredImage.file.url} alt={node.title} />
                 <h2><span>{node.title}</span></h2>

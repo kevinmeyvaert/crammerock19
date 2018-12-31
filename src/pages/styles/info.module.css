@@ -63,12 +63,11 @@
 
 .infoItem h2 {
   position: absolute;
-  z-index: 3;
   color: #FFFFFF;
   text-transform: uppercase;
   margin: 0;
-  font-family: 'Oswald';
-  font-size: 24px;
+  width: 80%;
+  text-align: center;
 }
   .infoItem h2 a {
     color: #2F4C5C;

@@ -29,7 +29,7 @@ const Info = (props) => {
             <Link to={`/info/${infoItem.node.slug}`} key={infoItem.node.title}>
               <div className={styles.infoItem}>
                 <Image width={800} height={333} src={infoItem.node.headerImage.file.url} alt={infoItem.node.title} />
-                <h2><Link to={`/news/${infoItem.node.slug}`}><span>{infoItem.node.title}</span></Link></h2>
+                <h2><span>{infoItem.node.title}</span></h2>
               </div>
             </Link>
           ))}
