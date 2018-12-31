@@ -42,6 +42,22 @@ const RootIndex = (props) => {
             <Image width={800} height={333} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
             <h2><Link to={`/lineup/${randomArtist.slug}`}><span>{randomArtist.name}</span></Link></h2>
           </div>
+          <div className={styles.indexItem}>
+            <img src="/aftermovie.jpg" width="800" alt="Aftermovie 2018" />
+            <h2>
+              <a href="https://www.facebook.com/Crammerock/videos/1549510151819448/" target="_blank" rel="noopener noreferrer">
+                <span>Aftermovie 2018</span>
+              </a>
+            </h2>
+          </div>
+          <div className={styles.indexItem}>
+            <img src="/19block.jpg" width="800" alt="Aftermovie 2018" />
+            <h2>
+              <a href="https://www.facebook.com/events/265783484259438/" target="_blank" rel="noopener noreferrer">
+                <span>6 - 7 September 2019</span>
+              </a>
+            </h2>
+          </div>
         </div>
       </div>
     </Template>
