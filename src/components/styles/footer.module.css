@@ -50,7 +50,8 @@ footer {
 
   footer p {
     color: #FFFFFF;
-    font-family: "Arial";
+    font-family: "Helvetica";
+    letter-spacing: 90%;
   } 
 
   footer ul {
@@ -58,11 +59,19 @@ footer {
     display: flex;
     flex-direction: row;
     padding: 0;
-    font-family: "Arial";
+    text-transform: capitalize;
+  }
+
+  footer ul h2 {
+    text-transform: uppercase;
+    font-family: "Oswald";
+    font-size: 22px;
   }
 
   footer ul li {
     margin-right: 30px;
+    font-family: "Helvetica";
+    letter-spacing: 90%;
   }
 
   footer ul li a {
