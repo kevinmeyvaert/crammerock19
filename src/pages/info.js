@@ -6,7 +6,7 @@ import Link from 'gatsby-link';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import { Template, Header } from '../components';
+import { Template, Header, Image } from '../components';
 
 import { randomArrayValue } from '../util';
 import styles from './styles/info.module.css';
@@ -28,8 +28,8 @@ const Info = (props) => {
           {infoPages.map(infoItem => (
             <Link to={`/info/${infoItem.node.slug}`} key={infoItem.node.title}>
               <div className={styles.infoItem}>
-                <img src={`${infoItem.node.headerImage.file.url}?w=600&h=333&fit=fill`} alt={infoItem.node.title} />
-                <h2 className={styles.infotitle}><span>{infoItem.node.title}</span></h2>
+                <Image width={800} height={333} src={infoItem.node.headerImage.file.url} alt={infoItem.node.title} />
+                <h2><Link to={`/news/${infoItem.node.slug}`}><span>{infoItem.node.title}</span></Link></h2>
               </div>
             </Link>
           ))}
