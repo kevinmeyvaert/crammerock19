@@ -33,31 +33,31 @@ const RootIndex = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.row}>
           {news.slice(1, 2).map(({ node }) => (
-            <div className={styles.indexItem}>
-              <Image width={800} height={333} src={node.featuredImage.file.url} alt={node.title} />
-              <h2><Link to={`/news/${node.slug}`}><span>{node.title}</span></Link></h2>
-            </div>
+            <Link to={`/news/${node.slug}`}>
+              <div className={styles.indexItem}>
+                <Image width={800} height={333} src={node.featuredImage.file.url} alt={node.title} />
+                <h2><span>{node.title}</span></h2>
+              </div>
+            </Link>
           ))}
-          <div className={styles.indexItem}>
-            <Image width={800} height={333} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
-            <h2><Link to={`/lineup/${randomArtist.slug}`}><span>{randomArtist.name}</span></Link></h2>
-          </div>
-          <div className={styles.indexItem}>
-            <img src="/aftermovie.jpg" width="800" alt="Aftermovie 2018" />
-            <h2>
-              <a href="https://www.facebook.com/Crammerock/videos/1549510151819448/" target="_blank" rel="noopener noreferrer">
-                <span>Aftermovie 2018</span>
-              </a>
-            </h2>
-          </div>
-          <div className={styles.indexItem}>
-            <img src="/19block.jpg" width="800" alt="Aftermovie 2018" />
-            <h2>
-              <a href="https://www.facebook.com/events/265783484259438/" target="_blank" rel="noopener noreferrer">
-                <span>6 - 7 September 2019</span>
-              </a>
-            </h2>
-          </div>
+          <Link to={`/lineup/${randomArtist.slug}`}>
+            <div className={styles.indexItem}>
+              <Image width={800} height={333} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
+              <h2><span>{randomArtist.name}</span></h2>
+            </div>
+          </Link>
+          <a href="https://www.facebook.com/Crammerock/videos/1549510151819448/" target="_blank" rel="noopener noreferrer">
+            <div className={styles.indexItem}>
+              <img src="/aftermovie.jpg" width="800" alt="Aftermovie 2018" />
+              <h2><span>Aftermovie 2018</span></h2>
+            </div>
+          </a>
+          <a href="https://www.facebook.com/events/265783484259438/" target="_blank" rel="noopener noreferrer">
+            <div className={styles.indexItem}>
+              <img src="/19block.jpg" width="800" alt="Aftermovie 2018" />
+              <h2><span>6 - 7 September 2019</span></h2>
+            </div>
+          </a>
         </div>
       </div>
     </Template>
