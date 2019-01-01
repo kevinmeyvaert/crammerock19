@@ -6,11 +6,11 @@ import Link from 'gatsby-link';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import Header from '../components/header';
-import Template from '../components/layout';
+import { Template, Header } from '../components';
 
 import { randomArrayValue } from '../util';
 import styles from './styles/info.module.css';
+import { config } from '../config';
 
 const Info = (props) => {
   const infoPages = get(props, 'data.allContentfulInfoPages.edges');
@@ -23,7 +23,7 @@ const Info = (props) => {
           subTitle="Alles wat je moet weten!"
           image={randomHeader}
         />
-        <Helmet title="Info | Crammerock 2019" />
+        <Helmet title={`Info | ${config.siteName}`} />
         <div className={styles.wrapper}>
           <div className={styles.row}>
             {infoPages.map(infoItem => (

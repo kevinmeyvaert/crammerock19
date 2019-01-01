@@ -5,10 +5,12 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
+import { Template, Header } from '../components';
+
 import { getTimeFromContentfulResponse } from '../util';
-import Header from '../components/header';
+import { config } from '../config';
+
 import styles from './styles/artist.module.css';
-import Template from '../components/layout';
 
 const isAvailable = (propValue: string): boolean => propValue && propValue.length > 0;
 
@@ -28,7 +30,6 @@ const createSubtitle = (settingValues, page): string => {
 
 const PageTemplate = (props) => {
   const page = get(props, 'data.contentfulArtists');
-  const siteTitle = 'Crammerock 2019';
   const settings = get(props, 'data.allContentfulSettings.edges');
   const settingValues = settings[0].node;
 
@@ -42,7 +43,7 @@ const PageTemplate = (props) => {
           cta="Terug naar line-up"
           link="/lineup"
         />
-        <Helmet title={`${page.name} | ${siteTitle}`} />
+        <Helmet title={`${page.name} | ${config.siteName}`} />
         <div className={styles.wrapper}>
           <p className={styles.location}>
             {createSubtitle(settingValues, page)}
