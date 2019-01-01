@@ -3,7 +3,8 @@ import { randomArrayValue } from '../util';
 
 export const useRemoveServiceWorker = () => {
   useEffect(() => {
-    if (typeof navigator !== 'undefined') {
+    if (typeof navigator !== 'undefined'
+     && typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.getRegistrations().then((registrations) => {
         for (const registration of registrations) {
           registration.unregister();
