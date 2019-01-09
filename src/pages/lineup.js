@@ -50,7 +50,7 @@ const LineUp = (props) => {
   const { lineuppagina, dagindeling, podiumIndeling } = settings[0].node;
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 
-  if (!lineuppagina) return navigate('/');
+  if (!lineuppagina && typeof window !== 'undefined') return navigate('/');
 
   return lineuppagina && (
     <Template>
