@@ -52,7 +52,7 @@ const LineUp = (props) => {
 
   if (!lineuppagina && typeof window !== 'undefined') return navigate('/');
 
-  return lineuppagina && (
+  return lineuppagina ? (
     <Template>
       <Header
         title="Line-up"
@@ -83,7 +83,7 @@ const LineUp = (props) => {
         </div>
       </div>
     </Template>
-  );
+  ) : null;
 };
 
 export default LineUp;
