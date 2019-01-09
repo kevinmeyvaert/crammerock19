@@ -65,19 +65,6 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulArtists(sort: { fields: [name], order: DESC }) {
-      edges {
-        node {
-          name
-          slug
-          headerImage {
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
     allContentfulSponsors(filter: {onHomepage: {eq: true }}) {
       edges {
         node {
