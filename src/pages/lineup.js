@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql, navigate } from 'gatsby';
@@ -50,7 +50,11 @@ const LineUp = (props) => {
   const { lineuppagina, dagindeling, podiumIndeling } = settings[0].node;
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 
-  if (!lineuppagina && typeof window !== 'undefined') return navigate('/');
+  useEffect(() => {
+    if (!lineuppagina && typeof window !== 'undefined') {
+      navigate('/');
+    }
+  }, []);
 
   return lineuppagina ? (
     <Template>
