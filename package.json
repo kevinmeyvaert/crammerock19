@@ -4,6 +4,7 @@
   "version": "2.1.0",
   "author": "Kevin Meyvaert <kevin.meyvaert@gmail.com>",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.3",
     "contentful-import": "^7.4.3",
     "gatsby": "^2.0.77",
@@ -62,7 +63,7 @@
     "clean": "rimraf .cache public",
     "dev": "npm run clean && gatsby develop",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "build": "npm run clean && gatsby build --no-uglify",
+    "build": "npm run clean && gatsby build",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix *.js bin/*.js",
     "check": "npm-check -u"
   }
