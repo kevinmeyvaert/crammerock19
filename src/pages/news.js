@@ -13,8 +13,8 @@ import { ellipsis } from '../util';
 import { config } from '../config';
 
 const NewsIndex = (props) => {
-  const [posts, setPosts] = useState(get(props, 'data.allContentfulNews.edges').slice(0, 6));
-  const latestPost = posts[0].node;
+  const [posts, setPosts] = useState(get(props, 'data.allContentfulNews.edges').slice(1, 7));
+  const latestPost = get(props, 'data.allContentfulNews.edges')[0].node;
   return (
     <Template>
       <Header
@@ -40,7 +40,7 @@ const NewsIndex = (props) => {
           <button
             type="button"
             className={styles.showAll}
-            onClick={() => setPosts(get(props, 'data.allContentfulNews.edges'))}
+            onClick={() => setPosts(get(props, 'data.allContentfulNews.edges').slice(1))}
           >
             Toon oudere berichten
           </button>

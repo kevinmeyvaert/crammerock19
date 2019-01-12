@@ -20,7 +20,7 @@ const NewsItem = ({
   publishDate,
 }: TProps) => (
   <div className={styles.wrap}>
-    <h2><span>{title}</span></h2>
+    <Link to={`/news/${slug}`}><h2><span>{title}</span></h2></Link>
     <p>{publishDate}</p>
     {ellipsis(removeHtmlTagsFromString(content), 250)}
     <p className={styles.leesmeer}><Link to={`/news/${slug}`}>Lees meer...</Link></p>
