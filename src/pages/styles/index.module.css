@@ -44,6 +44,7 @@
   justify-content: center;
   overflow: hidden;
   background-color: #2F4C5C;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -55,6 +56,7 @@
   height: calc(100% - 25px);
   content: "";
   border: 2px solid #EE986F;
+  display: block;
 }
 
 .indexItem img {
