@@ -14,6 +14,7 @@ import { config } from '../config';
 
 const NewsIndex = (props) => {
   const [posts, setPosts] = useState(get(props, 'data.allContentfulNews.edges').slice(1, 7));
+  const showMorePostsButton = (get(props, 'data.allContentfulNews.edges').slice(1, 7).length > get(props, 'data.allContentfulNews.edges').length);
   const latestPost = get(props, 'data.allContentfulNews.edges')[0].node;
   return (
     <Template>
@@ -36,7 +37,7 @@ const NewsIndex = (props) => {
             />
           ))}
         </div>
-        {Object.keys(posts).length <= 6 && (
+        {Object.keys(posts).length <= 6 && showMorePostsButton && (
           <button
             type="button"
             className={styles.showAll}
@@ -64,7 +65,7 @@ export const pageQuery = graphql`
               html
             }
           }
-          publishDate(formatString: "MMMM Do, YYYY")
+          publishDate(formatString: "DD/MM/YYYY")
           featuredImage {
             file {
               url
