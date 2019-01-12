@@ -9,6 +9,7 @@ import {
   Template,
   Header,
   Image,
+  ContentBlock,
 } from '../components';
 
 import { ellipsis } from '../util';
@@ -28,14 +29,12 @@ const RootIndex = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.row}>
           {news.slice(1, 2).map(({ node }) => (
-            <Link to={`/news/${node.slug}`} key={node.slug}>
-              <div className={styles.indexItem}>
-                <div className={styles.innerBorder}>
-                  <h2><span>{node.title}</span></h2>
-                </div>
-                <Image width={800} height={333} src={node.featuredImage.file.url} alt={node.title} />
-              </div>
-            </Link>
+            <ContentBlock
+              key={node.slug}
+              link={`/news/${node.slug}`}
+              title={node.title}
+              contentfulImage={node.featuredImage.file.url}
+            />
           ))}
           {/* <Link to={`/lineup/${randomArtist.slug}`}>
             <div className={styles.indexItem}>
@@ -43,18 +42,16 @@ const RootIndex = (props) => {
               <h2><span>{randomArtist.name}</span></h2>
             </div>
           </Link> */}
-          <a href="https://www.facebook.com/Crammerock/videos/1549510151819448/" target="_blank" rel="noopener noreferrer">
-            <div className={styles.indexItem}>
-              <img src="/aftermovie.jpg" width="800" alt="Aftermovie 2018" />
-              <h2><span>Aftermovie 2018</span></h2>
-            </div>
-          </a>
-          <a href="https://www.facebook.com/events/265783484259438/" target="_blank" rel="noopener noreferrer">
-            <div className={styles.indexItem}>
-              <img src="/19block.jpg" width="800" alt="Aftermovie 2018" />
-              <h2><span>6 - 7 September 2019</span></h2>
-            </div>
-          </a>
+          <ContentBlock
+            externalLink="https://www.facebook.com/Crammerock/videos/1549510151819448/"
+            title="Aftermovie 2018"
+            image="/aftermovie.jpg"
+          />
+          <ContentBlock
+            externalLink="https://www.facebook.com/events/265783484259438/"
+            title="6 - 7 September 2019"
+            image="/19block.jpg"
+          />
         </div>
       </div>
     </Template>

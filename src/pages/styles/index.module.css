@@ -17,81 +17,11 @@
   justify-content: space-around;
 }
 
-.row a {
-  color: #FFFFFF;
-  text-decoration: none;
-  width: 48%;
-  max-width: 100%;
-  box-sizing: border-box;
-  text-transform: uppercase;
-  font-family: 'Oswald';
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
 .row::after {
   content: "";
   width: 48%;
   max-width: 100%;
 }
-
-.indexItem {
-  box-sizing: border-box;
-  position: relative;
-  display: flex;
-  text-align: center;
-  overflow: hidden;
-  background-color: #2F4C5C;
-  width: 100%;
-  max-width: 100%;
-}
-
-.innerBorder {
-  align-items: center;
-  border: 2px solid #EE986F;
-  content: "";
-  display: flex;
-  height: calc(100% - 28px);
-  justify-content: center;
-  max-width: 100%;
-  margin: 13px 0 0 13px;
-  position: absolute;
-  width: calc(100% - 28px);
-  z-index: 15;
-}
-
-.indexItem img {
-  max-width: 100%;
-  transform: scale(1.1);
-  transition: .5s;
-  opacity: .5;
-}
-
-.indexItem:hover img {
-  opacity: 1;
-  transform: scale(1.3);
-}
-
-.indexItem h2 {
-  position: absolute;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  margin: 0;
-  width: 80%;
-  text-align: center;
-}
-  .indexItem h2 a {
-    color: #2F4C5C;
-    text-decoration: none;
-  }
-
-  .indexItem h2 span {
-    background-color: #A5D7DC;
-    padding: 3px 10px;
-    box-decoration-break: clone;
-    font-family: 'Oswald';
-    font-size: 24px;
-  }
 
 @media only screen and (max-width: 730px) {
   .row {
@@ -100,8 +30,5 @@
   .row a {
     width: 100%;
     padding: 0;
-  }
-  .indexItem h2 span {
-    font-size: 20px;
   }
 }
