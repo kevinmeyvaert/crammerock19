@@ -1,9 +1,9 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 
 import {
   Template,
@@ -42,7 +42,7 @@ const LineUp = (props) => {
   const sortByTimeFn = (artistA, artistB) => new Date(artistA.node.showStart) - new Date(artistB.node.showStart);
 
   // Contentful data
-  const artists = get(props, 'data.allContentfulArtists.edges').filter(artistFilterFn);
+  const artists = get(props, 'data.allContentfulArtists2018.edges').filter(artistFilterFn);
   const settings = get(props, 'data.allContentfulSettings.edges');
 
   // Local consts
@@ -50,7 +50,13 @@ const LineUp = (props) => {
   const { lineuppagina, dagindeling, podiumIndeling } = settings[0].node;
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 
-  return lineuppagina && (
+  useEffect(() => {
+    if (!lineuppagina && typeof window !== 'undefined') {
+      navigate('/');
+    }
+  }, []);
+
+  return lineuppagina ? (
     <Template>
       <Header
         title="Line-up"
@@ -82,14 +88,14 @@ const LineUp = (props) => {
         </div>
       </div>
     </Template>
-  );
+  ) : null;
 };
 
 export default LineUp;
 
 export const pageQuery = graphql`
   query LineUpQuery {
-    allContentfulArtists(sort: { fields: [artistLevel, name], order: ASC }) {
+    allContentfulArtists2018(sort: { fields: [artistLevel, name], order: ASC }) {
       edges {
         node {
           name

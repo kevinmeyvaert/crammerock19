@@ -29,7 +29,7 @@ const createSubtitle = (settingValues, page): string => {
 };
 
 const PageTemplate = (props) => {
-  const page = get(props, 'data.contentfulArtists');
+  const page = get(props, 'data.contentfulArtists2018');
   const settings = get(props, 'data.allContentfulSettings.edges');
   const settingValues = settings[0].node;
 
@@ -99,7 +99,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    contentfulArtists(slug: { eq: $slug }) {
+    contentfulArtists2018(slug: { eq: $slug }) {
       name
       artistLevel
       headerImage {

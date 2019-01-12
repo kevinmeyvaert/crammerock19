@@ -198,7 +198,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
 
-            allContentfulArtists {
+            allContentfulArtists2018 {
               edges {
                 node {
                   slug
@@ -233,7 +233,7 @@ exports.createPages = ({ graphql, actions }) => {
       if (result.errors) {
         reject(result.errors);
       }
-      const artists = result.data.allContentfulArtists.edges;
+      const artists = result.data.allContentfulArtists2018.edges;
       artists.forEach((artist) => {
         createPage({
           path: `lineup/${artist.node.slug}/`,
