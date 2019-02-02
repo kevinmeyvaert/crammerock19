@@ -7,6 +7,7 @@ import Link from 'gatsby-link';
 
 import styles from './styles/navigation.module.css';
 import type { TSettings } from '../types';
+import { getSettings } from '../util';
 
 type TProps = {
   settings: Array<TSettings>,
@@ -17,8 +18,7 @@ const Navigation = (props: TProps) => {
   const handleToggeNav = () => setShowNav(!showNav);
 
   const { settings } = props;
-  const { infopagina, lineuppagina, ticketpagina } = settings[0].node;
-
+  const { infopagina, lineuppagina, ticketpagina } = getSettings(settings[0].node);
   return (
     <nav className={styles.navigationWrapper}>
       <div className={styles.mobileToggle}>

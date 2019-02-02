@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { navigate } from 'gatsby';
 import { randomArrayValue } from '../util';
 
 export const useRemoveServiceWorker = () => {
@@ -27,4 +28,12 @@ export const useGetRandomArtistInterval = (artists, interval) => {
   }, []);
 
   return randomArtist;
+};
+
+export const useRedirectIfNotAllowed = (isAllowed: boolean) => {
+  useEffect(() => {
+    if (!isAllowed && typeof window !== 'undefined') {
+      navigate('/');
+    }
+  }, []);
 };

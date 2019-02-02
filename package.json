@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.3",
     "contentful-import": "^7.4.3",
+    "dotenv": "^6.2.0",
     "gatsby": "^2.0.77",
     "gatsby-cli": "^2.4.8",
     "gatsby-image": "^2.0.22",

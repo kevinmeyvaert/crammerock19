@@ -7,10 +7,11 @@ import { graphql } from 'gatsby';
 
 import { Template, Header } from '../components';
 
-import { getTimeFromContentfulResponse } from '../util';
+import { getTimeFromContentfulResponse, getSettings } from '../util';
 import { config } from '../config';
 
 import styles from './styles/artist.module.css';
+import { useRedirectIfNotAllowed } from '../hooks';
 
 const isAvailable = (propValue: string): boolean => propValue && propValue.length > 0;
 
@@ -31,7 +32,11 @@ const createSubtitle = (settingValues, page): string => {
 const PageTemplate = (props) => {
   const page = get(props, 'data.contentfulArtists2018');
   const settings = get(props, 'data.allContentfulSettings.edges');
-  const settingValues = settings[0].node;
+  const settingValues = getSettings(settings[0].node);
+  const { lineuppagina } = settingValues;
+
+  // redirect to homepage if page is disabled
+  useRedirectIfNotAllowed(lineuppagina);
 
   return (
     <Template>

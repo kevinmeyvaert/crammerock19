@@ -8,8 +8,9 @@ import { graphql } from 'gatsby';
 import styles from './styles/news.module.css';
 
 import { Template, Header } from '../components';
-
+import { getSettings } from '../util';
 import { config } from '../config';
+import { useRedirectIfNotAllowed } from '../hooks';
 import type { TSettings } from '../types';
 
 type TProps = {
@@ -18,7 +19,11 @@ type TProps = {
 
 const Tickets = (props: TProps) => {
   const settings = get(props, 'data.allContentfulSettings.edges');
-  const { ticketpagina } = settings[0].node;
+  const { ticketpagina } = getSettings(settings[0].node);
+
+  // redirect to homepage if page is disabled
+  useRedirectIfNotAllowed(ticketpagina);
+
   return ticketpagina && (
     <Template>
       <Header

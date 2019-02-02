@@ -1,5 +1,7 @@
 // @flow
 
+import type { TSettingsNode } from '../types';
+
 export const ellipsis = (str, max = 100) => `${str.substring(0, max)}${str.length > max ? '…' : ''}`;
 
 export const removeHtmlTagsFromString = (string: string): string => string.replace(/<(?:.|\n)*?>/gm, '');
@@ -17,4 +19,23 @@ export const isIE = () => {
     return ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
   }
   return false;
+};
+
+export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
+  const {
+    ticketpagina,
+    infopagina,
+    lineuppagina,
+    dagindeling,
+    tijdindeling,
+    podiumIndeling,
+  } = fetchedSettings;
+  return ({
+    ticketpagina: process.env.TICKETPAGINA || ticketpagina,
+    infopagina: process.env.INFOPAGINA || infopagina,
+    lineuppagina: process.env.LINEUPPAGINA || lineuppagina,
+    dagindeling: process.env.DAGINDELING || dagindeling,
+    tijdindeling: process.env.TIJDINDELING || tijdindeling,
+    podiumIndeling: process.env.PODIUMINDELING || podiumIndeling,
+  });
 };
