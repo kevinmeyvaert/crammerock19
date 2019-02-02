@@ -47,7 +47,9 @@ const LineUp = (props) => {
 
   // Local consts
   const randomArtist = randomArrayValue(artists).node;
-  const { lineuppagina, dagindeling, podiumIndeling } = settings[0].node;
+  // TODO: lineuppagina get from settings[0]?node
+  const lineuppagina = true;
+  const { dagindeling, podiumIndeling } = settings[0].node;
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 
   useEffect(() => {
