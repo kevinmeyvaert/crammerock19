@@ -29,6 +29,10 @@ module.exports = {
     'gatsby-plugin-no-sourcemaps',
     'gatsby-plugin-remove-serviceworker',
     {
+      resolve: 'gatsby-plugin-create-client-paths',
+      options: { prefixes: ['/mijnlijstje/*'] },
+    },
+    {
       resolve: 'gatsby-source-contentful',
       options: {
         spaceId,

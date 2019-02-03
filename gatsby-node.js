@@ -1,19 +1,11 @@
 const Promise = require('bluebird');
 const path = require('path');
 
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage } = actions
-  if (page.path === '/mijnlijstje') {
-    page.matchPath = '/mijnlijstje/*';
-    return createPage(page);
-  }
-};
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const lijstjesContent = createPage({
-    path: '/mijnlijstje/*',
+    path: '/mijnlijstje/',
     component: path.resolve('./src/templates/mijnlijstje.js'),
   });
 
