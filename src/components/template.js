@@ -5,7 +5,7 @@ import React from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import Container from './container';
 import Navigation from './navigation';
