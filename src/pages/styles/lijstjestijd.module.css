@@ -1,0 +1,93 @@
+
+.row {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.copyCol {
+  box-sizing: border-box;
+  width: 50%;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0 20px;
+}
+
+.form {
+  box-sizing: border-box;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+  .form input {
+    box-sizing: border-box;
+    margin: 0 0 15px 0;
+    width: 100%;
+    border: 1px solid #2E4C5D;
+    background-color: #FFF;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 5px;
+    color: #2E4C5D;
+  }
+
+  .form label {
+    font-family: 'Oswald';
+    font-weight: 400;
+    color: #F0986B;
+    text-transform: uppercase;
+  }
+
+  .form button {
+    width: 50%;
+    font-size: 18px;
+    font-family: 'Oswald';
+    font-weight: 400;
+    background-color: #F0986B;
+    border-radius: 5px;
+    border: none;
+    color: #FFF;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    padding: 10px;
+  }
+
+  .form .error {
+    margin: 0 0 15px 0;
+    color: red;
+    font-family: "Arial";
+  }
+
+  .form .optin {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: "Arial";
+    margin-bottom: 10px;
+  }
+
+  .form .checkbox {
+    width: auto;
+    margin: 0 10px 0 0;
+    border: 1px solid #2E4C5D;
+  }
+
+@media only screen and (max-width: 730px) {
+  .row {
+    flex-direction: column;
+  }
+  .copyCol {
+    width: 100%;
+  }
+  .form {
+    width: 100%;
+  }
+}

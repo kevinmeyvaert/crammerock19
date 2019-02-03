@@ -5,6 +5,7 @@ import React from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import * as firebase from 'firebase';
 
 import Container from './container';
 import Navigation from './navigation';
@@ -15,7 +16,9 @@ import SocialNavigation from './socialNavigation';
 import base from './styles/base.css'; // eslint-disable-line
 import { useRemoveServiceWorker } from '../hooks';
 import { isIE } from '../util';
-import { config } from '../config';
+import { config, firebaseConfig } from '../config';
+
+firebase.initializeApp(firebaseConfig);
 
 type TProps = {
   children: ?React.Node,

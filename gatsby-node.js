@@ -1,8 +1,21 @@
 const Promise = require('bluebird');
 const path = require('path');
 
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions
+  if (page.path === '/mijnlijstje') {
+    page.matchPath = '/mijnlijstje/*';
+    return createPage(page);
+  }
+};
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
+
+  const lijstjesContent = createPage({
+    path: '/mijnlijstje/*',
+    component: path.resolve('./src/templates/mijnlijstje.js'),
+  });
 
   const newsContent = new Promise((resolve, reject) => {
     const newsTpl = path.resolve('./src/templates/news-post.js');
@@ -246,5 +259,5 @@ exports.createPages = ({ graphql, actions }) => {
     }));
   });
 
-  return [infoContent, newsContent, pagesContent, artistContent];
+  return [infoContent, newsContent, pagesContent, artistContent, lijstjesContent];
 };

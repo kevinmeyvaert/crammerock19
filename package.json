@@ -4,10 +4,12 @@
   "version": "2.1.0",
   "author": "Kevin Meyvaert <kevin.meyvaert@gmail.com>",
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.3",
     "contentful-import": "^7.4.3",
     "dotenv": "^6.2.0",
+    "firebase": "^5.8.2",
     "gatsby": "^2.0.77",
     "gatsby-cli": "^2.4.8",
     "gatsby-image": "^2.0.22",
