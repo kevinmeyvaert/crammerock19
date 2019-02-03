@@ -18,6 +18,7 @@ import { useRemoveServiceWorker } from '../hooks';
 import { isIE } from '../util';
 import { config, firebaseConfig } from '../config';
 
+console.log(firebaseConfig);
 firebase.initializeApp(firebaseConfig);
 
 type TProps = {
