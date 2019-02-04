@@ -57,6 +57,8 @@ const Lijstje = ({ listId }: { listId: string }) => {
     makeCanvas(canvasRef, artists);
   }
 
+  const imageData = finished && canvasRef.toDataURL('image/png');
+
   return (
     <>
       <Header
@@ -76,7 +78,7 @@ const Lijstje = ({ listId }: { listId: string }) => {
             },
             {
               property: 'og:image',
-              content: canvasRef.toDataURL('image/png'),
+              content: imageData,
             },
             {
               property: 'og:title',
