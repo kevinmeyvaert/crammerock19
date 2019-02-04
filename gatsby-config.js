@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: '.env',
+});
+
 let contentfulConfig;
 
 try {
