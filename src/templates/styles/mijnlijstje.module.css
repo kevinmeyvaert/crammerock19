@@ -6,3 +6,9 @@
 .button {
   color: #304C5B;
 }
+
+.iframe {
+  width: 0;
+  height: 0;
+  border: none;
+}
