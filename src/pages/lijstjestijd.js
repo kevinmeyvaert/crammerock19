@@ -24,7 +24,7 @@ const Lijstjestijd = () => {
   const [artists, setArtists] = useState(['', '', '']);
   const [email, setEmail] = useState('');
   const [optin, setOptin] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [progressMsg, setProgressMsg] = useState(null);
   const [error, setError] = useState(false);
 
   // helper fns
@@ -46,17 +46,17 @@ const Lijstjestijd = () => {
       const uploadTask = storageRef.child(`lijstjes19/${listId}.png`).put(blob);
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`Upload is ${progress}% done`);
-      }, (error) => {
-        console.log(error);
+        setProgressMsg(`We verwerken jouw lijstje. ${Math.round(progress)}% klaar!`);
+      }, (uploadError) => {
+        console.error(uploadError);
       }, () => {
         // redirect
         navigate(`/mijnlijstje/${listId}`);
       });
     });
   };
-  
-  const makeCanvas = (listId) => {
+
+  const makeCanvas = new Promise((resolve) => {
     const canvas = document.createElement('canvas');
     canvas.width = 1200;
     canvas.height = 650;
@@ -71,9 +71,9 @@ const Lijstjestijd = () => {
       ctx.fillText(artists[0].toUpperCase(), 820, 240);
       ctx.fillText(artists[1].toUpperCase(), 820, 360);
       ctx.fillText(artists[2].toUpperCase(), 820, 480);
-      return handleUploadImage(canvas, listId);
+      return resolve(canvas);
     };
-  };
+  });
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -87,9 +87,8 @@ const Lijstjestijd = () => {
         optin,
         artists,
       });
-      makeCanvas(listId);
-      // // redirect
-      // navigate(`/mijnlijstje/${listId}`);
+      makeCanvas
+        .then(canvas => handleUploadImage(canvas, listId));
     } else {
       setError(true);
     }
@@ -107,68 +106,70 @@ const Lijstjestijd = () => {
           <p>Welke bangelijke band woont al weken in je oren? Welke straffe dj doet je hart spontaan harder bonken? Welke rapper blaast je helemaal van je hipste sokken? Welke zotte zanger of zangeres zal deze zomer met zijn of haar liedjes iedereen mierentietjes bezorgen?</p>
           <p>Kortom, wie wil jij op Crammerock 2019 zien? Laat het snel weten door hier jouw lijstje in te vullen. En wie weet, spelen de festivalacts van jouw dromen op 31 augustus en 1 september op Crammerock!</p>
         </div>
-        <div className={styles.form}>
-          <form>
-            <label htmlFor="name">
-              Jouw voornaam
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={event => setName(event.target.value)}
-                required
-              />
-            </label>
-            <label htmlFor="email">
-              E-mail
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={event => onChange(event.target.value, null)}
-                required
-              />
-            </label>
-            <label htmlFor="artistOne">
-              Artiest/Band 1
-              <input
-                id="artistOne"
-                type="text"
-                value={artists[0]}
-                onChange={event => onChange(event.target.value, 0)}
-              />
-            </label>
-            <label htmlFor="artistTwo">
-              Artiest/Band 2
-              <input
-                id="artistTwo"
-                type="text"
-                value={artists[1]}
-                onChange={event => onChange(event.target.value, 1)}
-              />
-            </label>
-            <label htmlFor="artistThree">
-              Artiest/Band 3
-              <input
-                id="artistThree"
-                type="text"
-                value={artists[2]}
-                onChange={event => onChange(event.target.value, 2)}
-              />
-            </label>
-            <div className={styles.optin}>
-              <input
-                type="checkbox"
-                className={styles.checkbox}
-                value={optin}
-                onChange={event => setOptin(event.target.checked)}
-              />
-              <span>Ik wil me inschrijven op de Crammerock nieuwsbrief!</span>
-            </div>
-            { error && <p className={styles.error}>Vul alle velden in en controleer je email adres!</p>}
-            <button onClick={event => onSubmit(event)} type="submit">Verstuur</button>
-          </form>
-        </div>
+        {!progressMsg ? (
+          <div className={styles.form}>
+            <form>
+              <label htmlFor="name">
+                Jouw voornaam
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={event => setName(event.target.value)}
+                  required
+                />
+              </label>
+              <label htmlFor="email">
+                E-mail
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={event => onChange(event.target.value, null)}
+                  required
+                />
+              </label>
+              <label htmlFor="artistOne">
+                Artiest/Band 1
+                <input
+                  id="artistOne"
+                  type="text"
+                  value={artists[0]}
+                  onChange={event => onChange(event.target.value, 0)}
+                />
+              </label>
+              <label htmlFor="artistTwo">
+                Artiest/Band 2
+                <input
+                  id="artistTwo"
+                  type="text"
+                  value={artists[1]}
+                  onChange={event => onChange(event.target.value, 1)}
+                />
+              </label>
+              <label htmlFor="artistThree">
+                Artiest/Band 3
+                <input
+                  id="artistThree"
+                  type="text"
+                  value={artists[2]}
+                  onChange={event => onChange(event.target.value, 2)}
+                />
+              </label>
+              <div className={styles.optin}>
+                <input
+                  type="checkbox"
+                  className={styles.checkbox}
+                  value={optin}
+                  onChange={event => setOptin(event.target.checked)}
+                />
+                <span>Ik wil me inschrijven op de Crammerock nieuwsbrief!</span>
+              </div>
+              { error && <p className={styles.error}>Vul alle velden in en controleer je email adres!</p>}
+              <button onClick={event => onSubmit(event)} type="submit">Verstuur</button>
+            </form>
+          </div>
+        ) : <div className={styles.form}><p>{progressMsg}</p></div>}
       </div>
     </Template>
   );
