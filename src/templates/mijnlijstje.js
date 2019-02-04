@@ -57,7 +57,7 @@ const Lijstje = ({ listId }: { listId: string }) => {
     makeCanvas(canvasRef, artists);
   }
 
-  const imageData = finished && canvasRef.toDataURL('image/png');
+  const imageData = finished && canvasRef.current.toDataURL('image/png');
 
   return (
     <>
