@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Helmet from 'react-helmet';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import { Router, Location } from '@reach/router';
 
+import { config } from '../config';
 import { Template, Header } from '../components';
 import styles from './styles/mijnlijstje.module.css';
 
@@ -13,7 +15,7 @@ const handleShare = (id: string) => FB.ui({
 
 const useGetListFromFirebase = (listId) => {
   const [name, setName] = useState('😎');
-  const [artists, setArtists] = useState(null);
+  const [artists, setArtists] = useState(['', '', '']);
   const [finished, setFinished] = useState(false);
   useEffect(() => {
     firebase.database()
@@ -64,6 +66,33 @@ const Lijstje = ({ listId }: { listId: string }) => {
       />
       <canvas ref={canvasRef} width={1200} height={650} className={styles.canvas} />
       <button type="button" onClick={() => handleShare(listId)} className={styles.button}>Deel je affiche!</button>
+      {finished && (
+        <Helmet
+          title={`Het lijstje van ${name} | ${config.siteName}`}
+          meta={[
+            {
+              property: 'og:type',
+              content: 'website',
+            },
+            {
+              property: 'og:image',
+              content: canvasRef.toDataURL('image/png'),
+            },
+            {
+              property: 'og:title',
+              content: `Het lijstje van ${name}`,
+            },
+            {
+              property: 'og:description',
+              content: `Ik wil graag ${artists[0]}, ${artists[1]} & ${artists[2]} op Crammerock 2019!`,
+            },
+            {
+              property: 'og:url',
+              content: `https://crammerock.be/mijnlijstje/${listId}`,
+            },
+          ]}
+        />
+      )}
     </>
   );
 };
