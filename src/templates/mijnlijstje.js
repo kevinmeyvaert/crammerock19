@@ -44,6 +44,7 @@ const Lijstje = ({ listId }: { listId: string }) => {
         subTitle="Dat ziet er goed uit!"
         cta="Maak je eigen lijstje!"
         link="/lijstjestijd"
+        video="https://videos.ctfassets.net/nwp1ppgri1eh/3aXWeGRxgIcUCqu2SYwKQM/c6b165050c1ade94dc25dc9bfb6f9adb/Crammevideozonderzwart.mp4"
         image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
       />
       <img alt="Jouw lijstje!" width={1200} height={650} src={`https://firebasestorage.googleapis.com/v0/b/crammerock-1c990.appspot.com/o/lijstjes19%2F${listId}.png?alt=media&token=1cd92339-631d-416e-a741-d30e44d75a20`} />

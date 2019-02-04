@@ -99,6 +99,8 @@ const Lijstjestijd = () => {
       <Header
         title="Lijstjestijd!"
         image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
+        subTitle="Geef jouw top 3 voor Crammerock 2019"
+        video="https://videos.ctfassets.net/nwp1ppgri1eh/3aXWeGRxgIcUCqu2SYwKQM/c6b165050c1ade94dc25dc9bfb6f9adb/Crammevideozonderzwart.mp4"
       />
       <Helmet title={`Lijstjestijd | ${config.siteName}`} />
       <div className={styles.row}>
