@@ -152,13 +152,7 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   slug
                   title
-                  headerCopy
                   headerImage {
-                    file {
-                      url
-                    }
-                  }
-                  headerVideo {
                     file {
                       url
                     }

@@ -3,6 +3,7 @@ import { navigate } from 'gatsby';
 import Helmet from 'react-helmet';
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/storage';
 
 import { config } from '../config';
 import styles from './styles/lijstjestijd.module.css';
@@ -23,6 +24,7 @@ const Lijstjestijd = () => {
   const [artists, setArtists] = useState(['', '', '']);
   const [email, setEmail] = useState('');
   const [optin, setOptin] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState(false);
 
   // helper fns
@@ -34,6 +36,43 @@ const Lijstjestijd = () => {
     } else {
       setEmail(value);
     }
+  };
+
+  const handleUploadImage = (canvas, listId) => {
+    canvas.toBlob((blob) => {
+      const affiche = new Image();
+      affiche.src = blob;
+      const storageRef = firebase.storage().ref();
+      const uploadTask = storageRef.child(`lijstjes19/${listId}.png`).put(blob);
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`Upload is ${progress}% done`);
+      }, (error) => {
+        console.log(error);
+      }, () => {
+        // redirect
+        navigate(`/mijnlijstje/${listId}`);
+      });
+    });
+  };
+  
+  const makeCanvas = (listId) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200;
+    canvas.height = 650;
+    const ctx = canvas.getContext('2d');
+    const bg = new Image();
+    ctx.font = '80px Oswald';
+    bg.src = '/afficheGenerator.jpg';
+    bg.onload = () => {
+      ctx.drawImage(bg, 0, 0);
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#2E4C5D';
+      ctx.fillText(artists[0].toUpperCase(), 820, 240);
+      ctx.fillText(artists[1].toUpperCase(), 820, 360);
+      ctx.fillText(artists[2].toUpperCase(), 820, 480);
+      return handleUploadImage(canvas, listId);
+    };
   };
 
   const onSubmit = (event) => {
@@ -48,8 +87,9 @@ const Lijstjestijd = () => {
         optin,
         artists,
       });
-      // redirect
-      navigate(`/mijnlijstje/${listId}`);
+      makeCanvas(listId);
+      // // redirect
+      // navigate(`/mijnlijstje/${listId}`);
     } else {
       setError(true);
     }

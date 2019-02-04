@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Helmet from 'react-helmet';
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -34,30 +34,8 @@ const useGetListFromFirebase = (listId) => {
   });
 };
 
-const makeCanvas = (canvasRef, artists: Array<string>) => {
-  const ctx = canvasRef.current.getContext('2d');
-  const bg = new Image();
-  ctx.font = '80px Oswald';
-  bg.src = '/afficheGenerator.jpg';
-  bg.onload = () => {
-    ctx.drawImage(bg, 0, 0);
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#2E4C5D';
-    ctx.fillText(artists[0].toUpperCase(), 820, 240);
-    ctx.fillText(artists[1].toUpperCase(), 820, 360);
-    ctx.fillText(artists[2].toUpperCase(), 820, 480);
-  };
-};
-
 const Lijstje = ({ listId }: { listId: string }) => {
   const { name, artists, finished } = useGetListFromFirebase(listId);
-  const canvasRef = useRef(null);
-
-  if (finished) {
-    makeCanvas(canvasRef, artists);
-  }
-
-  const imageData = finished && canvasRef.current.toDataURL('image/png');
 
   return (
     <>
@@ -66,7 +44,7 @@ const Lijstje = ({ listId }: { listId: string }) => {
         subTitle="Dit is jouw lijstje!"
         image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
       />
-      <canvas ref={canvasRef} width={1200} height={650} className={styles.canvas} />
+      <img width={1200} height={650} src={`https://firebasestorage.googleapis.com/v0/b/crammerock-1c990.appspot.com/o/lijstjes19%2F${listId}.png?alt=media&token=1cd92339-631d-416e-a741-d30e44d75a20`} />
       <button type="button" onClick={() => handleShare(listId)} className={styles.button}>Deel je affiche!</button>
       {finished && (
         <Helmet
@@ -78,7 +56,7 @@ const Lijstje = ({ listId }: { listId: string }) => {
             },
             {
               property: 'og:image',
-              content: imageData,
+              content: `https://firebasestorage.googleapis.com/v0/b/crammerock-1c990.appspot.com/o/lijstjes19%2F${listId}.png?alt=media&token=1cd92339-631d-416e-a741-d30e44d75a20`,
             },
             {
               property: 'og:title',

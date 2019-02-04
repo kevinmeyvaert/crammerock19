@@ -39,13 +39,7 @@ export const pageQuery = graphql`
   query PagesBySlug($slug: String!) {
     contentfulPages(slug: { eq: $slug }) {
       title
-      headerCopy
       headerImage {
-        file {
-          url
-        }
-      }
-      headerVideo {
         file {
           url
         }
