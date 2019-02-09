@@ -31,11 +31,11 @@ export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
     podiumIndeling,
   } = fetchedSettings;
   return ({
-    ticketpagina: process.env.TICKETPAGINA || ticketpagina,
-    infopagina: process.env.INFOPAGINA || infopagina,
-    lineuppagina: process.env.LINEUPPAGINA || lineuppagina,
-    dagindeling: process.env.DAGINDELING || dagindeling,
-    tijdindeling: process.env.TIJDINDELING || tijdindeling,
-    podiumIndeling: process.env.PODIUMINDELING || podiumIndeling,
+    ticketpagina: ticketpagina || JSON.parse(process.env.GATSBY_TICKETPAGINA),
+    infopagina: infopagina || JSON.parse(process.env.GATSBY_INFOPAGINA),
+    lineuppagina: lineuppagina || JSON.parse(process.env.GATSBY_LINEUPPAGINA),
+    dagindeling: dagindeling || JSON.parse(process.env.GATSBY_DAGINDELING),
+    tijdindeling: tijdindeling || JSON.parse(process.env.GATSBY_TIJDINDELING),
+    podiumIndeling: podiumIndeling || JSON.parse(process.env.GATSBY_PODIUMINDELING),
   });
 };
