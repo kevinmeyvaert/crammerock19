@@ -107,7 +107,7 @@ const Lijstjestijd = () => {
       <div className={styles.row}>
         <div className={styles.copyCol}>
           <p>Welke bangelijke band woont al weken in je oren? Welke straffe dj doet je hart spontaan harder bonken? Welke rapper blaast je helemaal van je hipste sokken? Welke zotte zanger of zangeres zal deze zomer met zijn of haar liedjes iedereen mierentietjes bezorgen?</p>
-          <p>Kortom, wie wil jij op Crammerock 2019 zien? Laat het snel weten door hier jouw lijstje in te vullen. En wie weet, spelen de festivalacts van jouw dromen op 31 augustus en 1 september op Crammerock!</p>
+          <p>Kortom, wie wil jij op Crammerock 2019 zien? Laat het snel weten door hier jouw lijstje in te vullen. En wie weet, spelen de festivalacts van jouw dromen op 6 en 7 september op Crammerock!</p>
         </div>
         {!progressMsg ? (
           <div className={styles.form}>
