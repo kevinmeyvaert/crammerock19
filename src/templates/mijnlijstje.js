@@ -3,15 +3,12 @@ import Helmet from 'react-helmet';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import { Router, Location } from '@reach/router';
+import { navigate } from 'gatsby';
 
 import { config } from '../config';
 import { Template, Header } from '../components';
+import { useRedirectIfNotAllowed } from '../hooks';
 import styles from './styles/mijnlijstje.module.css';
-
-const handleShare = (id: string) => FB.ui({
-  method: 'share',
-  href: `https://crammerock.be/mijnlijstje/${id}`,
-});
 
 const useGetListFromFirebase = (listId) => {
   const [name, setName] = useState('😎');
@@ -22,9 +19,13 @@ const useGetListFromFirebase = (listId) => {
       .ref(`/lijstjes19/${listId}`)
       .once('value')
       .then((snapshot) => {
-        setName(snapshot.val() && snapshot.val().name);
-        setArtists(snapshot.val() && snapshot.val().artists);
-        setFinished(true);
+        if (snapshot.val()) {
+          setName(snapshot.val() && snapshot.val().name);
+          setArtists(snapshot.val() && snapshot.val().artists);
+          setFinished(true);
+        } else {
+          navigate('/');
+        }
       });
   }, []);
   return ({
@@ -113,19 +114,23 @@ const Lijstje = ({ listId }: { listId: string }) => {
   );
 };
 
-const LijstjestijdComplete = () => (
-  <Template>
-    <Location>
-      {({ location }) => {
-        const listId = location.pathname.substr(13);
-        return (
-          <Router location={location} className="router">
-            <Lijstje path="mijnlijstje/:page" listId={listId} />
-          </Router>
-        );
-      }}
-    </Location>
-  </Template>
-);
+const LijstjestijdComplete = ({ location }: { location: string }) => {
+  // redirect to homepage if no subpath is given
+  useRedirectIfNotAllowed(!location.pathname.substr(13).length <= 0);
+  return (
+    <Template>
+      <Location>
+        {() => {
+          const listId = location.pathname.substr(13);
+          return (
+            <Router location={location} className="router">
+              <Lijstje path="mijnlijstje/:page" listId={listId} />
+            </Router>
+          );
+        }}
+      </Location>
+    </Template>
+  );
+};
 
 export default LijstjestijdComplete;

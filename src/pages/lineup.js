@@ -1,9 +1,9 @@
 // @flow
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import { graphql, navigate } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import {
   Template,
