@@ -13,8 +13,9 @@ import {
 } from '../components';
 
 import styles from './styles/lineup.module.css';
-import { randomArrayValue } from '../util';
+import { randomArrayValue, getSettings } from '../util';
 import { config } from '../config';
+import { useRedirectIfNotAllowed } from '../hooks';
 
 const LineUp = (props) => {
   // State Hooks
@@ -47,14 +48,11 @@ const LineUp = (props) => {
 
   // Local consts
   const randomArtist = randomArrayValue(artists).node;
-  const { lineuppagina, dagindeling, podiumIndeling } = settings[0].node;
+  const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 
-  useEffect(() => {
-    if (!lineuppagina && typeof window !== 'undefined') {
-      navigate('/');
-    }
-  }, []);
+  // redirect to homepage if page is disabled
+  useRedirectIfNotAllowed(lineuppagina);
 
   return lineuppagina ? (
     <Template>
@@ -78,6 +76,7 @@ const LineUp = (props) => {
         <div className={styles.artistWrapper}>
           {artistArray.map(artist => (
             <LineUpItem
+              key={artist.node.slug}
               artist={artist}
               dayFilter={dayFilter}
               dagindeling={dagindeling}

@@ -5,16 +5,20 @@ import React from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import firebase from 'firebase/app';
 
 import Container from './container';
 import Navigation from './navigation';
 import Footer from './footer';
 import Sponsors from './sponsors';
+import SocialNavigation from './socialNavigation';
 
 import base from './styles/base.css'; // eslint-disable-line
 import { useRemoveServiceWorker } from '../hooks';
 import { isIE } from '../util';
-import { config } from '../config';
+import { config, firebaseConfig } from '../config';
+
+firebase.initializeApp(firebaseConfig);
 
 type TProps = {
   children: ?React.Node,
@@ -118,7 +122,10 @@ const Template = (props: TProps) => {
             />
             {isIE() && <IEmessage />}
             <Navigation settings={settings} />
-            {props.children}
+            <SocialNavigation />
+            <div style={{ background: 'white', paddingBottom: '20px' }}>
+              {props.children}
+            </div>
             <Footer />
             <Sponsors sponsors={sponsors} />
           </Container>

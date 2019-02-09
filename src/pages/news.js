@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import React, { useState } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -13,30 +13,39 @@ import { ellipsis } from '../util';
 import { config } from '../config';
 
 const NewsIndex = (props) => {
-  const posts = get(props, 'data.allContentfulNews.edges');
-  const latestPost = posts[0].node;
+  const [posts, setPosts] = useState(get(props, 'data.allContentfulNews.edges').slice(1, 7));
+  const showMorePostsButton = (get(props, 'data.allContentfulNews.edges').slice(1, 7).length > get(props, 'data.allContentfulNews.edges').length);
+  const latestPost = get(props, 'data.allContentfulNews.edges')[0].node;
   return (
     <Template>
-      <div style={{ background: '#fff' }}>
-        <Header
-          title={ellipsis(latestPost.title, 50)}
-          image={latestPost.featuredImage.file.url}
-          link={`/news/${latestPost.slug}`}
-          cta="Lees meer"
-        />
-        <Helmet title={`Nieuws | ${config.siteName}`} />
-        <div className={styles.wrapper}>
-          <div className={styles.row}>
-            {posts.map(({ node }) => (
-              <NewsItem
-                title={node.title}
-                content={node.post.childMarkdownRemark.html}
-                slug={node.slug}
-                key={node.slug}
-              />
-            ))}
-          </div>
+      <Header
+        title={ellipsis(latestPost.title, 50)}
+        image={latestPost.featuredImage.file.url}
+        link={`/news/${latestPost.slug}`}
+        cta="Lees meer"
+      />
+      <Helmet title={`Nieuws | ${config.siteName}`} />
+      <div className={styles.wrapper}>
+        <div className={styles.row}>
+          {posts.map(({ node }) => (
+            <NewsItem
+              title={node.title}
+              content={node.post.childMarkdownRemark.html}
+              slug={node.slug}
+              key={node.slug}
+              date={node.publishDate}
+            />
+          ))}
         </div>
+        {Object.keys(posts).length <= 6 && showMorePostsButton && (
+          <button
+            type="button"
+            className={styles.showAll}
+            onClick={() => setPosts(get(props, 'data.allContentfulNews.edges').slice(1))}
+          >
+            Toon oudere berichten
+          </button>
+        )}
       </div>
     </Template>
   );
@@ -56,7 +65,7 @@ export const pageQuery = graphql`
               html
             }
           }
-          publishDate(formatString: "MMMM Do, YYYY")
+          publishDate(formatString: "DD/MM/YYYY")
           featuredImage {
             file {
               url

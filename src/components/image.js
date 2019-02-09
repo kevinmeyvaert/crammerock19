@@ -16,7 +16,7 @@ const Image = ({
   alt,
   className,
 }: TProps) => (
-  <LazyLoad height={200}>
+  <LazyLoad height={50}>
     <picture>
       <source srcSet={`${src}?fm=webp&w=${width}&h=${height}&fit=fill`} type="image/webp" />
       <source srcSet={`${src}?fm=jpg&q=60&fl=progressive&w=${width}&h=${height}&fit=fill`} type="image/jpeg" />

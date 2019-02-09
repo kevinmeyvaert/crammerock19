@@ -11,3 +11,4 @@ export { default as NewsItem } from './newsItem';
 export { default as RelatedArtists } from './relatedArtists';
 export { default as SponsorItem } from './sponsorItem';
 export { default as Template } from './template';
+export { default as ContentBlock } from './contentBlock';

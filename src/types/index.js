@@ -51,7 +51,7 @@ export type TSponsor = {
 
 export type TSettingsNode = {
     ticketpagina?: boolean,
-    infopagepagina?: boolean,
+    infopagina?: boolean,
     lineuppagina?: boolean,
     dagindeling?: boolean,
     tijdindeling?: boolean,

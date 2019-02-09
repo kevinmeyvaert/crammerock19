@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: '.env',
+});
+
 let contentfulConfig;
 
 try {
@@ -28,6 +32,10 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-no-sourcemaps',
     'gatsby-plugin-remove-serviceworker',
+    {
+      resolve: 'gatsby-plugin-create-client-paths',
+      options: { prefixes: ['/mijnlijstje/*'] },
+    },
     {
       resolve: 'gatsby-source-contentful',
       options: {
@@ -68,6 +76,11 @@ module.exports = {
       },
     },
     'gatsby-plugin-sharp',
-    'gatsby-plugin-netlify',
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        generateMatchPathRewrites: true,
+      },
+    },
   ],
 };

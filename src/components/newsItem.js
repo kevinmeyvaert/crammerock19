@@ -10,15 +10,18 @@ type TProps = {
   title: string,
   content: string,
   slug: string,
+  date: string,
 };
 
 const NewsItem = ({
   title,
   content,
   slug,
+  date,
 }: TProps) => (
   <div className={styles.wrap}>
-    <h2><span>{title}</span></h2>
+    <Link to={`/news/${slug}`}><h2><span>{title}</span></h2></Link>
+    <p className={styles.date}>{`Geplaatst op ${date}.`}</p>
     {ellipsis(removeHtmlTagsFromString(content), 250)}
     <p className={styles.leesmeer}><Link to={`/news/${slug}`}>Lees meer...</Link></p>
   </div>

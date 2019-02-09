@@ -1,6 +1,5 @@
 .artistNode {
-  width: 30%;
-  padding: 5px;
+  width: 22%;
   animation: fadein .5s;
 }
 
@@ -9,10 +8,30 @@
     color: inherit;
   }
 
+  .image::before {
+    position: absolute;
+    width: calc(100% - 4px);
+    height: calc(100% - 7px);
+    border: 2px solid #EE986F;
+    transform: translateX(10px) translateY(-10px);
+    content: "";
+  }
+
+  .image {
+    position: relative;
+  }
+
+  .description {
+    color: white;
+    background-color: #314C5A;
+    margin: 0 0 30px;
+    padding: 10px 10px;
+    transform: translateY(-5px);
+  }
+
 @media only screen and (max-width: 730px) {
   .artistNode {
     width: 100%;
-    padding: 5px;
   }
 }
 

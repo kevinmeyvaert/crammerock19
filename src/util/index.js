@@ -1,6 +1,6 @@
 // @flow
 
-export const weekDays = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'];
+import type { TSettingsNode } from '../types';
 
 export const ellipsis = (str, max = 100) => `${str.substring(0, max)}${str.length > max ? '…' : ''}`;
 
@@ -19,4 +19,21 @@ export const isIE = () => {
     return ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
   }
   return false;
+};
+
+export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
+  if (typeof process.env.GATSBY_TICKETPAGINA === 'undefined'
+    || typeof process.env.GATSBY_INFOPAGINA === 'undefined'
+    || typeof process.env.GATSBY_LINEUPPAGINA === 'undefined'
+    || typeof process.env.GATSBY_DAGINDELING === 'undefined'
+    || typeof process.env.GATSBY_TIJDINDELING === 'undefined'
+    || typeof process.env.GATSBY_PODIUMINDELING === 'undefined') return fetchedSettings;
+  return ({
+    ticketpagina: JSON.parse(process.env.GATSBY_TICKETPAGINA),
+    infopagina: JSON.parse(process.env.GATSBY_INFOPAGINA),
+    lineuppagina: JSON.parse(process.env.GATSBY_LINEUPPAGINA),
+    dagindeling: JSON.parse(process.env.GATSBY_DAGINDELING),
+    tijdindeling: JSON.parse(process.env.GATSBY_TIJDINDELING),
+    podiumIndeling: JSON.parse(process.env.GATSBY_PODIUMINDELING),
+  });
 };

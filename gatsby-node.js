@@ -4,6 +4,11 @@ const path = require('path');
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
+  const lijstjesContent = createPage({
+    path: '/mijnlijstje/',
+    component: path.resolve('./src/templates/mijnlijstje.js'),
+  });
+
   const newsContent = new Promise((resolve, reject) => {
     const newsTpl = path.resolve('./src/templates/news-post.js');
     resolve(graphql(`
@@ -147,13 +152,7 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   slug
                   title
-                  headerCopy
                   headerImage {
-                    file {
-                      url
-                    }
-                  }
-                  headerVideo {
                     file {
                       url
                     }
@@ -246,5 +245,5 @@ exports.createPages = ({ graphql, actions }) => {
     }));
   });
 
-  return [infoContent, newsContent, pagesContent, artistContent];
+  return [infoContent, newsContent, pagesContent, artistContent, lijstjesContent];
 };
