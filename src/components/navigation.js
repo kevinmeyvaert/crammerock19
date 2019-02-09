@@ -80,9 +80,11 @@ const Navigation = (props: TProps) => {
           </li>
           )}
           <li className={styles.tickets}>
-            <a href="https://www.youtube.com/user/CrammerockOfficial" target="_blank" rel="noopener noreferrer">
-              Herbeleef Crammerock!
-            </a>
+            <Link
+              to="/lijstjestijd"
+            >
+              Lijstjestijd!
+            </Link>
           </li>
         </ul>
       )}
