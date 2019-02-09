@@ -22,20 +22,18 @@ export const isIE = () => {
 };
 
 export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
-  const {
-    ticketpagina,
-    infopagina,
-    lineuppagina,
-    dagindeling,
-    tijdindeling,
-    podiumIndeling,
-  } = fetchedSettings;
+  if (typeof process.env.GATSBY_TICKETPAGINA === 'undefined'
+    || typeof process.env.GATSBY_INFOPAGINA === 'undefined'
+    || typeof process.env.GATSBY_LINEUPPAGINA === 'undefined'
+    || typeof process.env.GATSBY_DAGINDELING === 'undefined'
+    || typeof process.env.GATSBY_TIJDINDELING === 'undefined'
+    || typeof process.env.GATSBY_PODIUMINDELING === 'undefined') return fetchedSettings;
   return ({
-    ticketpagina: ticketpagina || JSON.parse(process.env.GATSBY_TICKETPAGINA),
-    infopagina: infopagina || JSON.parse(process.env.GATSBY_INFOPAGINA),
-    lineuppagina: lineuppagina || JSON.parse(process.env.GATSBY_LINEUPPAGINA),
-    dagindeling: dagindeling || JSON.parse(process.env.GATSBY_DAGINDELING),
-    tijdindeling: tijdindeling || JSON.parse(process.env.GATSBY_TIJDINDELING),
-    podiumIndeling: podiumIndeling || JSON.parse(process.env.GATSBY_PODIUMINDELING),
+    ticketpagina: JSON.parse(process.env.GATSBY_TICKETPAGINA),
+    infopagina: JSON.parse(process.env.GATSBY_INFOPAGINA),
+    lineuppagina: JSON.parse(process.env.GATSBY_LINEUPPAGINA),
+    dagindeling: JSON.parse(process.env.GATSBY_DAGINDELING),
+    tijdindeling: JSON.parse(process.env.GATSBY_TIJDINDELING),
+    podiumIndeling: JSON.parse(process.env.GATSBY_PODIUMINDELING),
   });
 };
