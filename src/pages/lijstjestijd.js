@@ -6,6 +6,7 @@ import 'firebase/database';
 import 'firebase/storage';
 
 import { config } from '../config';
+import { ellipsis } from '../util';
 import styles from './styles/lijstjestijd.module.css';
 import { Template, Header } from '../components';
 
@@ -68,9 +69,9 @@ const Lijstjestijd = () => {
       ctx.drawImage(bg, 0, 0);
       ctx.textAlign = 'center';
       ctx.fillStyle = '#2E4C5D';
-      ctx.fillText(artists[0].toUpperCase(), 820, 240);
-      ctx.fillText(artists[1].toUpperCase(), 820, 360);
-      ctx.fillText(artists[2].toUpperCase(), 820, 480);
+      ctx.fillText(ellipsis(artists[0].toUpperCase(), 20), 820, 240);
+      ctx.fillText(ellipsis(artists[1].toUpperCase(), 20), 820, 360);
+      ctx.fillText(ellipsis(artists[2].toUpperCase(), 20), 820, 480);
       return resolve(canvas);
     };
   });

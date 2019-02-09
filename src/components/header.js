@@ -23,8 +23,8 @@ const renderVideoIfAvailable = (image: string, video: string, title: string): HT
       <video
         src={video}
         className={styles.headerImage}
-        autoPlay="true"
-        muted="true"
+        autoPlay
+        muted
         loop
         playsInline
       />

@@ -47,10 +47,20 @@ const Lijstje = ({ listId }: { listId: string }) => {
         video="https://videos.ctfassets.net/nwp1ppgri1eh/3aXWeGRxgIcUCqu2SYwKQM/c6b165050c1ade94dc25dc9bfb6f9adb/Crammevideozonderzwart.mp4"
         image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
       />
-      <img alt="Jouw lijstje!" width={1200} height={650} src={`https://firebasestorage.googleapis.com/v0/b/crammerock-1c990.appspot.com/o/lijstjes19%2F${listId}.png?alt=media&token=1cd92339-631d-416e-a741-d30e44d75a20`} />
-      <a target="_blank" rel="noopener noreferrer" href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdeploy-preview-2--crammerock.netlify.com%2Fmijnlijstje%2F${listId}&amp;src=sdkpreparse`}>
-        <button type="button" className={styles.button}>Deel je affiche!</button>
-      </a>
+      <div className={styles.row}>
+        <div className={styles.column}>
+          <p className={styles.bigCopy}>Voor <span>{name}</span> staat het buiten kijf, de ideale Crammerock 2019 is er eentje met <span>{artists[0]}</span>, <span>{artists[1]}</span> en natuurlijk <span>{artists[2]}</span>.</p>
+          <a target="_blank" rel="noopener noreferrer" href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdeploy-preview-2--crammerock.netlify.com%2Fmijnlijstje%2F${listId}&amp;src=sdkpreparse`}>
+            <button type="button" className={styles.button}>Deel op Facebook</button>
+          </a>
+          <a download target="_blank" rel="noopener noreferrer" href={`https://firebasestorage.googleapis.com/v0/b/crammerock-1c990.appspot.com/o/lijstjes19%2F${listId}.png?alt=media&token=1cd92339-631d-416e-a741-d30e44d75a20`}>
+            <button type="button" className={styles.button}>Download &amp; deel op Instagram</button>
+          </a>
+        </div>
+        <div className={styles.column}>
+          <img className={styles.lijstje} alt="Jouw lijstje!" src={`https://firebasestorage.googleapis.com/v0/b/crammerock-1c990.appspot.com/o/lijstjes19%2F${listId}.png?alt=media&token=1cd92339-631d-416e-a741-d30e44d75a20`} />
+        </div>
+      </div>
       <iframe
         className={styles.iframe}
         title="sharer"
