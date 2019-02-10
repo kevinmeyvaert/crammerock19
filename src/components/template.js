@@ -57,6 +57,7 @@ const Template = (props: TProps) => {
               ticketpagina
               lineuppagina
               infopagina
+              lijstjestijd
             }
           }
         }

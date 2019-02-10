@@ -18,7 +18,7 @@ const Navigation = (props: TProps) => {
   const handleToggeNav = () => setShowNav(!showNav);
 
   const { settings } = props;
-  const { infopagina, lineuppagina, ticketpagina } = getSettings(settings[0].node);
+  const { infopagina, lineuppagina, ticketpagina, lijstjestijd } = getSettings(settings[0].node);
   return (
     <nav className={styles.navigationWrapper}>
       <div className={styles.mobileToggle}>
@@ -71,21 +71,23 @@ const Navigation = (props: TProps) => {
             </li>
           )}
           {ticketpagina && (
-          <li className={styles.tickets}>
-            <Link
-              to="/tickets"
-            >
-              Koop Tickets
-            </Link>
-          </li>
+            <li className={styles.tickets}>
+              <Link
+                to="/tickets"
+              >
+                Koop Tickets
+              </Link>
+            </li>
           )}
-          <li className={styles.tickets}>
-            <Link
-              to="/lijstjestijd"
-            >
-              Lijstjestijd!
-            </Link>
-          </li>
+          {lijstjestijd && (
+            <li className={styles.tickets}>
+              <Link
+                to="/lijstjestijd"
+              >
+                Lijstjestijd!
+              </Link>
+            </li>
+          )}
         </ul>
       )}
     </nav>

@@ -27,6 +27,7 @@ export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
     || typeof process.env.GATSBY_LINEUPPAGINA === 'undefined'
     || typeof process.env.GATSBY_DAGINDELING === 'undefined'
     || typeof process.env.GATSBY_TIJDINDELING === 'undefined'
+    || typeof process.env.GATSBY_LIJSTJESTIJD === 'undefined'
     || typeof process.env.GATSBY_PODIUMINDELING === 'undefined') return fetchedSettings;
   return ({
     ticketpagina: JSON.parse(process.env.GATSBY_TICKETPAGINA),
@@ -35,5 +36,6 @@ export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
     dagindeling: JSON.parse(process.env.GATSBY_DAGINDELING),
     tijdindeling: JSON.parse(process.env.GATSBY_TIJDINDELING),
     podiumIndeling: JSON.parse(process.env.GATSBY_PODIUMINDELING),
+    lijstjestijd: JSON.parse(process.env.GATSBY_LIJSTJESTIJD),
   });
 };

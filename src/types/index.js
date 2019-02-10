@@ -56,6 +56,7 @@ export type TSettingsNode = {
     dagindeling?: boolean,
     tijdindeling?: boolean,
     podiumindeling?: boolean,
+    lijstjestijd?: boolean,
 };
 
 export type TSettings = {

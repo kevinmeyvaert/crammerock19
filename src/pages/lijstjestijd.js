@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { navigate } from 'gatsby';
+import { navigate, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/storage';
+import get from 'lodash/get';
 
 import { config } from '../config';
-import { ellipsis } from '../util';
+import { ellipsis, getSettings } from '../util';
 import styles from './styles/lijstjestijd.module.css';
 import { Template, Header } from '../components';
+import { useRedirectIfNotAllowed } from '../hooks';
 
 const areAllFieldsFilledIn = (artists: Array<string>, email: string, name: string) => {
   if (artists[0].length > 0 && artists[1].length > 0 && artists[2].length > 0 && email.length > 0 && name.length > 0) {
@@ -19,7 +21,7 @@ const areAllFieldsFilledIn = (artists: Array<string>, email: string, name: strin
 
 const isEmailValid = email => email.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
 
-const Lijstjestijd = () => {
+const Lijstjestijd = (props) => {
   // state variables
   const [name, setName] = useState('');
   const [artists, setArtists] = useState(['', '', '']);
@@ -27,6 +29,13 @@ const Lijstjestijd = () => {
   const [optin, setOptin] = useState(false);
   const [progressMsg, setProgressMsg] = useState(null);
   const [error, setError] = useState(false);
+
+  // contentful data
+  const settings = get(props, 'data.allContentfulSettings.edges');
+  const { lijstjestijd } = getSettings(settings[0].node);
+
+  // redirect to homepage if page is disabled
+  useRedirectIfNotAllowed(lijstjestijd);
 
   // helper fns
   const onChange = (value: string, key: number) => {
@@ -179,3 +188,15 @@ const Lijstjestijd = () => {
 };
 
 export default Lijstjestijd;
+
+export const pageQuery = graphql`
+  query LijstjestijdQuery {
+    allContentfulSettings(filter: { titel: { eq: "Global" } }){
+      edges {
+        node {
+          lijstjestijd
+        }
+      }
+    }
+  }
+`;
