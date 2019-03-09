@@ -80,6 +80,7 @@ const LineUp = (props) => {
               artist={artist}
               dayFilter={dayFilter}
               dagindeling={dagindeling}
+              podiumindeling={podiumIndeling}
               stageFilter={stageFilter}
             />
           ))}
@@ -105,6 +106,14 @@ export const pageQuery = graphql`
           headerImage {
             file {
               url
+            }
+            fluid(
+              maxWidth: 800
+              maxHeight: 533
+              resizingBehavior: FILL
+              background: "rgb:000000"
+            ) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

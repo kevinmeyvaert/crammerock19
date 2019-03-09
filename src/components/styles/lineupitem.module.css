@@ -1,6 +1,8 @@
 .artistNode {
-  width: 22%;
+  box-sizing: border-box;
+  width: 33.33333333%;
   animation: fadein .5s;
+  padding: 10px;
 }
 
   .artistNode a {
@@ -8,26 +10,41 @@
     color: inherit;
   }
 
-  .image::before {
-    position: absolute;
-    width: calc(100% - 4px);
-    height: calc(100% - 7px);
-    border: 2px solid #EE986F;
-    transform: translateX(10px) translateY(-10px);
-    content: "";
-  }
-
   .image {
     position: relative;
   }
 
   .description {
-    color: white;
-    background-color: #314C5A;
-    margin: 0 0 30px;
+    background-image: linear-gradient(to right, #314C5A, #16866F);
+    background-color: #16866F;
+    margin: 0;
     padding: 10px 10px;
     transform: translateY(-5px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
   }
+
+  .description p {
+    margin: 0;
+  }
+
+  .description span{
+    text-transform: uppercase;
+    font-size: .7rem;
+  }
+
+  .stage {
+    color: white;
+    font-weight: 700;
+  }
+
+@media only screen and (max-width: 1015px) {
+  .artistNode {
+    width: 50%;
+  }
+}
 
 @media only screen and (max-width: 730px) {
   .artistNode {

@@ -30,7 +30,7 @@ const LineUpFilter = ({
           onClick={() => onFilterLineUp('ABC')}
           style={{ borderBottomStyle: dayFilter === undefined ? 'solid' : 'initial' }}
         >
-          ABC
+          Overzicht A-Z
         </button>
         <button
           type="button"
@@ -47,46 +47,6 @@ const LineUpFilter = ({
           style={{ borderBottomStyle: dayFilter === 'Zaterdag' ? 'solid' : 'initial' }}
         >
           Zaterdag
-        </button>
-        <a href="/dl/timetable.pdf" target="_blank">
-          <button type="button" className={styles.button}>Timetable (PDF)</button>
-        </a>
-      </div>
-    )}
-    {podiumIndeling
-    && dayFilter && (
-      <div className={styles.stageFilterWrapper}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterStage('all')}
-          style={{ borderBottomStyle: stageFilter === undefined ? 'solid' : 'initial' }}
-        >
-          Alle Podia
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterStage('Main South')}
-          style={{ borderBottomStyle: stageFilter === 'Main South' ? 'solid' : 'initial' }}
-        >
-          Main South
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterStage('Main North')}
-          style={{ borderBottomStyle: stageFilter === 'Main North' ? 'solid' : 'initial' }}
-        >
-          Main North
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterStage('Club')}
-          style={{ borderBottomStyle: stageFilter === 'Club' ? 'solid' : 'initial' }}
-        >
-          Club
         </button>
       </div>
     )}

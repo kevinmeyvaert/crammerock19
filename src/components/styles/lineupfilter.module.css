@@ -1,15 +1,8 @@
 .filterWrapper {
-  background-color: #A7D7DC;
-  padding: 20px 10px;
-  margin-bottom: 40px;
+  color: #304C5B;
+  padding: 0  0 20px 0;
   display: inline-block;
-}
-
-.stageFilterWrapper {
-  background-color: #EC9873;
-  padding: 20px 10px;
-  margin-bottom: 20px;
-  display: inline-block;
+  font-weight: 700;
 }
 
 .button {
@@ -31,7 +24,7 @@ button {
       -ms-user-select: none;
   padding: 5px 0px;
   margin: 0 15px;
-  color: white;
+  color: #304C5B;
   box-sizing: border-box;
 }
 
