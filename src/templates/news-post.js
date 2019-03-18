@@ -19,6 +19,7 @@ const NewsPostTemplate = (props) => {
       <Header
         title={ellipsis(post.title, 50)}
         image={post.featuredImage.file.url}
+        subTitle={post.publishDate}
       />
       <Helmet title={`${post.title} | ${config.siteName}`}>
         <meta property="og:type" content="website" />
@@ -45,7 +46,7 @@ export const pageQuery = graphql`
     contentfulNews(slug: { eq: $slug }) {
       title
       slug
-      publishDate(formatString: "MMMM Do, YYYY")
+      publishDate(formatString: "DD/MM/YYYY")
       featuredImage {
         file {
           url
