@@ -33,7 +33,9 @@ const PageTemplate = (props) => {
   const page = get(props, 'data.contentfulArtists2018');
   const settings = get(props, 'data.allContentfulSettings.edges');
   const settingValues = getSettings(settings[0].node);
-  const { lineuppagina } = settingValues;
+  // const { lineuppagina } = settingValues;
+
+  const lineuppagina = true;
 
   // redirect to homepage if page is disabled
   useRedirectIfNotAllowed(lineuppagina);
