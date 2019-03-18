@@ -12,6 +12,7 @@ type TProps = {
   link: string,
   externalLink: string,
   title: string,
+  subTitle: string,
   contentfulImage: string,
   image: string,
 }
@@ -20,6 +21,7 @@ const ContentBlock = ({
   link,
   externalLink,
   title,
+  subTitle,
   contentfulImage,
   image,
 }: TProps) => {
@@ -27,6 +29,7 @@ const ContentBlock = ({
     <div className={styles.contentBlock}>
       <div className={styles.innerBorder}>
         <h2><span>{title}</span></h2>
+        <h3><span>{subTitle}</span></h3>
       </div>
       {contentfulImage
         ? <Image width={800} height={333} src={contentfulImage} alt={title} />

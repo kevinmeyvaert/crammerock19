@@ -31,6 +31,7 @@ const RootIndex = (props) => {
               key={node.slug}
               link={`/news/${node.slug}`}
               title={node.title}
+              subTitle={node.publishDate}
               contentfulImage={node.featuredImage.file.url}
             />
           ))}
@@ -43,11 +44,13 @@ const RootIndex = (props) => {
           <ContentBlock
             externalLink="https://www.facebook.com/Crammerock/videos/1549510151819448/"
             title="Aftermovie 2018"
+            subTitle="Bekijk hem hier"
             image="/aftermovie.jpg"
           />
           <ContentBlock
             externalLink="https://www.facebook.com/events/265783484259438/"
             title="6 - 7 September 2019"
+            subTitle="RSVP op Facebook"
             image="/19block.jpg"
           />
         </div>
@@ -70,7 +73,7 @@ export const pageQuery = graphql`
               html
             }
           }
-          publishDate(formatString: "MMMM Do, YYYY")
+          publishDate(formatString: "DD/MM/YYYY")
           featuredImage {
             file {
               url

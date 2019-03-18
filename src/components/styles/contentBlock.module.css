@@ -48,7 +48,7 @@
   text-transform: uppercase;
   margin: 0 auto;
   width: 100%;
-  bottom: 25px;
+  bottom: 35px;
   text-align: center;
 }
   .contentBlock h2 a {
@@ -62,6 +62,24 @@
     box-decoration-break: clone;
     font-family: 'Oswald';
     font-size: 24px;
+  }
+
+.contentBlock h3 {
+  position: absolute;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 100%;
+  bottom: 13px;
+  text-align: center;
+}
+
+  .contentBlock h3 span {
+    background-color: #2F4C5C;
+    padding: 3px 10px;
+    box-decoration-break: clone;
+    font-family: 'Oswald';
+    font-size: 13px;
   }
 
 @media only screen and (max-width: 730px) {
