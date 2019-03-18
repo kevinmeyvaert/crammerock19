@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Img from 'gatsby-image';
 
-import Image from './image';
 import { getTimeFromContentfulResponse } from '../util';
 
 import type { TArtist } from '../types';

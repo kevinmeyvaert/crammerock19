@@ -124,7 +124,7 @@ const Template = (props: TProps) => {
             {isIE() && <IEmessage />}
             <Navigation settings={settings} />
             <SocialNavigation />
-            <div style={{ background: 'white', paddingBottom: '20px' }}>
+            <div style={{ background: 'white' }}>
               {props.children}
             </div>
             <Footer />
