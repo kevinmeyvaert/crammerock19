@@ -44,29 +44,24 @@
     max-width: 100%;
   }
 
-  .block {
-    border-bottom: #2E4C5D solid 2px;
-    padding: 5px 10px 5px 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
+.infoTitle {
+  color: #2E4C5D !important;
+  margin: 40px 0 20px;
+}
 
-    .block h2 {
-      margin: 0;
-    }
+.relatedInfoRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
-    .block h2 span {
-      float: right;
-      color: #2E4C5D;
-    }
+.relatedInfoRow h2 {
+  color: #FFF !important;
+}
 
-  .content {
-    padding: 10px 10px 10px 10px;
-    cursor: default;
-    animation: fadein 1s;
-  }
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+@media only screen and (max-width: 730px) {
+  .relatedInfoRow {
+    flex-direction: column;
+  }  
 }

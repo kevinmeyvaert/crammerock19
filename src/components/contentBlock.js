@@ -32,7 +32,7 @@ const ContentBlock = ({
     <div className={styles.contentBlock}>
       <div className={styles.innerBorder}>
         <h2><span>{title}</span></h2>
-        <h3><span>{subTitle}</span></h3>
+        {subTitle ? <h3><span>{subTitle}</span></h3> : null}
       </div>
       {fluidImage ? (
         <Img
