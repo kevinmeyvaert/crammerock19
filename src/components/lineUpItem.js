@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'gatsby-link';
+import Img from 'gatsby-image';
 
-import Image from './image';
 import { getTimeFromContentfulResponse } from '../util';
 
 import type { TArtist } from '../types';
@@ -15,6 +15,7 @@ type TProps = {
   dayFilter: string | undefined,
   stageFilter: string | undefined,
   dagindeling: boolean,
+  podiumindeling: boolean,
 }
 
 const LineUpItem = ({
@@ -22,6 +23,7 @@ const LineUpItem = ({
   dayFilter,
   dagindeling,
   stageFilter,
+  podiumindeling,
 }: TProps) => {
   const { node } = artist;
   return (
@@ -30,18 +32,20 @@ const LineUpItem = ({
         to={`/lineup/${node.slug}`}
       >
         <div className={styles.image}>
-          <Image
-            width={300}
-            height={300}
-            src={node.headerImage.file.url}
+          <Img
             alt={node.name}
+            fluid={node.headerImage.fluid}
+            style={{ position: 'initial' }}
           />
         </div>
-        <p className={styles.description}>
-          {node.name}
-          {!dayFilter && dagindeling && ` | ${node.day}`}
-          {dayFilter && stageFilter && ` | ${getTimeFromContentfulResponse(node.showStart)}`}
-        </p>
+        <div className={styles.description}>
+          <p>{node.name}</p>
+          <span>
+            {!dayFilter && dagindeling && `${node.day}`}
+            {dayFilter && `${getTimeFromContentfulResponse(node.showStart)}`}
+            <span className={styles.stage}>{dagindeling && podiumindeling && ` / ${node.stage}`}</span>
+          </span>
+        </div>
       </Link>
     </div>
   );

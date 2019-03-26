@@ -61,6 +61,18 @@ const Navigation = (props: TProps) => {
           {infopagina && (
             <li>
               <Link
+                to="/faq"
+                activeStyle={{
+                  borderBottom: 'thick solid #A3D7DD',
+                }}
+              >
+                FAQ
+              </Link>
+            </li>
+          )}
+          {infopagina && (
+            <li>
+              <Link
                 to="/info"
                 activeStyle={{
                   borderBottom: 'thick solid #A3D7DD',

@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import { Template, Header } from '../components';
+import { Template, Header, ContentBlock } from '../components';
 
 import styles from './styles/news-post.module.css';
 
@@ -28,11 +28,25 @@ const NewsPostTemplate = (props) => {
         <meta property="og:site_name" content="Crammerock.be" />
       </Helmet>
       <div className={styles.wrapper}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: post.post.childMarkdownRemark.html,
-          }}
-        />
+        <div className={styles.contentWrapper}>
+          <p className={styles.published}>Gepubliceerd op {post.publishDate}.</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: post.post.childMarkdownRemark.html,
+            }}
+          />
+        </div>
+        <div className={styles.related}>
+          <h2 className={styles.relatedTitle}>Ander nieuws</h2>
+          {post.relatedNews.map(newsItem => (
+            <ContentBlock
+              link={`/news/${newsItem.slug}`}
+              title={typeof window !== 'undefined' && window.innerWidth > 730 ? newsItem.title : ellipsis(newsItem.title, 30)}
+              subTitle={newsItem.publishDate}
+              fluidImage={newsItem.featuredImage.fluid}
+            />
+          ))}
+        </div>
       </div>
     </Template>
   );
@@ -45,7 +59,7 @@ export const pageQuery = graphql`
     contentfulNews(slug: { eq: $slug }) {
       title
       slug
-      publishDate(formatString: "MMMM Do, YYYY")
+      publishDate(formatString: "DD/MM/YYYY")
       featuredImage {
         file {
           url
@@ -54,6 +68,21 @@ export const pageQuery = graphql`
       post {
         childMarkdownRemark {
           html
+        }
+      }
+      relatedNews {
+        title
+        slug
+        publishDate(formatString: "DD/MM/YYYY")
+        featuredImage {
+          fluid(
+            maxWidth: 800
+            maxHeight: 333
+            resizingBehavior: FILL
+            background: "rgb:000000"
+          ) {
+            ...GatsbyContentfulFluid_withWebp
+          }
         }
       }
     }

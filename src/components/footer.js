@@ -138,7 +138,7 @@ const Footer = () => {
           </li>
           <li>
             <Link
-              to="/info/faq"
+              to="/faq"
               activeStyle={{
                 borderBottom: 'thick solid #A3D7DD',
               }}

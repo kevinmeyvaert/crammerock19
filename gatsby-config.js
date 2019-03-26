@@ -53,21 +53,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: 'UA-171335-2',
-        head: false,
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-facebook-pixel',
-      options: {
-        pixelId: '543116772561552',
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [

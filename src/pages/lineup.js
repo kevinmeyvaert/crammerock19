@@ -49,6 +49,7 @@ const LineUp = (props) => {
   // Local consts
   const randomArtist = randomArrayValue(artists).node;
   const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
+
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 
   // redirect to homepage if page is disabled
@@ -80,6 +81,7 @@ const LineUp = (props) => {
               artist={artist}
               dayFilter={dayFilter}
               dagindeling={dagindeling}
+              podiumindeling={podiumIndeling}
               stageFilter={stageFilter}
             />
           ))}
@@ -105,6 +107,14 @@ export const pageQuery = graphql`
           headerImage {
             file {
               url
+            }
+            fluid(
+              maxWidth: 800
+              maxHeight: 533
+              resizingBehavior: FILL
+              background: "rgb:000000"
+            ) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

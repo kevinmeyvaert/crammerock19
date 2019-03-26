@@ -3,6 +3,7 @@
 
 import React from 'react';
 import Link from 'gatsby-link';
+import Img from 'gatsby-image';
 
 import Image from './image';
 
@@ -12,22 +13,34 @@ type TProps = {
   link: string,
   externalLink: string,
   title: string,
+  subTitle: string,
   contentfulImage: string,
   image: string,
+  fluidImage: string,
 }
 
 const ContentBlock = ({
   link,
   externalLink,
   title,
+  subTitle,
   contentfulImage,
+  fluidImage,
   image,
 }: TProps) => {
   const renderBlock = () => (
     <div className={styles.contentBlock}>
       <div className={styles.innerBorder}>
         <h2><span>{title}</span></h2>
+        {subTitle ? <h3><span>{subTitle}</span></h3> : null}
       </div>
+      {fluidImage ? (
+        <Img
+          alt={title}
+          fluid={fluidImage}
+          style={{ position: 'initial' }}
+        />
+      ) : null}
       {contentfulImage
         ? <Image width={800} height={333} src={contentfulImage} alt={title} />
         : null}

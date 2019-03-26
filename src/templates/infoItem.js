@@ -5,10 +5,12 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import { Template, Header } from '../components';
+import { Template, Header, ContentBlock } from '../components';
 
+import { ellipsis } from '../util';
 import styles from './styles/infoItem.module.css';
 import { config } from '../config';
+import FoldItem from '../components/foldItem';
 
 class InfoItemTemplate extends React.Component {
   constructor(props) {
@@ -47,52 +49,33 @@ class InfoItemTemplate extends React.Component {
           />
           )
           }
-          {info.infoBlocks && info.infoBlocks.map((block) => {
-            if (activeBlock === block.title) {
-              return (
-                <div
-                  className={styles.block}
-                  key={block.title}
-                  onClick={() => this.handleSectionClick(block)}
-                  role="button"
-                >
-                  <h2>
-                    {block.title}
-                    {' '}
-                    <span>
-                      &#x25BC;
-                    </span>
-                  </h2>
-                  <div className={styles.content}>
-                    {block.content && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: block.content.childMarkdownRemark.html,
-                      }}
-                    />
-                    )
-                  }
-                  </div>
-                </div>
-              );
-            }
-            return (
-              <div
-                className={styles.block}
-                key={block.title}
-                onClick={() => this.handleSectionClick(block)}
-                role="button"
-              >
-                <h2>
-                  {block.title}
-                  {' '}
-                  <span>
-                    &#x25BA;
-                  </span>
-                </h2>
-              </div>
-            );
-          })}
+          {info.infoBlocks && info.infoBlocks.map(block => (
+            <FoldItem
+              activeBlock={activeBlock}
+              block={block}
+              onSectionClick={this.handleSectionClick}
+            />
+          ))}
+          {info.faqGroup ? <h2 className={styles.infoTitle}>Vaak gestelde vragen</h2> : null}
+          {info.faqGroup && info.faqGroup.questions.map(block => (
+            <FoldItem
+              activeBlock={activeBlock}
+              block={block}
+              onSectionClick={this.handleSectionClick}
+            />
+          ))}
+          {info.relatedInfo ? <h2 className={styles.infoTitle}>Meer info</h2> : null}
+          {info.relatedInfo ? (
+            <div className={styles.relatedInfoRow}>
+              {info.relatedInfo.map(infoItem => (
+                <ContentBlock
+                  link={`/news/${infoItem.slug}`}
+                  title={typeof window !== 'undefined' && window.innerWidth > 730 ? infoItem.title : ellipsis(infoItem.title, 30)}
+                  fluidImage={infoItem.headerImage.fluid}
+                />
+              ))}
+            </div>
+          ) : null }
         </div>
       </Template>
     );
@@ -116,25 +99,40 @@ export const pageQuery = graphql`
           html
         }
       }
+      faqGroup {
+        questions {
+          title
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+      }
+      relatedInfo {
+        title
+        slug
+        headerImage {
+          fluid(
+            maxWidth: 800
+            maxHeight: 333
+            resizingBehavior: FILL
+            background: "rgb:000000"
+          ) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+        }
+      }
       infoBlocks {
         ...campingBlockFields
         ...ticketsBlockFields
         ...duurzaamBlockFields
         ...festivalBlockFields
         ...mobiliteitBlockFields
-        ...faqBlockFields
       }
     }
   }
   fragment mobiliteitBlockFields on ContentfulMobiliteitInfoBlocks {
-    title
-    content {
-      childMarkdownRemark {
-        html
-      }
-    }
-  }
-  fragment faqBlockFields on ContentfulFaqInfoBlocks {
     title
     content {
       childMarkdownRemark {

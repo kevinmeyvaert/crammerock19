@@ -16,3 +16,33 @@ textarea, input, button { outline: none; }
 button {
   cursor: pointer;
 }
+
+.cc-settings {
+  background-color: #2E4C5D !important;
+}
+
+.cc-settings a[role="button"].cc-save-btn {
+  color: white !important;
+  transition: none !important;
+}
+
+.cc-settings a[role="button"].cc-save-btn:hover {
+  color: #2E4C5D !important;
+}
+
+.cc-icon a {
+  background-color: #2E4C5D !important;
+}
+
+.cc-dialog {
+  background-color: #2E4C5D !important;
+}
+
+.cc-dialog .cc-actions a[role="button"].cc-primary-btn {
+  color: white !important;
+  transition: none !important;
+}
+
+.cc-dialog .cc-actions a[role="button"].cc-primary-btn:hover {
+  color: #2E4C5D !important;
+}

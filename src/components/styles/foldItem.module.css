@@ -1,0 +1,26 @@
+.block {
+  border-bottom: #2E4C5D solid 2px;
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+  .block h2 {
+    margin: 0;
+  }
+
+  .block h2 span {
+    float: right;
+    color: #2E4C5D;
+  }
+
+.content {
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
