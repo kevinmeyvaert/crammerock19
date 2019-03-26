@@ -19,7 +19,6 @@ const NewsPostTemplate = (props) => {
       <Header
         title={ellipsis(post.title, 50)}
         image={post.featuredImage.file.url}
-        subTitle={post.publishDate}
       />
       <Helmet title={`${post.title} | ${config.siteName}`}>
         <meta property="og:type" content="website" />
@@ -30,6 +29,7 @@ const NewsPostTemplate = (props) => {
       </Helmet>
       <div className={styles.wrapper}>
         <div className={styles.contentWrapper}>
+          <p className={styles.published}>Gepubliceerd op {post.publishDate}.</p>
           <div
             dangerouslySetInnerHTML={{
               __html: post.post.childMarkdownRemark.html,

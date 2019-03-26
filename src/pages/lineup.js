@@ -44,14 +44,11 @@ const LineUp = (props) => {
 
   // Contentful data
   const artists = get(props, 'data.allContentfulArtists2018.edges').filter(artistFilterFn);
-  // const settings = get(props, 'data.allContentfulSettings.edges');
+  const settings = get(props, 'data.allContentfulSettings.edges');
 
   // Local consts
   const randomArtist = randomArrayValue(artists).node;
-  // const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
-  const lineuppagina = true;
-  const dagindeling = true;
-  const podiumIndeling = true;
+  const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
 
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
 

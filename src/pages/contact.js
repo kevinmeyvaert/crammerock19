@@ -28,7 +28,7 @@ const Contact = () => (
         <div className={styles.col}>
           <h3>Ons postadres</h3>
           <p>Nieuwstraat 60 E, 9190 Stekene, België</p>
-          <p>Ondernemingsnummer: BE 0455 821 707</p>
+          <p>Ondernemingsnummer: BE 0713.831.017</p>
         </div>
       </div>
     </div>
