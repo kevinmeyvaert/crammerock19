@@ -69,7 +69,7 @@ class InfoItemTemplate extends React.Component {
             <div className={styles.relatedInfoRow}>
               {info.relatedInfo.map(infoItem => (
                 <ContentBlock
-                  link={`/news/${infoItem.slug}`}
+                  link={`/info/${infoItem.slug}`}
                   title={typeof window !== 'undefined' && window.innerWidth > 730 ? infoItem.title : ellipsis(infoItem.title, 30)}
                   fluidImage={infoItem.headerImage.fluid}
                 />
