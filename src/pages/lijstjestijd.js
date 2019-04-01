@@ -40,7 +40,7 @@ const Lijstjestijd = (props) => {
   // helper fns
   const onChange = (value: string, key: number) => {
     if (typeof key === 'number') {
-      const artistsCopy = artists;
+      const artistsCopy = [...artists];
       artistsCopy[key] = value;
       setArtists(artistsCopy);
     } else {
