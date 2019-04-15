@@ -26,7 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-    allContentfulArtists2018 {
+    allContentfulArtists2019 {
       edges {
         node {
           slug
@@ -71,7 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const artistsContent = staticPagesData.data.allContentfulArtists2018.edges.forEach((artist) => {
+  const artistsContent = staticPagesData.data.allContentfulArtists2019.edges.forEach((artist) => {
     createPage({
       path: `lineup/${artist.node.slug}/`,
       component: path.resolve('./src/templates/artist.js'),

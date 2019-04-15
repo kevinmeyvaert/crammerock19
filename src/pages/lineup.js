@@ -43,7 +43,7 @@ const LineUp = (props) => {
   const sortByTimeFn = (artistA, artistB) => new Date(artistA.node.showStart) - new Date(artistB.node.showStart);
 
   // Contentful data
-  const artists = get(props, 'data.allContentfulArtists2018.edges').filter(artistFilterFn);
+  const artists = get(props, 'data.allContentfulArtists2019.edges').filter(artistFilterFn);
   const settings = get(props, 'data.allContentfulSettings.edges');
 
   // Local consts
@@ -95,7 +95,7 @@ export default LineUp;
 
 export const pageQuery = graphql`
   query LineUpQuery {
-    allContentfulArtists2018(sort: { fields: [artistLevel, name], order: ASC }) {
+    allContentfulArtists2019(sort: { fields: [artistLevel, name], order: ASC }) {
       edges {
         node {
           name
