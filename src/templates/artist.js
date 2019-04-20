@@ -5,9 +5,9 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
 
-import { Template, Header } from '../components';
+import { Template, Header, ContentBlock } from '../components';
 
-import { getTimeFromContentfulResponse, getSettings } from '../util';
+import { getTimeFromContentfulResponse, getSettings, ellipsis } from '../util';
 import { config } from '../config';
 
 import styles from './styles/artist.module.css';
@@ -52,7 +52,6 @@ const PageTemplate = (props) => {
         <p className={styles.location}>
           {createSubtitle(settingValues, page)}
         </p>
-        <h2>Over {page.name}</h2>
         {page.bio && (
         <div
           dangerouslySetInnerHTML={{
@@ -86,6 +85,17 @@ const PageTemplate = (props) => {
             )}
           </ul>
         </div>
+        {page.relatedArtists && (
+          <div className={styles.related}>
+            {page.relatedArtists.map(relatedArtist => (
+              <ContentBlock
+                link={`/lineup/${relatedArtist.slug}`}
+                title={typeof window !== 'undefined' && window.innerWidth > 730 ? relatedArtist.name : ellipsis(relatedArtist.name, 30)}
+                fluidImage={relatedArtist.headerImage.fluid}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </Template>
   );
@@ -128,6 +138,20 @@ export const pageQuery = graphql`
       day
       stage
       showStart
+      relatedArtists {
+        slug
+        name
+        headerImage {
+          fluid(
+            maxWidth: 800
+            maxHeight: 333
+            resizingBehavior: FILL
+            background: "rgb:000000"
+          ) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+        }
+      }
     }
   }
 `;
