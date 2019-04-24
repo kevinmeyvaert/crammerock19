@@ -2,7 +2,7 @@
   max-width: 100%;
   margin: 0 auto;
   margin-bottom: 20px;
-  padding: 0 20px;
+  padding: 0 20px 10px;
 }
 
   .wrapper p {
@@ -21,7 +21,7 @@
     color: white;
     font-family: 'Oswald';
     font-weight: 400;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
   }
 
   .wrapper h2 {
@@ -58,43 +58,57 @@
   font-weight: 400;
   color: white;
   text-decoration: none;
+  text-transform: none;
 }
 
 .socials li {
   margin: 0 5px 5px 0;
-  border-radius: 5px;
 }
 
 .facebook {
   background-color: #4468B0;
-  padding: 7px 14px;
+  padding: 4px 10px;
 }
 
 .instagram {
   background-color: #d9317a;
-  padding: 7px 14px;
+  padding: 4px 10px;
 }
 
 .twitter {
   background-color: #2AA3EF;
-  padding: 7px 14px;
+  padding: 4px 10px;
 }
 
 .soundcloud {
   background-color: #FF7600;
-  padding: 7px 14px;
+  padding: 4px 10px;
 }
 
 .spotify {
   background-color: #2AB858;
-  padding: 7px 14px;
+  padding: 4px 10px;
 }
 
 .website {
   background-color: black;
-  padding: 7px 14px;
+  padding: 4px 10px;
 }
 
 .relatedImage {
   max-width: 33%;
+}
+
+.related {
+  border-top: 1px dotted #2E4C5D;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.related h2 {
+  color: #FFF !important;
 }

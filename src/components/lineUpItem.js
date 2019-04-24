@@ -43,7 +43,9 @@ const LineUpItem = ({
           <span>
             {!dayFilter && dagindeling && `${node.day}`}
             {dayFilter && `${getTimeFromContentfulResponse(node.showStart)}`}
-            <span className={styles.stage}>{dagindeling && podiumindeling && ` / ${node.stage}`}</span>
+            {dagindeling && podiumindeling && (
+              <span className={styles.stage}><br/>{node.stage}</span>
+            )}
           </span>
         </div>
       </Link>

@@ -35,12 +35,6 @@ const RootIndex = (props) => {
               contentfulImage={node.featuredImage.file.url}
             />
           ))}
-          {/* <Link to={`/lineup/${randomArtist.slug}`}>
-            <div className={styles.indexItem}>
-              <Image width={800} height={333} src={randomArtist.headerImage.file.url} alt={randomArtist.name} />
-              <h2><span>{randomArtist.name}</span></h2>
-            </div>
-          </Link> */}
           <ContentBlock
             externalLink="https://www.facebook.com/Crammerock/videos/1549510151819448/"
             title="Aftermovie 2018"

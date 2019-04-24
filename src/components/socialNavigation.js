@@ -21,11 +21,6 @@ const SocialNavigation = () => {
         </a>
       </li>
       <li className={styles.navigationItem}>
-        <a href={config.twitterUrl}>
-          <img src="/twitter.svg" className={styles.icon} alt="Twitter" />
-        </a>
-      </li>
-      <li className={styles.navigationItem}>
         <a href={config.instagramUrl}>
           <img src="/instagram.svg" className={styles.icon} alt="Instagram" />
         </a>
