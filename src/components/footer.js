@@ -169,11 +169,6 @@ const Footer = () => {
               </a>
             </li>
             <li className={styles.navigationItem}>
-              <a href="https://twitter.com/crammerock">
-                <img src="/twitter.svg" className={styles.icon} alt="Twitter" />
-              </a>
-            </li>
-            <li className={styles.navigationItem}>
               <a href="https://instagram.com/crammerock">
                 <img src="/instagram.svg" className={styles.icon} alt="Instagram" />
               </a>
@@ -194,11 +189,16 @@ const Footer = () => {
               </a>
             </li>
           </ul>
+          <li className={styles.navigationItem}>
+            <a href="https://www.festivalfinder.eu/" noopener noreferrer>
+              <img src="effe.png" width="100" alt="The EFFE Label is Europe’s quality stamp for remarkable arts festivals showing their engagement in the field of the arts, community involvement and international openness." />
+            </a>
+          </li>
         </ul>
       </div>
       <div className={styles.sub}>
         <p>
-          <span role="img" aria-label="copyright">&copy;</span> 2018 Crammerock VZW
+          <span role="img" aria-label="copyright">&copy;</span> 2019 Crammerock VZW
         </p>
         <p className={styles.credits}>
           Website: Kevin • Ontwerp: Marieke, Jonas
