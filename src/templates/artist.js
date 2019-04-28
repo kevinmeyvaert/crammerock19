@@ -60,7 +60,7 @@ const PageTemplate = (props) => {
         />)}
         <div className={styles.video}>
           {isAvailable(page.youtubeVideoId) && <iframe title="youtube" width="560" height="315" src={`https://www.youtube-nocookie.com/embed/${page.youtubeVideoId}?rel=0&amp;showinfo=0`} frameBorder="0" allowFullScreen />}
-          {isAvailable(page.spotifyArtistId) && <iframe title="spotify" src={`https://open.spotify.com/embed/artist/${page.spotifyArtistId}`} width="300" height="315" frameBorder="0" allowTransparency="true" />}
+          {isAvailable(page.spotifyArtistId) && <iframe title="spotify" src={`https://open.spotify.com/embed/artist/${page.spotifyArtistId}`} width="300" height="315" frameBorder="0" allowtransparency="true" />}
         </div>
         <h2>Meer van {page.name}</h2>
         <div>
