@@ -191,7 +191,7 @@ const Footer = () => {
           </ul>
           <li className={styles.navigationItem}>
             <a href="https://www.festivalfinder.eu/" noopener noreferrer>
-              <img src="effe.png" width="100" alt="The EFFE Label is Europe’s quality stamp for remarkable arts festivals showing their engagement in the field of the arts, community involvement and international openness." />
+              <img src="/effe.png" width="100" alt="The EFFE Label is Europe’s quality stamp for remarkable arts festivals showing their engagement in the field of the arts, community involvement and international openness." />
             </a>
           </li>
         </ul>

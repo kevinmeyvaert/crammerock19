@@ -138,20 +138,6 @@ export const pageQuery = graphql`
       day
       stage
       showStart
-      relatedArtists {
-        slug
-        name
-        headerImage {
-          fluid(
-            maxWidth: 800
-            maxHeight: 333
-            resizingBehavior: FILL
-            background: "rgb:000000"
-          ) {
-            ...GatsbyContentfulFluid_withWebp
-          }
-        }
-      }
     }
   }
 `;
