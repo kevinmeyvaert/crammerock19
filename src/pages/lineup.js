@@ -47,7 +47,7 @@ const LineUp = (props) => {
   const settings = get(props, 'data.allContentfulSettings.edges');
 
   // Local consts
-  const randomArtist = randomArrayValue(artists).node;
+  const randomArtist = randomArrayValue(get(props, 'data.allContentfulArtists2019.edges')).node;
   const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
 
   const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
@@ -75,7 +75,7 @@ const LineUp = (props) => {
           stageFilter={stageFilter}
         />
         <div className={styles.artistWrapper}>
-          {artistArray.map(artist => (
+          {artistArray.length > 0 && artistArray.map(artist => (
             <LineUpItem
               key={artist.node.slug}
               artist={artist}
