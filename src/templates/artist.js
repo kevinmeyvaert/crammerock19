@@ -111,6 +111,7 @@ export const pageQuery = graphql`
           dagindeling
           podiumIndeling
           tijdIndeling
+          lineuppagina
         }
       }
     }
