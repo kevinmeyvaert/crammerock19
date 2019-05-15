@@ -40,6 +40,7 @@ const NewsPostTemplate = (props) => {
           <h2 className={styles.relatedTitle}>Ander nieuws</h2>
           {post.relatedNews.map(newsItem => (
             <ContentBlock
+              key={newsItem.slug}
               link={`/news/${newsItem.slug}`}
               title={typeof window !== 'undefined' && window.innerWidth > 730 ? newsItem.title : ellipsis(newsItem.title, 30)}
               subTitle={newsItem.publishDate}

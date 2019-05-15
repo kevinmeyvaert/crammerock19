@@ -2,7 +2,7 @@
   max-width: 100%;
   margin: 0 auto;
   margin-bottom: 20px;
-  padding: 0 20px;
+  padding: 0 20px 20px;
 }
 
   .wrapper p {
@@ -15,6 +15,13 @@
 
   .wrapper h2 {
     color: #F0986B;
+    font-family: 'Oswald';
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .wrapper h3 {
+    color: #2E4C5D;
     font-family: 'Oswald';
     font-weight: 400;
     text-transform: uppercase;
@@ -40,31 +47,27 @@
     color: #2E4C5D;
   }
 
-  .wrapper img {
-    max-width: 100%;
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-bottom: 20px;
   }
 
-.infoTitle {
-  margin: 40px 0 20px;
-}
+  .row h2 {
+    color: white !important;
+  }
 
-.relatedInfoRow {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.relatedInfoRow h2 {
-  color: #FFF !important;
-}
-
-.intro {
-  padding: 0 10px;
-}
-
-@media only screen and (max-width: 730px) {
-  .relatedInfoRow {
-    flex-direction: column;
-  }  
-}
+  .row h3 {
+    color: white !important;
+  }
+  
+  @media only screen and (max-width: 730px) {
+    .row {
+      flex-direction: column;
+    }
+  }
