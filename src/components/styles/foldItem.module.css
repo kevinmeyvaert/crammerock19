@@ -1,23 +1,26 @@
 .block {
-  border-bottom: #2E4C5D solid 2px;
-  padding: 5px 10px 5px 10px;
+  border-bottom: #2E4C5D solid 1px;
+  padding: 15px 10px 15px 0px;
   margin-bottom: 10px;
   cursor: pointer;
 }
 
-  .block h2 {
+  .block strong {
     margin: 0;
+    color: #2E4C5D;
+    font-weight: 400;
   }
 
-  .block h2 span {
+  .block strong span {
     float: right;
     color: #2E4C5D;
   }
 
 .content {
-  padding: 10px 10px 10px 10px;
+  padding: 20px 10px 10px 10px;
   cursor: default;
   animation: fadein 1s;
+  font-weight: 200;
 }
 
 @keyframes fadein {

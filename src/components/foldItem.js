@@ -21,13 +21,13 @@ const FoldItem = ({
         onClick={() => onSectionClick(block)}
         role="button"
       >
-        <h2>
+        <strong>
           {block.title}
           {' '}
           <span>
             &#x25BC;
           </span>
-        </h2>
+        </strong>
         <div className={styles.content}>
           {block.content && (
             <div
@@ -48,13 +48,13 @@ const FoldItem = ({
       onClick={() => onSectionClick(block)}
       role="button"
     >
-      <h2>
+      <strong>
         {block.title}
         {' '}
         <span>
           &#x25BA;
         </span>
-      </h2>
+      </strong>
     </div>
   );
 };

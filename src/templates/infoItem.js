@@ -43,12 +43,14 @@ class InfoItemTemplate extends React.Component {
         <div className={styles.wrapper}>
           {info.introCopy && (
           <div
+            className={styles.intro}
             dangerouslySetInnerHTML={{
               __html: info.introCopy.childMarkdownRemark.html,
             }}
           />
           )
           }
+          <h2 className={styles.infoTitle}>{info.title}</h2>
           {info.infoBlocks && info.infoBlocks.map(block => (
             <FoldItem
               activeBlock={activeBlock}

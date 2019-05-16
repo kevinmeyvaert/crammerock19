@@ -1,13 +1,13 @@
 // @flow
 
-import React from 'react';
+import React, { useState } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import styles from './styles/news.module.css';
+import styles from './styles/tickets.module.css';
 
-import { Template, Header } from '../components';
+import { Template, Header, ContentBlock, FoldItem } from '../components';
 import { getSettings } from '../util';
 import { config } from '../config';
 import { useRedirectIfNotAllowed } from '../hooks';
@@ -19,10 +19,19 @@ type TProps = {
 
 const Tickets = (props: TProps) => {
   const settings = get(props, 'data.allContentfulSettings.edges');
+  const info = get(props, 'data.contentfulInfoPages');
   const { ticketpagina } = getSettings(settings[0].node);
+  const [activeBlock, setActiveBlock] = useState(null);
 
   // redirect to homepage if page is disabled
   useRedirectIfNotAllowed(ticketpagina);
+
+  const handleSectionClick = (block) => {
+    if (activeBlock === block.title) {
+      return setActiveBlock(null);
+    }
+    return setActiveBlock(block.title);
+  }
 
   return ticketpagina && (
     <Template>
@@ -32,21 +41,40 @@ const Tickets = (props: TProps) => {
       />
       <Helmet title={`Tickets | ${config.siteName}`} />
       <div className={styles.wrapper}>
+        <h2>Bestel je tickets</h2>
         <div className={styles.row}>
-          <div style={{ width: '100%', textAlign: 'left' }}>
-            <iframe
-              title="Tickets"
-              src="https://eventbrite.com/tickets-external?eid=42900429339&ref=etckt"
-              frameBorder="0"
-              height={typeof window !== 'undefined' && window.innerWidth > 730 ? 1100 : 1500}
-              width="100%"
-              marginHeight="5"
-              marginWidth="5"
-              scrolling="auto"
-              allowTransparency="true"
-            />
-          </div>
+          <ContentBlock
+            title="Tickets Vrijdag"
+            subTitle="€37 + €1,48 servicekosten"
+            externalLink="#"
+            image="/tickets-vrijdag.jpg"
+          />
+          <ContentBlock
+            title="Tickets Zaterdag"
+            subTitle="€37 + €1,48 servicekosten"
+            externalLink="#"
+            image="/tickets-zaterdag.jpg"
+          />
+          <ContentBlock
+            title="Tickets Weekend"
+            subTitle="€58 + €2,32 servicekosten"
+            externalLink="#"
+            image="/tickets-weekend.jpg"
+          />
+          <ContentBlock
+            title="Tickets Camping"
+            externalLink="#"
+            image="/tickets-camping.jpg"
+          />
         </div>
+        <h2>Vaak gestelde vragen</h2>
+        {info.faqGroup && info.faqGroup.questions.map(block => (
+          <FoldItem
+            activeBlock={activeBlock}
+            block={block}
+            onSectionClick={handleSectionClick}
+          />
+        ))}
       </div>
     </Template>
   );
@@ -60,6 +88,18 @@ export const pageQuery = graphql`
       edges {
         node {
           ticketpagina
+        }
+      }
+    }
+    contentfulInfoPages(slug: { eq: "tickets"}) {
+      faqGroup {
+        questions {
+          title
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }

@@ -10,11 +10,14 @@ import {
   ContentBlock,
 } from '../components';
 
+import { useGetRandomArtistInterval } from '../hooks';
 import { ellipsis } from '../util';
 import styles from './styles/index.module.css';
 
 const RootIndex = (props) => {
   const news = get(props, 'data.allContentfulNews.edges');
+  const artists = get(props, 'data.allContentfulArtists2019.edges');
+  const randomArtist = useGetRandomArtistInterval(artists, 5000);
   const headerData = news[0].node;
   return (
     <Template>
@@ -46,6 +49,12 @@ const RootIndex = (props) => {
             title="6 - 7 September 2019"
             subTitle="RSVP op Facebook"
             image="/19block.jpg"
+          />
+          <ContentBlock
+            link={`/lineup/${randomArtist.slug}`}
+            title={randomArtist.name}
+            subTitle={randomArtist.day}
+            fluidImage={randomArtist.headerImage.fluid}
           />
         </div>
       </div>
@@ -87,6 +96,25 @@ export const pageQuery = graphql`
             }
           }
           website
+        }
+      }
+    }
+    allContentfulArtists2019 {
+      edges {
+        node {
+          name
+          slug
+          day
+          headerImage {
+            fluid(
+              maxWidth: 800
+              maxHeight: 333
+              resizingBehavior: FILL
+              background: "rgb:000000"
+            ) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
         }
       }
     }
