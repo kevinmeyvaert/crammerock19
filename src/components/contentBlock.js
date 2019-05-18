@@ -18,6 +18,7 @@ type TProps = {
   image: string,
   fluidImage: string,
   id: string,
+  tickets: boolean,
 }
 
 const ContentBlock = ({
@@ -28,7 +29,8 @@ const ContentBlock = ({
   contentfulImage,
   fluidImage,
   image,
-  id
+  id,
+  tickets,
 }: TProps) => {
   const renderBlock = () => (
     <div className={styles.contentBlock} id={id}>
@@ -65,6 +67,14 @@ const ContentBlock = ({
         <a href={externalLink} target="_blank" rel="noopener noreferrer">
           {renderBlock()}
         </a>
+      </div>
+    );
+  }
+  if (tickets) {
+    return (
+      <div className={styles.contentBlockWrap} id={id}>
+        <noscript><a href={externalLink} target="_blank" rel="noopener noreferrer">{title}</a></noscript>
+        {renderBlock()}
       </div>
     );
   }
