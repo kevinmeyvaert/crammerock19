@@ -10,8 +10,10 @@ import styles from './styles/tickets.module.css';
 import { Template, Header, ContentBlock, FoldItem } from '../components';
 import { getSettings } from '../util';
 import { config } from '../config';
-import { useRedirectIfNotAllowed } from '../hooks';
+// import { useRedirectIfNotAllowed } from '../hooks';
 import type { TSettings } from '../types';
+
+require('../../static/eventbrite');
 
 type TProps = {
   settings: Array<TSettings>,
@@ -24,13 +26,22 @@ const Tickets = (props: TProps) => {
   const [activeBlock, setActiveBlock] = useState(null);
 
   // redirect to homepage if page is disabled
-  useRedirectIfNotAllowed(ticketpagina);
+  // useRedirectIfNotAllowed(ticketpagina);
 
   const handleSectionClick = (block) => {
     if (activeBlock === block.title) {
       return setActiveBlock(null);
     }
     return setActiveBlock(block.title);
+  };
+
+  if (typeof window !== 'undefined') {
+    window.EBWidgets.createWidget({
+      widgetType: 'checkout',
+      eventId: '58984031827',
+      modal: true,
+      modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
+    });
   }
 
   return ticketpagina && (
@@ -46,24 +57,28 @@ const Tickets = (props: TProps) => {
           <ContentBlock
             title="Tickets Vrijdag"
             subTitle="€37 + €1,48 servicekosten"
-            externalLink="#"
             image="/tickets-vrijdag.jpg"
+            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
+            id="eventbrite-widget-modal-trigger-58984031827"
           />
           <ContentBlock
             title="Tickets Zaterdag"
             subTitle="€37 + €1,48 servicekosten"
-            externalLink="#"
+            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
+            id="eventbrite-widget-modal-trigger-58984031827"
             image="/tickets-zaterdag.jpg"
           />
           <ContentBlock
             title="Tickets Weekend"
             subTitle="€58 + €2,32 servicekosten"
-            externalLink="#"
+            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
+            id="eventbrite-widget-modal-trigger-58984031827"
             image="/tickets-weekend.jpg"
           />
           <ContentBlock
             title="Tickets Camping"
-            externalLink="#"
+            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
+            id="eventbrite-widget-modal-trigger-58984031827"
             image="/tickets-camping.jpg"
           />
         </div>

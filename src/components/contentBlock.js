@@ -17,6 +17,7 @@ type TProps = {
   contentfulImage: string,
   image: string,
   fluidImage: string,
+  id: string,
 }
 
 const ContentBlock = ({
@@ -27,9 +28,10 @@ const ContentBlock = ({
   contentfulImage,
   fluidImage,
   image,
+  id
 }: TProps) => {
   const renderBlock = () => (
-    <div className={styles.contentBlock}>
+    <div className={styles.contentBlock} id={id}>
       <div className={styles.innerBorder}>
         <h2><span>{title}</span></h2>
         {subTitle ? <h3><span>{subTitle}</span></h3> : null}
