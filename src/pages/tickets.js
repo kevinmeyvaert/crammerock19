@@ -57,30 +57,22 @@ const Tickets = (props: TProps) => {
             title="Tickets Vrijdag"
             subTitle="€37 + €1,48 servicekosten"
             image="/tickets-vrijdag.jpg"
-            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
-            id="eventbrite-widget-modal-trigger-58984031827"
           />
           <ContentBlock
             tickets
             title="Tickets Zaterdag"
             subTitle="€37 + €1,48 servicekosten"
-            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
-            id="eventbrite-widget-modal-trigger-58984031827"
             image="/tickets-zaterdag.jpg"
           />
           <ContentBlock
             tickets
             title="Tickets Weekend"
             subTitle="€58 + €2,32 servicekosten"
-            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
-            id="eventbrite-widget-modal-trigger-58984031827"
             image="/tickets-weekend.jpg"
           />
           <ContentBlock
             tickets
             title="Tickets Camping"
-            externalLink="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827"
-            id="eventbrite-widget-modal-trigger-58984031827"
             image="/tickets-camping.jpg"
           />
         </div>
