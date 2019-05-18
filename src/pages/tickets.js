@@ -42,7 +42,7 @@ const Tickets = (props: TProps) => {
     });
   }
 
-  return ticketpagina && (
+  return (
     <Template>
       <Header
         title="Tickets"
