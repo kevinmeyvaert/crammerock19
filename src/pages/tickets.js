@@ -13,8 +13,6 @@ import { config } from '../config';
 // import { useRedirectIfNotAllowed } from '../hooks';
 import type { TSettings } from '../types';
 
-require('../../static/eventbrite');
-
 type TProps = {
   settings: Array<TSettings>,
 };
@@ -35,7 +33,7 @@ const Tickets = (props: TProps) => {
     return setActiveBlock(block.title);
   };
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && window.EBWidgets) {
     window.EBWidgets.createWidget({
       widgetType: 'checkout',
       eventId: '58984031827',

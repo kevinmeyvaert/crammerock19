@@ -8,6 +8,7 @@ import styles from './styles/container.module.css';
 const Container = ({ children }: { children: ?React.Node }) => (
   <>
     <Helmet>
+      <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171335-2" />
       <script type="text/javascript">
         {`var gtagId = 'UA-171335-2';
