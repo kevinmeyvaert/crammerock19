@@ -7,7 +7,7 @@ import { graphql } from 'gatsby';
 
 import styles from './styles/tickets.module.css';
 
-import { Template, Header, ContentBlock, FoldItem } from '../components';
+import { Template, Header, FoldItem } from '../components';
 import { getSettings } from '../util';
 import { config } from '../config';
 // import { useRedirectIfNotAllowed } from '../hooks';
@@ -46,7 +46,7 @@ const Tickets = (props: TProps) => {
     <Template>
       <Header
         title="Tickets"
-        image="https://images.ctfassets.net/nwp1ppgri1eh/5wdAe2GkfYSOOIMM4KIo2i/cf4a8d070a0d1ad03711cf35b8bf8232/large_4GXYu.jpg"
+        image="https://images.ctfassets.net/nwp1ppgri1eh/6hq6m7EoEvFPG76NncDVxk/b9b7e40efbb7e6c1c86f1ea8edaecaf5/Festival_-_3____Crammerock.jpg"
       />
       <Helmet title={`Tickets | ${config.siteName}`} />
       <div className={styles.wrapper}>
