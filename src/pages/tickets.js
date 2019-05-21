@@ -10,21 +10,16 @@ import styles from './styles/tickets.module.css';
 import { Template, Header, FoldItem } from '../components';
 import { getSettings } from '../util';
 import { config } from '../config';
-// import { useRedirectIfNotAllowed } from '../hooks';
-import type { TSettings } from '../types';
+import { useRedirectIfNotAllowed } from '../hooks';
 
-type TProps = {
-  settings: Array<TSettings>,
-};
-
-const Tickets = (props: TProps) => {
+const Tickets = (props) => {
   const settings = get(props, 'data.allContentfulSettings.edges');
   const info = get(props, 'data.contentfulInfoPages');
   const { ticketpagina } = getSettings(settings[0].node);
   const [activeBlock, setActiveBlock] = useState(null);
 
   // redirect to homepage if page is disabled
-  // useRedirectIfNotAllowed(ticketpagina);
+  useRedirectIfNotAllowed(ticketpagina);
 
   const handleSectionClick = (block) => {
     if (activeBlock === block.title) {
