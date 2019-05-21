@@ -3,6 +3,7 @@
 import React from 'react';
 import get from 'lodash/get';
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet';
 
 import {
   Template,
@@ -12,6 +13,7 @@ import {
 
 import { useGetRandomArtistInterval } from '../hooks';
 import { ellipsis } from '../util';
+import { config } from '../config';
 import styles from './styles/index.module.css';
 
 const RootIndex = (props) => {
@@ -21,6 +23,63 @@ const RootIndex = (props) => {
   const headerData = news[0].node;
   return (
     <Template>
+      <Helmet
+        title={config.siteName}
+        meta={[
+          {
+            property: 'og:type',
+            content: 'website',
+          },
+          {
+            property: 'og:image',
+            content: 'https://images.ctfassets.net/nwp1ppgri1eh/5scvUuBUEEiQImOC8wmuI2/7e1bf970d2b81ea63eda5802c804221a/whitelies.jpg?w=800&h=600&fit=fill',
+          },
+          {
+            property: 'og:title',
+            content: config.siteName,
+          },
+          {
+            property: 'description',
+            content: 'Klaar voor de 29ste editie van Crammerock! Op vrijdag 6/9 en zaterdag 7/9 in Stekene.',
+          },
+          {
+            property: 'og:description',
+            content: 'Klaar voor de 29ste editie van Crammerock! Op vrijdag 6/9 en zaterdag 7/9 in Stekene.',
+          },
+          {
+            property: 'og:url',
+            content: 'https://crammerock.be',
+          },
+          {
+            property: 'fb:app_id',
+            content: '448271178943799',
+          },
+          {
+            name: 'twitter:card',
+            content: 'summary',
+          },
+          {
+            name: 'twitter:url',
+            content: 'https://crammerock.be',
+          },
+          {
+            name: 'twitter:title',
+            content: config.siteName,
+          },
+          {
+            name: 'twitter:image',
+            content: 'https://images.ctfassets.net/nwp1ppgri1eh/5scvUuBUEEiQImOC8wmuI2/7e1bf970d2b81ea63eda5802c804221a/whitelies.jpg?w=800&h=600&fit=fill',
+          },
+          {
+            name: 'twitter:site',
+            content: '@crammerock',
+          },
+          {
+            name: 'twitter:creator',
+            content: '@crammerock',
+          },
+        ]}
+      />
       <Header
         title={ellipsis(headerData.title, 50)}
         image={headerData.featuredImage.file.url}
