@@ -11,6 +11,19 @@
   cursor: pointer;
 }
 
+.contentBlockTickets {
+  color: #FFFFFF;
+  text-decoration: none;
+  width: 23%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-family: 'Oswald';
+  font-size: 16px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 .contentBlock {
   box-sizing: border-box;
   position: relative;

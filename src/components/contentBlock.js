@@ -17,7 +17,6 @@ type TProps = {
   contentfulImage: string,
   image: string,
   fluidImage: string,
-  tickets: boolean,
 }
 
 const ContentBlock = ({
@@ -28,7 +27,6 @@ const ContentBlock = ({
   contentfulImage,
   fluidImage,
   image,
-  tickets,
 }: TProps) => {
   const renderBlock = () => (
     <div className={styles.contentBlock}>
@@ -65,14 +63,6 @@ const ContentBlock = ({
         <a href={externalLink} target="_blank" rel="noopener noreferrer">
           {renderBlock()}
         </a>
-      </div>
-    );
-  }
-  if (tickets) {
-    return (
-      <div className={styles.contentBlockWrap} id="eventbrite-widget-modal-trigger-58984031827">
-        <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">{title}</a></noscript>
-        {renderBlock()}
       </div>
     );
   }

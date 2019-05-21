@@ -65,9 +65,24 @@
   .row h3 {
     color: white !important;
   }
+
+  .ticketItem {
+    width: 23%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .ticketItem img {
+    max-width: 100%;
+  }
   
   @media only screen and (max-width: 730px) {
     .row {
       flex-direction: column;
+    }
+    .ticketItem {
+      width: 100%;
     }
   }
