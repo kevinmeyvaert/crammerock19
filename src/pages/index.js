@@ -98,6 +98,17 @@ const RootIndex = (props) => {
             />
           ))}
           <ContentBlock
+            link="/tickets"
+            title="Koop Tickets"
+            image="/kooptickets.jpg"
+          />
+          <ContentBlock
+            link={`/lineup/${randomArtist.slug}`}
+            title={randomArtist.name}
+            subTitle={randomArtist.day}
+            fluidImage={randomArtist.headerImage.fluid}
+          />
+          <ContentBlock
             externalLink="https://www.facebook.com/Crammerock/videos/1549510151819448/"
             title="Aftermovie 2018"
             subTitle="Bekijk hem hier"
@@ -108,12 +119,6 @@ const RootIndex = (props) => {
             title="6 - 7 September 2019"
             subTitle="RSVP op Facebook"
             image="/19block.jpg"
-          />
-          <ContentBlock
-            link={`/lineup/${randomArtist.slug}`}
-            title={randomArtist.name}
-            subTitle={randomArtist.day}
-            fluidImage={randomArtist.headerImage.fluid}
           />
         </div>
       </div>
