@@ -27,44 +27,6 @@ const Container = ({ children }: { children: ?React.Node }) => (
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '543116772561552');`}
       </script>
-      <script src="https://cookiehub.net/cc/312bb6b7.js" />
-      <script type="text/javascript">
-        {`window.addEventListener("load", function () {
-          window.cookieconsent.initialise({
-            onInitialise: function (status) {
-              if (this.hasConsented('required')) {
-              }
-              if (this.hasConsented('analytics')) {
-                window['ga-disable-UA-171335-2'] = false;
-                gtag('config', gtagId);
-              }
-              if (this.hasConsented('marketing')) {
-                fbq('track', 'PageView');
-              }
-            },
-            onAllow: function (category) {
-              if (category == 'required') {
-              }
-              if (category == 'analytics') {
-                window['ga-disable-UA-171335-2'] = false;
-                gtag('config', gtagId);
-              }
-              if (category == 'marketing') {
-                fbq('track', 'PageView');
-              }
-            },
-            onRevoke: function (category) {
-              if (category == 'required') {
-              }
-              if (category == 'analytics') {
-                window['ga-disable-UA-171335-2'] = true;
-              }
-              if (category == 'marketing') {
-              }
-            }
-          })
-        })`}
-      </script>
     </Helmet>
     <div className={styles.siteContainer}>{children}</div>
   </>
