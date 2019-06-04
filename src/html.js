@@ -24,7 +24,6 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
-        <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
       </body>
     </html>
   )
