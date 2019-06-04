@@ -35,7 +35,6 @@ const Tickets = (props) => {
         image="https://images.ctfassets.net/nwp1ppgri1eh/6hq6m7EoEvFPG76NncDVxk/b9b7e40efbb7e6c1c86f1ea8edaecaf5/Festival_-_3____Crammerock.jpg"
       />
       <Helmet title={`Tickets | ${config.siteName}`}>
-        <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
         <script>
           {typeof window !== 'undefined' && window.EBWidgets.createWidget({
             widgetType: 'checkout',
