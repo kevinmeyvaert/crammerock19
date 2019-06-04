@@ -28,15 +28,6 @@ const Tickets = (props) => {
     return setActiveBlock(block.title);
   };
 
-  if (typeof window !== 'undefined' && window.EBWidgets) {
-    window.EBWidgets.createWidget({
-      widgetType: 'checkout',
-      eventId: '58984031827',
-      modal: true,
-      modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
-    });
-  }
-
   return (
     <Template>
       <Header
@@ -45,24 +36,32 @@ const Tickets = (props) => {
       />
       <Helmet title={`Tickets | ${config.siteName}`}>
         <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
+        <script>
+          {window.EBWidgets.createWidget({
+            widgetType: 'checkout',
+            eventId: '58984031827',
+            modal: true,
+            modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
+          })}
+        </script>
       </Helmet>
       <div className={styles.wrapper}>
         <h2>Bestel je tickets</h2>
         <div className={styles.row}>
           <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript key="noscript" id="gatsby-noscript"><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Vrijdag</a></noscript>
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Vrijdag</a></noscript>
             <img src="/tickets-vrijdag.jpg" alt="Tickets Vrijdag" />
           </div>
           <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript key="noscript" id="gatsby-noscript"><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Zaterdag</a></noscript>
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Zaterdag</a></noscript>
             <img src="/tickets-zaterdag.jpg" alt="Tickets Zaterdag" />
           </div>
           <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript key="noscript" id="gatsby-noscript"><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Weekend</a></noscript>
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Weekend</a></noscript>
             <img src="/tickets-weekend.jpg" alt="Tickets Weekend" />
           </div>
           <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript key="noscript" id="gatsby-noscript"><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Camping</a></noscript>
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Camping</a></noscript>
             <img src="/tickets-camping.jpg" alt="Tickets Camping" />
           </div>
         </div>
