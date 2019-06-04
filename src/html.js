@@ -12,6 +12,7 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
+        <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
@@ -24,7 +25,6 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
-        <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
       </body>
     </html>
   )

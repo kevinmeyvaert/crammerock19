@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -28,14 +28,16 @@ const Tickets = (props) => {
     return setActiveBlock(block.title);
   };
 
-  if (typeof window !== 'undefined' && window.EBWidgets) {
-    window.EBWidgets.createWidget({
-      widgetType: 'checkout',
-      eventId: '58984031827',
-      modal: true,
-      modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
-    });
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.EBWidgets.createWidget({
+        widgetType: 'checkout',
+        eventId: '58984031827',
+        modal: true,
+        modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
+      });
+    }
+  }, []);
 
   return (
     <Template>
