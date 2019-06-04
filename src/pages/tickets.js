@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -28,22 +28,24 @@ const Tickets = (props) => {
     return setActiveBlock(block.title);
   };
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.EBWidgets.createWidget({
+        widgetType: 'checkout',
+        eventId: '58984031827',
+        modal: true,
+        modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
+      });
+    }
+  }, []);
+
   return (
     <Template>
       <Header
         title="Tickets"
         image="https://images.ctfassets.net/nwp1ppgri1eh/6hq6m7EoEvFPG76NncDVxk/b9b7e40efbb7e6c1c86f1ea8edaecaf5/Festival_-_3____Crammerock.jpg"
       />
-      <Helmet title={`Tickets | ${config.siteName}`}>
-        <script>
-          {typeof window !== 'undefined' && window.EBWidgets.createWidget({
-            widgetType: 'checkout',
-            eventId: '58984031827',
-            modal: true,
-            modalTriggerElementId: 'eventbrite-widget-modal-trigger-58984031827',
-          })}
-        </script>
-      </Helmet>
+      <Helmet title={`Tickets | ${config.siteName}`} />
       <div className={styles.wrapper}>
         <h2>Bestel je tickets</h2>
         <div className={styles.row}>
