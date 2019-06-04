@@ -37,7 +37,7 @@ const Tickets = (props) => {
       <Helmet title={`Tickets | ${config.siteName}`}>
         <script async src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
         <script>
-          {window.EBWidgets.createWidget({
+          {typeof window !== 'undefined' && window.EBWidgets.createWidget({
             widgetType: 'checkout',
             eventId: '58984031827',
             modal: true,
