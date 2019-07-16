@@ -77,6 +77,11 @@
   .ticketItem img {
     max-width: 100%;
   }
+
+  .disabled {
+    filter: grayscale(100%);
+    opacity: 0.5;
+  }
   
   @media only screen and (max-width: 730px) {
     .row {

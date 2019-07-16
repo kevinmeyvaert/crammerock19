@@ -29,7 +29,7 @@ const Tickets = (props) => {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && typeof window.EBWidgets !== 'undefined') {
       window.EBWidgets.createWidget({
         widgetType: 'checkout',
         eventId: '58984031827',
@@ -53,13 +53,11 @@ const Tickets = (props) => {
             <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Vrijdag</a></noscript>
             <img src="/tickets-vrijdag.jpg" alt="Tickets Vrijdag" />
           </div>
-          <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Zaterdag</a></noscript>
-            <img src="/tickets-zaterdag.jpg" alt="Tickets Zaterdag" />
+          <div className={styles.ticketItem}>
+            <img src="/tickets-zaterdag.jpg" alt="Tickets Zaterdag" className={styles.disabled} />
           </div>
-          <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Weekend</a></noscript>
-            <img src="/tickets-weekend.jpg" alt="Tickets Weekend" />
+          <div className={styles.ticketItem}>
+            <img src="/tickets-weekend.jpg" alt="Tickets Weekend" className={styles.disabled} />
           </div>
           <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
             <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Camping</a></noscript>
