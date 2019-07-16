@@ -29,7 +29,7 @@ const Tickets = (props) => {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && typeof window.EBWidgets !== 'undefined') {
       window.EBWidgets.createWidget({
         widgetType: 'checkout',
         eventId: '58984031827',
