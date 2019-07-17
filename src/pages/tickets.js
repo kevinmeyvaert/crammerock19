@@ -59,9 +59,8 @@ const Tickets = (props) => {
           <div className={styles.ticketItem}>
             <img src="/tickets-weekend.jpg" alt="Tickets Weekend" className={styles.disabled} />
           </div>
-          <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Camping</a></noscript>
-            <img src="/tickets-camping.jpg" alt="Tickets Camping" />
+          <div className={styles.ticketItem}>
+            <img src="/tickets-camping.jpg" alt="Tickets Camping" className={styles.disabled} />
           </div>
         </div>
         <h2>Vaak gestelde vragen</h2>
