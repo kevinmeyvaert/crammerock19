@@ -48,6 +48,14 @@ const LineUpFilter = ({
         >
           Zaterdag
         </button>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => onFilterLineUp('Tijdschema')}
+          style={{ borderBottomStyle: dayFilter === 'Tijdschema' ? 'solid' : 'initial' }}
+        >
+          Tijdschema
+        </button>
       </div>
     )}
   </>
