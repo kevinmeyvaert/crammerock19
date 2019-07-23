@@ -9,6 +9,7 @@ export const removeHtmlTagsFromString = (string: string): string => string.repla
 export const randomArrayValue = (array: Array) => array[Math.floor(Math.random() * array.length)];
 
 export const getTimeFromContentfulResponse = (contentfultimeString) => {
+  if (!contentfultimeString) return '/';
   const startTime = contentfultimeString.split(' ')[0];
   return startTime.substring(11, startTime.length - 6);
 };

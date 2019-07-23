@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -13,7 +13,7 @@ import {
 } from '../components';
 
 import styles from './styles/lineup.module.css';
-import { randomArrayValue, getSettings } from '../util';
+import { randomArrayValue, getSettings, getTimeFromContentfulResponse } from '../util';
 import { config } from '../config';
 import { useRedirectIfNotAllowed } from '../hooks';
 
@@ -43,14 +43,22 @@ const LineUp = (props) => {
   const sortByTimeFn = (artistA, artistB) => new Date(artistA.node.showStart) - new Date(artistB.node.showStart);
 
   // Contentful data
-  const artists = get(props, 'data.allContentfulArtists2019.edges').filter(artistFilterFn);
+  const artistData = get(props, 'data.allContentfulArtists2019.edges');
+  const artists = artistData.filter(artistFilterFn);
   const settings = get(props, 'data.allContentfulSettings.edges');
 
   // Local consts
   const randomArtist = randomArrayValue(get(props, 'data.allContentfulArtists2019.edges')).node;
   const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
 
-  const artistArray = !dayFilter ? artists : artists.sort(sortByTimeFn);
+  const artistArray = artists.sort(artist => artist.artistLevel);
+  const tijdschemaObject = ['Vrijdag', 'Zaterdag'].reduce((dagAcc, dag) => ({
+    ...dagAcc, [dag]: ['Main South', 'Main North', 'Club'].reduce((stageAcc, stage) => {
+      return { ...stageAcc, [stage]: artistData.map(artist => artist.node.day === dag && artist.node.stage === stage && artist).filter(Boolean).sort(sortByTimeFn) };
+    }, {}),
+  }), {});
+
+  console.log(tijdschemaObject)
 
   // redirect to homepage if page is disabled
   useRedirectIfNotAllowed(lineuppagina);
@@ -75,7 +83,7 @@ const LineUp = (props) => {
           stageFilter={stageFilter}
         />
         <div className={styles.artistWrapper}>
-          {artistArray.length > 0 && artistArray.map(artist => (
+          {dayFilter !== 'Tijdschema' && artistArray.length > 0 && artistArray.map(artist => (
             <LineUpItem
               key={artist.node.slug}
               artist={artist}
@@ -86,6 +94,25 @@ const LineUp = (props) => {
             />
           ))}
         </div>
+        {dayFilter === 'Tijdschema' && Object.keys(tijdschemaObject).map(dag => {
+          return (
+            <div key={dag} className={styles.tijdWrapper}>
+              <h2>{dag}</h2>
+              <div className={styles.dayRow}>
+              {Object.keys(tijdschemaObject[dag]).map(stage => {
+                return (
+                  <div key={dag + stage} className={styles.stageColumn}>
+                    <h3>{stage}</h3>
+                    {tijdschemaObject[dag][stage].map(artist => {
+                      return (<p key={artist.node.name}><strong>{getTimeFromContentfulResponse(artist.node.showStart)} - {getTimeFromContentfulResponse(artist.node.showEnd)}</strong> {artist.node.name}</p>)
+                    })}
+                  </div>
+                )
+              })}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </Template>
   ) : null;

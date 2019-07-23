@@ -19,6 +19,20 @@
   justify-content: space-between;
 }
 
+.tijdWrapper {
+  padding: 0 20px;
+}
+
+.dayRow {
+  width: 100%;
+  display: flex;
+}
+
+.stageColumn {
+  width: 32%;
+  flex-direction: column;
+}
+
 .artistWrapper::after {
   content: "";
   width: 48%;
@@ -28,3 +42,8 @@
     width: 100%;
   }
   
+  @media only screen and (max-width: 730px) {
+    .dayRow {
+      flex-direction: column;
+    }
+  }
