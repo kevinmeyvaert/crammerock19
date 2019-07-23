@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -57,8 +57,6 @@ const LineUp = (props) => {
       return { ...stageAcc, [stage]: artistData.map(artist => artist.node.day === dag && artist.node.stage === stage && artist).filter(Boolean).sort(sortByTimeFn) };
     }, {}),
   }), {});
-
-  console.log(tijdschemaObject)
 
   // redirect to homepage if page is disabled
   useRedirectIfNotAllowed(lineuppagina);
@@ -130,6 +128,7 @@ export const pageQuery = graphql`
           day
           stage
           showStart
+          showEnd
           artistLevel
           headerImage {
             file {
