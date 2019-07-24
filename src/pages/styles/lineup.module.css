@@ -46,4 +46,7 @@
     .dayRow {
       flex-direction: column;
     }
+    .stageColumn {
+      width: 100%;
+    }
   }
