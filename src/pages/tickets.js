@@ -50,17 +50,16 @@ const Tickets = (props) => {
         <h2>Bestel je tickets</h2>
         <div className={styles.row}>
           <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
-            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Vrijdag</a></noscript>
-            <img src="/tickets-vrijdag.jpg" alt="Tickets Vrijdag" />
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Kids Vrijdag</a></noscript>
+            <img src="/tickets-kids-vrijdag.jpg" alt="Tickets Kids Vrijdag" />
           </div>
-          <div className={styles.ticketItem}>
-            <img src="/tickets-zaterdag.jpg" alt="Tickets Zaterdag" className={styles.disabled} />
+          <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Tickets Kids Zaterdag</a></noscript>
+            <img src="/tickets-kids-zaterdag.jpg" alt="Tickets Kids Zaterdag" />
           </div>
-          <div className={styles.ticketItem}>
-            <img src="/tickets-weekend.jpg" alt="Tickets Weekend" className={styles.disabled} />
-          </div>
-          <div className={styles.ticketItem}>
-            <img src="/tickets-camping.jpg" alt="Tickets Camping" className={styles.disabled} />
+          <div className={styles.ticketItem} id="eventbrite-widget-modal-trigger-58984031827">
+            <noscript><a href="https://www.eventbrite.com/e/tickets-crammerock-2019-58984031827" target="_blank" rel="noopener noreferrer">Drankvoucher</a></noscript>
+            <img src="/tickets-drank.jpg" alt="Drankvoucher" />
           </div>
         </div>
         <h2>Vaak gestelde vragen</h2>
