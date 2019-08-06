@@ -12,6 +12,10 @@
     text-transform: uppercase;
   }
 
+  .wrapper h2 > span {
+    color: #23786A;
+  }
+
 .artistWrapper {
   display: flex;
   flex-direction: row;

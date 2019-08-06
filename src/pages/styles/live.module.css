@@ -1,0 +1,46 @@
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+}
+
+  .wrapper h2 {
+    color: #324C59;
+    font-family: 'Oswald';
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    padding-left: 10px;
+  }
+
+  .wrapper h2 span {
+    color: #23786A;
+  }
+
+  .wrapper p {
+    padding-left: 10px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    width: 100% ;
+  }
+
+  .item {
+    width: 25%;
+  }
+
+  
+  @media only screen and (max-width: 730px) {
+    .row {
+      flex-direction: column;
+    }
+    .item {
+      width: 100%;
+    }
+    .wrapper {
+      padding: 0 10px;
+    }
+  }

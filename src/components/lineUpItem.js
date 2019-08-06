@@ -24,10 +24,11 @@ const LineUpItem = ({
   dagindeling,
   stageFilter,
   podiumindeling,
+  viewStyles,
 }: TProps) => {
   const { node } = artist;
   return (
-    <div className={styles.artistNode} key={node.slug}>
+    <div className={styles.artistNode} key={node.slug} style={viewStyles}>
       <Link
         to={`/lineup/${node.slug}`}
       >
