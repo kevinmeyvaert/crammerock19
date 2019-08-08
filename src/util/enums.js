@@ -7,6 +7,12 @@ export const STAGES = Object.freeze({
 });
 
 export const DAYS = Object.freeze({
-  FRIDAY: 'Friday',
-  SATURDAY: 'Saturday',
+  EN: {
+    FRIDAY: 'Friday',
+    SATURDAY: 'Saturday',
+  },
+  NL: {
+    VRIJDAG: 'Vrijdag',
+    ZATERDAG: 'Zaterdag',
+  }
 });

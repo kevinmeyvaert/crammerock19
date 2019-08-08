@@ -1,23 +1,19 @@
 // @flow
 
 import React from 'react';
-import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
 import moment from 'moment';
 
-import { useLiveOnStage } from '../hooks';
+import { useLiveOnStage, useLineUpData } from '../hooks';
 import { sortByTimeFn } from '../util';
 import { Template, LineUpItem, Header } from '../components';
 
 import styles from './styles/live.module.css';
 import { config } from '../config';
 
-const Live = props => {
-  const artistData = get(props, 'data.allContentfulArtists2019.edges');
-  const artists = artistData.sort(sortByTimeFn);
+const Live = () => {
+  const artists = useLineUpData().sort(sortByTimeFn);
   const liveOnStage = useLiveOnStage(artists);
-
   return (
     <Template>
       <Helmet title={`Live | ${config.siteName}`} />
@@ -34,7 +30,7 @@ const Live = props => {
                 <LineUpItem
                   viewStyles={{ width: '100%' }}
                   key={liveOnStage.now.main.slug}
-                  artist={{ node: liveOnStage.now.main }}
+                  artist={liveOnStage.now.main}
                   dayFilter
                   dagindeling
                   podiumindeling
@@ -53,7 +49,7 @@ const Live = props => {
                 <LineUpItem
                   viewStyles={{ width: '100%' }}
                   key={liveOnStage.now.club.slug}
-                  artist={{ node: liveOnStage.now.club }}
+                  artist={liveOnStage.now.club}
                   dayFilter
                   dagindeling
                   podiumindeling
@@ -72,7 +68,7 @@ const Live = props => {
                 <LineUpItem
                   viewStyles={{ width: '100%' }}
                   key={liveOnStage.next.main.slug}
-                  artist={{ node: liveOnStage.next.main }}
+                  artist={liveOnStage.next.main}
                   dayFilter
                   dagindeling
                   podiumindeling
@@ -89,7 +85,7 @@ const Live = props => {
                 <LineUpItem
                   viewStyles={{ width: '100%' }}
                   key={liveOnStage.next.club.slug}
-                  artist={{ node: liveOnStage.next.club }}
+                  artist={liveOnStage.next.club}
                   dayFilter
                   dagindeling
                   podiumindeling
@@ -105,29 +101,3 @@ const Live = props => {
 };
 
 export default Live;
-
-export const pageQuery = graphql`
-  query LiveQuery {
-    allContentfulArtists2019(sort: { fields: [artistLevel, name], order: ASC }) {
-      edges {
-        node {
-          name
-          slug
-          day
-          stage
-          showStart
-          showEnd
-          artistLevel
-          headerImage {
-            file {
-              url
-            }
-            fluid(maxWidth: 800, maxHeight: 533, resizingBehavior: FILL, background: "rgb:000000") {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  }
-`;

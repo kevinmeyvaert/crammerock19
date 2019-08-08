@@ -11,7 +11,7 @@ export const removeHtmlTagsFromString = (string: string): string =>
 export const randomArrayValue = (array: Array) => array[Math.floor(Math.random() * array.length)];
 
 export const sortByTimeFn = (artistA, artistB) =>
-  new Date(artistA.node.showStart) - new Date(artistB.node.showStart);
+  new Date(artistA.showStart) - new Date(artistB.showStart);
 
 export const getTimeFromContentfulResponse = contentfultimeString => {
   if (!contentfultimeString) return '/';

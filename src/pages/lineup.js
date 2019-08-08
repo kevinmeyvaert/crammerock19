@@ -5,58 +5,42 @@ import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import {
-  Template,
-  Header,
-  LineUpFilter,
-  LineUpItem,
-} from '../components';
+import { Template, Header, LineUpFilter, LineUpItem } from '../components';
 
 import styles from './styles/lineup.module.css';
 import { randomArrayValue, getSettings, getTimeFromContentfulResponse } from '../util';
 import { config } from '../config';
-import { useRedirectIfNotAllowed } from '../hooks';
+import { useRedirectIfNotAllowed, useLineUpData } from '../hooks';
+import { timeSchedule, sortByArtistLevel } from '../util/lineupFormat';
 
-const LineUp = (props) => {
-  // State Hooks
+const LineUp = props => {
   const [dayFilter, setDayFilter] = useState(undefined);
   const [stageFilter, setStageFilter] = useState(undefined);
 
-  // State Manipulation Fn
   const handleFilter = (day, stage) => {
     setDayFilter(day);
     setStageFilter(stage);
   };
-  const handleFilterLineUp = day => (day === 'ABC' ? setDayFilter(undefined) : handleFilter(day, undefined));
-  const handleFilterStage = stage => (stage === 'all' ? setStageFilter(undefined) : setStageFilter(stage));
-
-  // Local helper Fn
-  const artistFilterFn = (artist) => {
+  const handleFilterLineUp = day =>
+    day === 'ABC' ? setDayFilter(undefined) : handleFilter(day, undefined);
+  const handleFilterStage = stage =>
+    stage === 'all' ? setStageFilter(undefined) : setStageFilter(stage);
+  const artistFilterFn = artist => {
     if (stageFilter && dayFilter) {
-      return stageFilter === artist.node.stage && dayFilter === artist.node.day;
+      return stageFilter === artist.stage && dayFilter === artist.day;
     }
     if (dayFilter) {
-      return dayFilter === artist.node.day;
+      return dayFilter === artist.day;
     }
     return artist;
   };
-  const sortByTimeFn = (artistA, artistB) => new Date(artistA.node.showStart) - new Date(artistB.node.showStart);
 
-  // Contentful data
-  const artistData = get(props, 'data.allContentfulArtists2019.edges');
-  const artists = artistData.filter(artistFilterFn);
+  const artistData = useLineUpData();
+  const randomArtist = randomArrayValue(artistData);
+  const timeScheduleData = timeSchedule(artistData);
+  const artists = artistData.filter(artistFilterFn).sort(sortByArtistLevel);
   const settings = get(props, 'data.allContentfulSettings.edges');
-
-  // Local consts
-  const randomArtist = randomArrayValue(get(props, 'data.allContentfulArtists2019.edges')).node;
   const { lineuppagina, dagindeling, podiumIndeling } = getSettings(settings[0].node);
-
-  const artistArray = artists.sort(artist => artist.artistLevel);
-  const tijdschemaObject = ['Vrijdag', 'Zaterdag'].reduce((dagAcc, dag) => ({
-    ...dagAcc, [dag]: ['Main South', 'Main North', 'Club'].reduce((stageAcc, stage) => {
-      return { ...stageAcc, [stage]: artistData.map(artist => artist.node.day === dag && artist.node.stage === stage && artist).filter(Boolean).sort(sortByTimeFn) };
-    }, {}),
-  }), {});
 
   // redirect to homepage if page is disabled
   useRedirectIfNotAllowed(lineuppagina);
@@ -81,36 +65,41 @@ const LineUp = (props) => {
           stageFilter={stageFilter}
         />
         <div className={styles.artistWrapper}>
-          {dayFilter !== 'Tijdschema' && artistArray.length > 0 && artistArray.map(artist => (
-            <LineUpItem
-              key={artist.node.slug}
-              artist={artist}
-              dayFilter={dayFilter}
-              dagindeling={dagindeling}
-              podiumindeling={podiumIndeling}
-              stageFilter={stageFilter}
-            />
-          ))}
+          {dayFilter !== 'Tijdschema' &&
+            artists.length > 0 &&
+            artists.map(artist => (
+              <LineUpItem
+                key={artist.slug}
+                artist={artist}
+                dayFilter={dayFilter}
+                dagindeling={dagindeling}
+                podiumindeling={podiumIndeling}
+                stageFilter={stageFilter}
+              />
+            ))}
         </div>
-        {dayFilter === 'Tijdschema' && Object.keys(tijdschemaObject).map(dag => {
-          return (
-            <div key={dag} className={styles.tijdWrapper}>
-              <h2>{dag}</h2>
-              <div className={styles.dayRow}>
-              {Object.keys(tijdschemaObject[dag]).map(stage => {
-                return (
-                  <div key={dag + stage} className={styles.stageColumn}>
-                    <h3>{stage}</h3>
-                    {tijdschemaObject[dag][stage].map(artist => {
-                      return (<p key={artist.node.name}><strong>{getTimeFromContentfulResponse(artist.node.showStart)} - {getTimeFromContentfulResponse(artist.node.showEnd)}</strong> {artist.node.name}</p>)
-                    })}
-                  </div>
-                )
-              })}
+        {dayFilter === 'Tijdschema' &&
+          Object.keys(timeScheduleData).map(day => (
+              <div key={day} className={styles.tijdWrapper}>
+                <h2>{day}</h2>
+                <div className={styles.dayRow}>
+                  {Object.keys(timeScheduleData[day]).map(stage => (
+                      <div key={day + stage} className={styles.stageColumn}>
+                        <h3>{stage}</h3>
+                        {timeScheduleData[day][stage].map(artist => (
+                            <p key={artist.name}>
+                              <strong>
+                                {getTimeFromContentfulResponse(artist.showStart)} -{' '}
+                                {getTimeFromContentfulResponse(artist.showEnd)}
+                              </strong>{' '}
+                              {artist.name}
+                            </p>
+                          ))}
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-          )
-        })}
+            ))}
       </div>
     </Template>
   ) : null;
@@ -120,33 +109,7 @@ export default LineUp;
 
 export const pageQuery = graphql`
   query LineUpQuery {
-    allContentfulArtists2019(sort: { fields: [artistLevel, name], order: ASC }) {
-      edges {
-        node {
-          name
-          slug
-          day
-          stage
-          showStart
-          showEnd
-          artistLevel
-          headerImage {
-            file {
-              url
-            }
-            fluid(
-              maxWidth: 800
-              maxHeight: 533
-              resizingBehavior: FILL
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-    allContentfulSettings(filter: { titel: { eq: "Global" } }){
+    allContentfulSettings(filter: { titel: { eq: "Global" } }) {
       edges {
         node {
           lineuppagina

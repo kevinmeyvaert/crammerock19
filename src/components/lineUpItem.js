@@ -11,41 +11,30 @@ import type { TArtist } from '../types';
 import styles from './styles/lineupitem.module.css';
 
 type TProps = {
-  artist: { node: TArtist },
+  artist: TArtist,
   dayFilter: string | undefined,
-  stageFilter: string | undefined,
   dagindeling: boolean,
   podiumindeling: boolean,
-}
+  viewStyles: { [key: string]: string },
+};
 
-const LineUpItem = ({
-  artist,
-  dayFilter,
-  dagindeling,
-  stageFilter,
-  podiumindeling,
-  viewStyles,
-}: TProps) => {
-  const { node } = artist;
+const LineUpItem = ({ artist, dayFilter, dagindeling, podiumindeling, viewStyles }: TProps) => {
   return (
-    <div className={styles.artistNode} key={node.slug} style={viewStyles}>
-      <Link
-        to={`/lineup/${node.slug}`}
-      >
+    <div className={styles.artistNode} key={artist.slug} style={viewStyles}>
+      <Link to={`/lineup/${artist.slug}`}>
         <div className={styles.image}>
-          <Img
-            alt={node.name}
-            fluid={node.headerImage.fluid}
-            style={{ position: 'initial' }}
-          />
+          <Img alt={artist.name} fluid={artist.headerImage.fluid} style={{ position: 'initial' }} />
         </div>
         <div className={styles.description}>
-          <p>{node.name}</p>
+          <p>{artist.name}</p>
           <span>
-            {!dayFilter && dagindeling && `${node.day}`}
-            {dayFilter && podiumindeling && `${getTimeFromContentfulResponse(node.showStart)}`}
+            {!dayFilter && dagindeling && `${artist.day}`}
+            {dayFilter && podiumindeling && `${getTimeFromContentfulResponse(artist.showStart)}`}
             {dagindeling && podiumindeling && (
-              <span className={styles.stage}><br/>{node.stage}</span>
+              <span className={styles.stage}>
+                <br />
+                {artist.stage}
+              </span>
             )}
           </span>
         </div>

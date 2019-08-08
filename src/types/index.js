@@ -1,3 +1,5 @@
+// @flow
+
 export type TFile = {
     url: string,
 };
