@@ -8,7 +8,12 @@ import { graphql } from 'gatsby';
 import { Template, Header, LineUpFilter, LineUpItem } from '../components';
 
 import styles from './styles/lineup.module.css';
-import { randomArrayValue, getSettings, getTimeFromContentfulResponse } from '../util';
+import {
+  randomArrayValue,
+  getSettings,
+  getTimeFromContentfulResponse,
+  LINEUP_FILTERS,
+} from '../util';
 import { config } from '../config';
 import { useRedirectIfNotAllowed, useLineUpData } from '../hooks';
 import { timeSchedule, sortByArtistLevel } from '../util/lineupFormat';
@@ -22,9 +27,9 @@ const LineUp = props => {
     setStageFilter(stage);
   };
   const handleFilterLineUp = day =>
-    day === 'ABC' ? setDayFilter(undefined) : handleFilter(day, undefined);
+    day === LINEUP_FILTERS.ABC ? setDayFilter(undefined) : handleFilter(day, undefined);
   const handleFilterStage = stage =>
-    stage === 'all' ? setStageFilter(undefined) : setStageFilter(stage);
+    stage === LINEUP_FILTERS.ALL ? setStageFilter(undefined) : setStageFilter(stage);
   const artistFilterFn = artist => {
     if (stageFilter && dayFilter) {
       return stageFilter === artist.stage && dayFilter === artist.day;
@@ -65,7 +70,7 @@ const LineUp = props => {
           stageFilter={stageFilter}
         />
         <div className={styles.artistWrapper}>
-          {dayFilter !== 'Tijdschema' &&
+          {dayFilter !== LINEUP_FILTERS.SCHEDULE &&
             artists.length > 0 &&
             artists.map(artist => (
               <LineUpItem
@@ -78,28 +83,28 @@ const LineUp = props => {
               />
             ))}
         </div>
-        {dayFilter === 'Tijdschema' &&
+        {dayFilter === LINEUP_FILTERS.SCHEDULE &&
           Object.keys(timeScheduleData).map(day => (
-              <div key={day} className={styles.tijdWrapper}>
-                <h2>{day}</h2>
-                <div className={styles.dayRow}>
-                  {Object.keys(timeScheduleData[day]).map(stage => (
-                      <div key={day + stage} className={styles.stageColumn}>
-                        <h3>{stage}</h3>
-                        {timeScheduleData[day][stage].map(artist => (
-                            <p key={artist.name}>
-                              <strong>
-                                {getTimeFromContentfulResponse(artist.showStart)} -{' '}
-                                {getTimeFromContentfulResponse(artist.showEnd)}
-                              </strong>{' '}
-                              {artist.name}
-                            </p>
-                          ))}
-                      </div>
+            <div key={day} className={styles.tijdWrapper}>
+              <h2>{day}</h2>
+              <div className={styles.dayRow}>
+                {Object.keys(timeScheduleData[day]).map(stage => (
+                  <div key={day + stage} className={styles.stageColumn}>
+                    <h3>{stage}</h3>
+                    {timeScheduleData[day][stage].map(artist => (
+                      <p key={artist.name}>
+                        <strong>
+                          {getTimeFromContentfulResponse(artist.showStart)} -{' '}
+                          {getTimeFromContentfulResponse(artist.showEnd)}
+                        </strong>{' '}
+                        {artist.name}
+                      </p>
                     ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+          ))}
       </div>
     </Template>
   ) : null;
