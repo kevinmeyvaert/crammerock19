@@ -23,7 +23,7 @@ const LineUpFilter = ({
           type="button"
           className={styles.button}
           onClick={() => onFilterLineUp(LINEUP_FILTERS.ABC)}
-          style={{ borderBottomStyle: dayFilter === undefined ? 'solid' : 'initial' }}
+          style={{ borderBottomStyle: dayFilter === LINEUP_FILTERS.ABC ? 'solid' : 'initial' }}
         >
           Overzicht A-Z
         </button>

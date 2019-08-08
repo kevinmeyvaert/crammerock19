@@ -11,33 +11,21 @@ import styles from './styles/lineup.module.css';
 import {
   randomArrayValue,
   getSettings,
-  getTimeFromContentfulResponse,
   LINEUP_FILTERS,
 } from '../util';
 import { config } from '../config';
 import { useRedirectIfNotAllowed, useLineUpData } from '../hooks';
 import { timeSchedule, sortByArtistLevel } from '../util/lineupFormat';
+import TimeSchedule from '../components/timeSchedule';
 
 const LineUp = props => {
-  const [dayFilter, setDayFilter] = useState(undefined);
-  const [stageFilter, setStageFilter] = useState(undefined);
-
-  const handleFilter = (day, stage) => {
-    setDayFilter(day);
-    setStageFilter(stage);
-  };
-  const handleFilterLineUp = day =>
-    day === LINEUP_FILTERS.ABC ? setDayFilter(undefined) : handleFilter(day, undefined);
-  const handleFilterStage = stage =>
-    stage === LINEUP_FILTERS.ALL ? setStageFilter(undefined) : setStageFilter(stage);
+  const [dayFilter, setDayFilter] = useState(LINEUP_FILTERS.ABC);
+  const handleFilterLineUp = day => setDayFilter(day);
   const artistFilterFn = artist => {
-    if (stageFilter && dayFilter) {
-      return stageFilter === artist.stage && dayFilter === artist.day;
-    }
-    if (dayFilter) {
+    if (dayFilter !== LINEUP_FILTERS.ABC) {
       return dayFilter === artist.day;
     }
-    return artist;
+    return true;
   };
 
   const artistData = useLineUpData();
@@ -63,11 +51,8 @@ const LineUp = props => {
       <div className={styles.wrapper}>
         <LineUpFilter
           dagindeling={dagindeling}
-          podiumIndeling={podiumIndeling}
           onFilterLineUp={handleFilterLineUp}
-          onFilterStage={handleFilterStage}
           dayFilter={dayFilter}
-          stageFilter={stageFilter}
         />
         <div className={styles.artistWrapper}>
           {dayFilter !== LINEUP_FILTERS.SCHEDULE &&
@@ -79,32 +64,12 @@ const LineUp = props => {
                 dayFilter={dayFilter}
                 dagindeling={dagindeling}
                 podiumindeling={podiumIndeling}
-                stageFilter={stageFilter}
               />
             ))}
         </div>
-        {dayFilter === LINEUP_FILTERS.SCHEDULE &&
-          Object.keys(timeScheduleData).map(day => (
-            <div key={day} className={styles.tijdWrapper}>
-              <h2>{day}</h2>
-              <div className={styles.dayRow}>
-                {Object.keys(timeScheduleData[day]).map(stage => (
-                  <div key={day + stage} className={styles.stageColumn}>
-                    <h3>{stage}</h3>
-                    {timeScheduleData[day][stage].map(artist => (
-                      <p key={artist.name}>
-                        <strong>
-                          {getTimeFromContentfulResponse(artist.showStart)} -{' '}
-                          {getTimeFromContentfulResponse(artist.showEnd)}
-                        </strong>{' '}
-                        {artist.name}
-                      </p>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {dayFilter === LINEUP_FILTERS.SCHEDULE && (
+          <TimeSchedule timeScheduleData={timeScheduleData} />
+        )}
       </div>
     </Template>
   ) : null;
