@@ -32,6 +32,10 @@
     width: 25%;
   }
 
+  .lineupItem {
+    width: 100%;
+  }
+
   
   @media only screen and (max-width: 730px) {
     .row {

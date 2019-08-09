@@ -28,13 +28,12 @@ const Live = () => {
               </h2>
               {liveOnStage.now.main ? (
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={styles.LineUpItem}
                   key={liveOnStage.now.main.slug}
                   artist={liveOnStage.now.main}
-                  dayFilter
-                  dagindeling
-                  podiumindeling
-                  stageFilter
+                  isFilteredByDay
+                  showDayInfo
+                  showStageInfo
                 />
               ) : (
                 <p>Momenteel speelt er niks.</p>
@@ -47,13 +46,12 @@ const Live = () => {
               </h2>
               {liveOnStage.now.club ? (
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={styles.LineUpItem}
                   key={liveOnStage.now.club.slug}
                   artist={liveOnStage.now.club}
-                  dayFilter
-                  dagindeling
-                  podiumindeling
-                  stageFilter
+                  isFilteredByDay
+                  showDayInfo
+                  showStageInfo
                 />
               ) : (
                 <p>Momenteel speelt er niks.</p>
@@ -66,13 +64,12 @@ const Live = () => {
                   <span>Main</span>
                 </h2>
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={styles.LineUpItem}
                   key={liveOnStage.next.main.slug}
                   artist={liveOnStage.next.main}
-                  dayFilter
-                  dagindeling
-                  podiumindeling
-                  stageFilter
+                  isFilteredByDay
+                  showDayInfo
+                  showStageInfo
                 />
               </div>
             )}
@@ -83,13 +80,12 @@ const Live = () => {
                   <span>Club</span>
                 </h2>
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={styles.LineUpItem}
                   key={liveOnStage.next.club.slug}
                   artist={liveOnStage.next.club}
-                  dayFilter
-                  dagindeling
-                  podiumindeling
-                  stageFilter
+                  isFilteredByDay
+                  showDayInfo
+                  showStageInfo
                 />
               </div>
             )}

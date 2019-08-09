@@ -12,6 +12,7 @@ module.exports = {
   ],
   "globals": {
     "window": false,
+    "$Values": true,
   },
   "rules": {
     "react/no-danger": "off",

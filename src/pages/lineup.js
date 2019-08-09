@@ -50,7 +50,7 @@ const LineUp = props => {
       <Helmet title={`Lineup | ${config.siteName}`} />
       <div className={styles.wrapper}>
         <LineUpFilter
-          dagindeling={dagindeling}
+          showDayInfo={dagindeling}
           onFilterLineUp={handleFilterLineUp}
           dayFilter={dayFilter}
         />
@@ -61,9 +61,9 @@ const LineUp = props => {
               <LineUpItem
                 key={artist.slug}
                 artist={artist}
-                dayFilter={dayFilter}
-                dagindeling={dagindeling}
-                podiumindeling={podiumIndeling}
+                isFilteredByDay={!!dayFilter}
+                showDayInfo={dagindeling}
+                showStageInfo={podiumIndeling}
               />
             ))}
         </div>

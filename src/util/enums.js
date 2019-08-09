@@ -24,3 +24,5 @@ export const LINEUP_FILTERS = Object.freeze({
   FRIDAY: DAYS.NL.VRIJDAG,
   SATURDAY: DAYS.NL.ZATERDAG,
 })
+
+export type TLineUpFilters = $Values<typeof LINEUP_FILTERS>;
