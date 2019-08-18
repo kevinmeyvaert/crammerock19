@@ -28,7 +28,7 @@ const Live = () => {
               </h2>
               {liveOnStage.now.main ? (
                 <LineUpItem
-                  viewStyles={styles.LineUpItem}
+                  viewStyles={{ width: '100%' }}
                   key={liveOnStage.now.main.slug}
                   artist={liveOnStage.now.main}
                   isFilteredByDay
@@ -46,7 +46,7 @@ const Live = () => {
               </h2>
               {liveOnStage.now.club ? (
                 <LineUpItem
-                  viewStyles={styles.LineUpItem}
+                  viewStyles={{ width: '100%' }}
                   key={liveOnStage.now.club.slug}
                   artist={liveOnStage.now.club}
                   isFilteredByDay
@@ -64,7 +64,7 @@ const Live = () => {
                   <span>Main</span>
                 </h2>
                 <LineUpItem
-                  viewStyles={styles.LineUpItem}
+                  viewStyles={{ width: '100%' }}
                   key={liveOnStage.next.main.slug}
                   artist={liveOnStage.next.main}
                   isFilteredByDay
@@ -80,7 +80,7 @@ const Live = () => {
                   <span>Club</span>
                 </h2>
                 <LineUpItem
-                  viewStyles={styles.LineUpItem}
+                  viewStyles={{ width: '100%' }}
                   key={liveOnStage.next.club.slug}
                   artist={liveOnStage.next.club}
                   isFilteredByDay

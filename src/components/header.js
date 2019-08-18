@@ -17,7 +17,7 @@ type THeaderProps = {
   cta?: string,
 };
 
-const renderVideoIfAvailable = (image: string, video: string, title: string): HTMLVideoElement | HTMLImageElement => {
+const renderVideoIfAvailable = (image: string, video?: string, title: string): React$Element<any> => {
   if (video) {
     return (
       <video
@@ -77,8 +77,8 @@ const Header = ({
 export default Header;
 
 Header.defaultProps = {
-  video: null,
-  subTitle: '',
-  link: '',
-  cta: '',
+  video: undefined,
+  subTitle: undefined,
+  link: undefined,
+  cta: undefined,
 };

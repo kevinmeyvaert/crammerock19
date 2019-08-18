@@ -12,9 +12,11 @@ import { Template, Header, NewsItem } from '../components';
 import { ellipsis } from '../util';
 import { config } from '../config';
 
-const NewsIndex = (props) => {
+const NewsIndex = props => {
   const [posts, setPosts] = useState(get(props, 'data.allContentfulNews.edges').slice(1, 7));
-  const showMorePostsButton = (get(props, 'data.allContentfulNews.edges').slice(1, 7).length > get(props, 'data.allContentfulNews.edges').length);
+  const showMorePostsButton =
+    get(props, 'data.allContentfulNews.edges').slice(1, 7).length >
+    get(props, 'data.allContentfulNews.edges').length;
   const latestPost = get(props, 'data.allContentfulNews.edges')[0].node;
   return (
     <Template>

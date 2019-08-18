@@ -56,7 +56,7 @@ export type TSettingsNode = {
     infopagina?: boolean,
     lineuppagina?: boolean,
     dagindeling?: boolean,
-    tijdindeling?: boolean,
+    tijdIndeling?: boolean,
     podiumindeling?: boolean,
     lijstjestijd?: boolean,
 };
