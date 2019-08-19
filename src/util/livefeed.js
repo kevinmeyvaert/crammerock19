@@ -27,53 +27,59 @@ function getInstagramUrlFromMediaId(resMediaId) {
   return `https://www.instagram.com/p/${shortenedId}/`;
 }
 
-export const getInstagramData = async item => {
+export const getInstagramData = item => {
   if (item.internal.type === LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
-    const response = await fetch(`https://api.instagram.com/oembed/?url=${item.instagramPostUrl}`);
-    const post = await response.json();
-    return {
-      author: post.author_name,
-      image: post.thumbnail_url,
-      text: post.title,
-      link: getInstagramUrlFromMediaId(post.media_id),
-      internal: {
-        type: item.internal.type,
-      },
-    };
+    return fetch(`https://api.instagram.com/oembed/?url=${item.instagramPostUrl}`)
+      .then(res => res.json())
+      .then(post => ({
+        author: post.author_name,
+        image: post.thumbnail_url,
+        text: post.title,
+        link: getInstagramUrlFromMediaId(post.media_id),
+        internal: {
+          type: item.internal.type,
+        },
+      }))
+      .catch(err => console.log(err));
   }
 };
 
-export const getTwitterData = async item => {
-    if (item.internal.type === LIVESTREAM_CONTENT_TYPE.TWITTER) {
-      const response = await fetch(`https://publish.twitter.com/oembed?url=${item.twitterPostUrl}`);
-      const post = await response.json();
-      return {
-        author: post.author_name,
+export const getTwitterData = item => {
+  if (item.internal.type === LIVESTREAM_CONTENT_TYPE.TWITTER) {
+    return fetch(`https://publish.twitter.com/oembed?url=${item.twitterPostUrl}`)
+      .then(res => res.json())
+      .then(post => ({
         html: post.html,
         internal: {
           type: item.internal.type,
         },
-      };
-    }
-  };
+      }))
+      .catch(() => ({
+        html: '<p>Post not found</p>',
+        internal: {
+          type: item.internal.type,
+        },
+      }));
+  }
+};
 
 export const useEnrichedLiveStream = liveStreamData => {
   const [enrichedLiveStream, setEnrichedLiveStream] = useState([]);
 
-  useEffect(async () => {
-    const updatedData = await liveStreamData.map(async item => {
+  useEffect(() => {
+    const updatedData = liveStreamData.map(item => {
       if (item.internal.type === LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
-        const igData = await getInstagramData(item);
+        const igData = getInstagramData(item);
         return igData;
       }
       if (item.internal.type === LIVESTREAM_CONTENT_TYPE.TWITTER) {
-        const twitterData = await getTwitterData(item);
+        const twitterData = getTwitterData(item);
         return twitterData;
       }
       return item;
     });
 
-    setEnrichedLiveStream(await Promise.all(updatedData));
+    Promise.all(updatedData).then(result => setEnrichedLiveStream(result));
   }, []);
 
   return enrichedLiveStream;
