@@ -15,8 +15,7 @@ import { config } from '../config';
 import { useEnrichedLiveStream, LIVESTREAM_CONTENT_TYPE } from '../util/livefeed';
 
 const renderLiveBlock = (item, index) => {
-  console.log(item)
-  if (LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
+  if (item.internal.type === LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
     return (
       <div className={styles.liveInstagramItem} key={index}>
         <a href={item.link}>
@@ -26,15 +25,13 @@ const renderLiveBlock = (item, index) => {
         <p>{item.text}</p>
       </div>
     );
-  }
-  if (LIVESTREAM_CONTENT_TYPE.TWITTER) {
+  } if (item.internal.type === LIVESTREAM_CONTENT_TYPE.TWITTER) {
     return (
-      <div className={styles.liveInstagramItem} key={index}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: item.html,
-          }}
-        />
+      <div className={styles.liveTwitterItem} key={index}>
+        <p className={styles.liveTwitterTweet}>{`"${item.tweetContent}"`}</p>
+        <a href={item.twitterPostUrl} className={styles.liveTwitterLink}>
+          <p>{item.twitterAccountName}</p>
+        </a>
       </div>
     );
   }
@@ -131,7 +128,9 @@ const Live = props => {
             <span> Live Feed</span>
           </h2>
           <div className={styles.row}>
-            {enrichedLiveStream.length > 0 ? enrichedLiveStream.map((item, index) => renderLiveBlock(item, index)) : null}
+            {enrichedLiveStream.length > 0
+              ? enrichedLiveStream.map((item, index) => renderLiveBlock(item, index))
+              : null}
           </div>
         </div>
       )}
@@ -161,6 +160,8 @@ export const pageQuery = graphql`
             }
             ... on ContentfulLiveTwitterPost {
               twitterPostUrl
+              twitterAccountName
+              tweetContent
               internal {
                 type
               }

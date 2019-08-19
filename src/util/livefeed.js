@@ -44,25 +44,6 @@ export const getInstagramData = item => {
   }
 };
 
-export const getTwitterData = item => {
-  if (item.internal.type === LIVESTREAM_CONTENT_TYPE.TWITTER) {
-    return fetch(`https://publish.twitter.com/oembed?url=${item.twitterPostUrl}`)
-      .then(res => res.json())
-      .then(post => ({
-        html: post.html,
-        internal: {
-          type: item.internal.type,
-        },
-      }))
-      .catch(() => ({
-        html: '<p>Post not found</p>',
-        internal: {
-          type: item.internal.type,
-        },
-      }));
-  }
-};
-
 export const useEnrichedLiveStream = liveStreamData => {
   const [enrichedLiveStream, setEnrichedLiveStream] = useState([]);
 
@@ -71,10 +52,6 @@ export const useEnrichedLiveStream = liveStreamData => {
       if (item.internal.type === LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
         const igData = getInstagramData(item);
         return igData;
-      }
-      if (item.internal.type === LIVESTREAM_CONTENT_TYPE.TWITTER) {
-        const twitterData = getTwitterData(item);
-        return twitterData;
       }
       return item;
     });
