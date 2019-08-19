@@ -1,19 +1,19 @@
 // @flow
 
-import type { TSettingsNode } from '../types';
+import type { TSettingsNode, TArtist } from '../types';
 
-export const ellipsis = (str, max = 100) =>
+export const ellipsis = (str: string, max: number = 100): string =>
   `${str.substring(0, max)}${str.length > max ? '…' : ''}`;
 
 export const removeHtmlTagsFromString = (string: string): string =>
   string.replace(/<(?:.|\n)*?>/gm, '');
 
-export const randomArrayValue = (array: Array) => array[Math.floor(Math.random() * array.length)];
+export const randomArrayValue = (array: any[]) => array[Math.floor(Math.random() * array.length)];
 
-export const sortByTimeFn = (artistA, artistB) =>
+export const sortByTimeFn = (artistA: TArtist, artistB: TArtist) =>
   new Date(artistA.showStart) - new Date(artistB.showStart);
 
-export const getTimeFromContentfulResponse = contentfultimeString => {
+export const getTimeFromContentfulResponse = (contentfultimeString: string) => {
   if (!contentfultimeString) return '/';
   const startTime = contentfultimeString.split(' ')[0];
   return startTime.substring(11, startTime.length - 6);

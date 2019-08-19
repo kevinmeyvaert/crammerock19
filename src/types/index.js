@@ -1,5 +1,7 @@
 // @flow
 
+import type { TStages } from '../util/enums';
+
 export type TFile = {
     url: string,
 };
@@ -34,6 +36,10 @@ export type TArtist = {
     artistLevel: number,
     headerImage: TImage,
     bio: TText,
+    showStart: string,
+    showEnd: string,
+    stage: TStages,
+    day: string,
     youtubeVideoId?: string,
     facebook?: string,
     twitter?: string,
@@ -57,7 +63,7 @@ export type TSettingsNode = {
     lineuppagina?: boolean,
     dagindeling?: boolean,
     tijdIndeling?: boolean,
-    podiumindeling?: boolean,
+    podiumIndeling?: boolean,
     lijstjestijd?: boolean,
 };
 

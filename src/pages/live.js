@@ -3,6 +3,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import moment from 'moment';
+import get from 'lodash/get';
+import { graphql } from 'gatsby';
 
 import { useLiveOnStage, useLineUpData } from '../hooks';
 import { sortByTimeFn } from '../util';
@@ -10,14 +12,48 @@ import { Template, LineUpItem, Header } from '../components';
 
 import styles from './styles/live.module.css';
 import { config } from '../config';
+import { useEnrichedLiveStream, LIVESTREAM_CONTENT_TYPE } from '../util/livefeed';
 
-const Live = () => {
+const renderLiveBlock = (item, index) => {
+  console.log(item)
+  if (LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
+    return (
+      <div className={styles.liveInstagramItem} key={index}>
+        <a href={item.link}>
+          <img src={item.image} className={styles.liveInstagramItemImg} />
+        </a>
+        <p className={styles.liveInstagramItemAuthor}>{item.author}</p>
+        <p>{item.text}</p>
+      </div>
+    );
+  }
+  if (LIVESTREAM_CONTENT_TYPE.TWITTER) {
+    return (
+      <div className={styles.liveInstagramItem} key={index}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: item.html,
+          }}
+        />
+      </div>
+    );
+  }
+  return <p>hey</p>;
+};
+
+const Live = props => {
+  const { liveContent, title, headerImage } = get(
+    props,
+    'data.allContentfulLivestream.edges',
+  )[0].node;
+  const enrichedLiveStream = useEnrichedLiveStream(liveContent);
   const artists = useLineUpData().sort(sortByTimeFn);
   const liveOnStage = useLiveOnStage(artists);
+
   return (
     <Template>
       <Helmet title={`Live | ${config.siteName}`} />
-      <Header title="Crammerock 2019 Live" />
+      <Header title={title} image={headerImage.file.url} />
       {liveOnStage && (
         <div className={styles.wrapper}>
           <div className={styles.row}>
@@ -28,7 +64,7 @@ const Live = () => {
               </h2>
               {liveOnStage.now.main ? (
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={{ width: '100%', padding: '0' }}
                   key={liveOnStage.now.main.slug}
                   artist={liveOnStage.now.main}
                   isFilteredByDay
@@ -46,7 +82,7 @@ const Live = () => {
               </h2>
               {liveOnStage.now.club ? (
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={{ width: '100%', padding: '0' }}
                   key={liveOnStage.now.club.slug}
                   artist={liveOnStage.now.club}
                   isFilteredByDay
@@ -64,7 +100,7 @@ const Live = () => {
                   <span>Main</span>
                 </h2>
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={{ width: '100%', padding: '0' }}
                   key={liveOnStage.next.main.slug}
                   artist={liveOnStage.next.main}
                   isFilteredByDay
@@ -80,7 +116,7 @@ const Live = () => {
                   <span>Club</span>
                 </h2>
                 <LineUpItem
-                  viewStyles={{ width: '100%' }}
+                  viewStyles={{ width: '100%', padding: '0' }}
                   key={liveOnStage.next.club.slug}
                   artist={liveOnStage.next.club}
                   isFilteredByDay
@@ -90,6 +126,13 @@ const Live = () => {
               </div>
             )}
           </div>
+          <h2>
+            Crammerock 2019
+            <span> Live Feed</span>
+          </h2>
+          <div className={styles.row}>
+            {enrichedLiveStream.length > 0 ? enrichedLiveStream.map((item, index) => renderLiveBlock(item, index)) : null}
+          </div>
         </div>
       )}
     </Template>
@@ -97,3 +140,34 @@ const Live = () => {
 };
 
 export default Live;
+
+export const pageQuery = graphql`
+  query LiveQuery {
+    allContentfulLivestream {
+      edges {
+        node {
+          title
+          headerImage {
+            file {
+              url
+            }
+          }
+          liveContent {
+            ... on ContentfulLiveInstagramPost {
+              instagramPostUrl
+              internal {
+                type
+              }
+            }
+            ... on ContentfulLiveTwitterPost {
+              twitterPostUrl
+              internal {
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

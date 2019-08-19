@@ -6,6 +6,8 @@ export const STAGES = Object.freeze({
   MAIN_SOUTH: 'Main South',
 });
 
+export type TStages = $Values<typeof STAGES>;
+
 export const DAYS = Object.freeze({
   EN: {
     FRIDAY: 'Friday',

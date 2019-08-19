@@ -19,7 +19,7 @@ export const useRemoveServiceWorker = () => {
   }, []);
 };
 
-export const useGetRandomArtistInterval = (artists, interval) => {
+export const useGetRandomArtistInterval = (artists: TArtist[], interval: number): TArtist => {
   const [randomArtist, setRandomArtist] = useState(randomArrayValue(artists).node);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const useGetRandomArtistInterval = (artists, interval) => {
   return randomArtist;
 };
 
-export const useRedirectIfNotAllowed = (isAllowed: boolean) => {
+export const useRedirectIfNotAllowed = (isAllowed?: ?boolean) => {
   useEffect(() => {
     if (!isAllowed && typeof window !== 'undefined') {
       navigate('/');
@@ -42,7 +42,7 @@ export const useRedirectIfNotAllowed = (isAllowed: boolean) => {
   }, []);
 };
 
-export const useLiveOnStage = artists => {
+export const useLiveOnStage = (artists: TArtist[]) => {
   const [time, setTime] = useState(moment());
   const nowDay = time.format('dddd');
   const [liveOnStage, setLiveOnStage] = useState();
