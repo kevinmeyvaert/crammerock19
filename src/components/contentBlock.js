@@ -10,13 +10,13 @@ import Image from './image';
 import styles from './styles/contentBlock.module.css';
 
 type TProps = {
-  link: string,
-  externalLink: string,
-  title: string,
-  subTitle: string,
-  contentfulImage: string,
-  image: string,
-  fluidImage: string,
+  link?: string,
+  externalLink?: string,
+  title?: string,
+  subTitle?: string,
+  contentfulImage?: string,
+  image?: string,
+  fluidImage?: string,
 }
 
 const ContentBlock = ({
@@ -72,5 +72,15 @@ const ContentBlock = ({
     </div>
   );
 };
+
+ContentBlock.defaultProps = {
+  contentfulImage: undefined,
+  externalLink: undefined,
+  image: undefined,
+  link: undefined,
+  title: undefined,
+  subTitle: undefined,
+  fluidImage: undefined,
+}
 
 export default ContentBlock;

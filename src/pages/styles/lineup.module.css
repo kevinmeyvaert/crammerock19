@@ -12,6 +12,10 @@
     text-transform: uppercase;
   }
 
+  .wrapper h2 > span {
+    color: #23786A;
+  }
+
 .artistWrapper {
   display: flex;
   flex-direction: row;
@@ -19,34 +23,12 @@
   justify-content: space-between;
 }
 
-.tijdWrapper {
-  padding: 0 20px;
-}
-
-.dayRow {
-  width: 100%;
-  display: flex;
-}
-
-.stageColumn {
-  width: 32%;
-  flex-direction: column;
-}
-
 .artistWrapper::after {
   content: "";
   width: 48%;
 }
 
-  .artistWrapper img {
-    width: 100%;
-  }
+.artistWrapper img {
+  width: 100%;
+}
   
-  @media only screen and (max-width: 730px) {
-    .dayRow {
-      flex-direction: column;
-    }
-    .stageColumn {
-      width: 100%;
-    }
-  }

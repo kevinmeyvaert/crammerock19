@@ -28,6 +28,7 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   plugins: [
+    'gatsby-plugin-flow',
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-no-sourcemaps',
@@ -61,6 +62,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-netlify',
       options: {

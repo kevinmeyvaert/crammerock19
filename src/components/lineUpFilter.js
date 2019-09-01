@@ -3,61 +3,37 @@
 import React from 'react';
 
 import styles from './styles/lineupfilter.module.css';
+import { LINEUP_FILTERS } from '../util';
+import type { TLineUpFilters } from '../util';
 
 type TProps = {
-  dagindeling: boolean,
-  podiumIndeling: boolean,
-  onFilterLineUp: Function,
-  onFilterStage: Function,
-  dayFilter: string | undefined,
-  stageFilter: string | undefined,
-}
+  showDayInfo: boolean,
+  onFilterLineUp: (filter: TLineUpFilters) => void,
+  dayFilter: TLineUpFilters,
+};
 
-const LineUpFilter = ({
-  dagindeling,
-  podiumIndeling,
-  onFilterLineUp,
-  onFilterStage,
-  dayFilter,
-  stageFilter,
-}: TProps) => (
+const FILTERS = Object.freeze({
+  [LINEUP_FILTERS.ABC]: 'Overzicht A-Z',
+  [LINEUP_FILTERS.FRIDAY]: 'Vrijdag',
+  [LINEUP_FILTERS.SATURDAY]: 'Zaterdag',
+  [LINEUP_FILTERS.SCHEDULE]: 'Tijdschema',
+});
+
+const LineUpFilter = ({ showDayInfo, onFilterLineUp, dayFilter }: TProps) => (
   <>
-    {dagindeling && (
-      <div className={styles.filterWrapper}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterLineUp('ABC')}
-          style={{ borderBottomStyle: dayFilter === undefined ? 'solid' : 'initial' }}
-        >
-          Overzicht A-Z
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterLineUp('Vrijdag')}
-          style={{ borderBottomStyle: dayFilter === 'Vrijdag' ? 'solid' : 'initial' }}
-        >
-          Vrijdag
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterLineUp('Zaterdag')}
-          style={{ borderBottomStyle: dayFilter === 'Zaterdag' ? 'solid' : 'initial' }}
-        >
-          Zaterdag
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => onFilterLineUp('Tijdschema')}
-          style={{ borderBottomStyle: dayFilter === 'Tijdschema' ? 'solid' : 'initial' }}
-        >
-          Tijdschema
-        </button>
-      </div>
-    )}
+    <div className={styles.filterWrapper}>
+      {showDayInfo &&
+        Object.keys(FILTERS).map(filter => (
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => onFilterLineUp(filter)}
+            style={{ borderBottomStyle: dayFilter === filter ? 'solid' : 'initial' }}
+          >
+            {FILTERS[filter]}
+          </button>
+        ))}
+    </div>
   </>
 );
 

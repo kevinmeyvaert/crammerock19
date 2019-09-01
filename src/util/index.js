@@ -1,14 +1,19 @@
 // @flow
 
-import type { TSettingsNode } from '../types';
+import type { TSettingsNode, TArtist } from '../types';
 
-export const ellipsis = (str, max = 100) => `${str.substring(0, max)}${str.length > max ? '…' : ''}`;
+export const ellipsis = (str: string, max: number = 100): string =>
+  `${str.substring(0, max)}${str.length > max ? '…' : ''}`;
 
-export const removeHtmlTagsFromString = (string: string): string => string.replace(/<(?:.|\n)*?>/gm, '');
+export const removeHtmlTagsFromString = (string: string): string =>
+  string.replace(/<(?:.|\n)*?>/gm, '');
 
-export const randomArrayValue = (array: Array) => array[Math.floor(Math.random() * array.length)];
+export const randomArrayValue = (array: any[]) => array[Math.floor(Math.random() * array.length)];
 
-export const getTimeFromContentfulResponse = (contentfultimeString) => {
+export const sortByTimeFn = (artistA: TArtist, artistB: TArtist) =>
+  new Date(artistA.showStart) - new Date(artistB.showStart);
+
+export const getTimeFromContentfulResponse = (contentfultimeString: string) => {
   if (!contentfultimeString) return '/';
   const startTime = contentfultimeString.split(' ')[0];
   return startTime.substring(11, startTime.length - 6);
@@ -23,14 +28,17 @@ export const isIE = () => {
 };
 
 export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
-  if (typeof process.env.GATSBY_TICKETPAGINA === 'undefined'
-    || typeof process.env.GATSBY_INFOPAGINA === 'undefined'
-    || typeof process.env.GATSBY_LINEUPPAGINA === 'undefined'
-    || typeof process.env.GATSBY_DAGINDELING === 'undefined'
-    || typeof process.env.GATSBY_TIJDINDELING === 'undefined'
-    || typeof process.env.GATSBY_LIJSTJESTIJD === 'undefined'
-    || typeof process.env.GATSBY_PODIUMINDELING === 'undefined') return fetchedSettings;
-  return ({
+  if (
+    typeof process.env.GATSBY_TICKETPAGINA === 'undefined' ||
+    typeof process.env.GATSBY_INFOPAGINA === 'undefined' ||
+    typeof process.env.GATSBY_LINEUPPAGINA === 'undefined' ||
+    typeof process.env.GATSBY_DAGINDELING === 'undefined' ||
+    typeof process.env.GATSBY_TIJDINDELING === 'undefined' ||
+    typeof process.env.GATSBY_LIJSTJESTIJD === 'undefined' ||
+    typeof process.env.GATSBY_PODIUMINDELING === 'undefined'
+  )
+    return fetchedSettings;
+  return {
     ticketpagina: JSON.parse(process.env.GATSBY_TICKETPAGINA),
     infopagina: JSON.parse(process.env.GATSBY_INFOPAGINA),
     lineuppagina: JSON.parse(process.env.GATSBY_LINEUPPAGINA),
@@ -38,5 +46,7 @@ export const getSettings = (fetchedSettings: TSettingsNode): TSettingsNode => {
     tijdindeling: JSON.parse(process.env.GATSBY_TIJDINDELING),
     podiumIndeling: JSON.parse(process.env.GATSBY_PODIUMINDELING),
     lijstjestijd: JSON.parse(process.env.GATSBY_LIJSTJESTIJD),
-  });
+  };
 };
+
+export * from './enums';

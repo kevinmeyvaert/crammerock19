@@ -11,46 +11,40 @@ import type { TArtist } from '../types';
 import styles from './styles/lineupitem.module.css';
 
 type TProps = {
-  artist: { node: TArtist },
-  dayFilter: string | undefined,
-  stageFilter: string | undefined,
-  dagindeling: boolean,
-  podiumindeling: boolean,
-}
+  artist: TArtist,
+  isFilteredByDay: boolean,
+  showDayInfo: boolean,
+  showStageInfo: boolean,
+  viewStyles: { [key: string]: string },
+};
 
 const LineUpItem = ({
   artist,
-  dayFilter,
-  dagindeling,
-  stageFilter,
-  podiumindeling,
-}: TProps) => {
-  const { node } = artist;
-  return (
-    <div className={styles.artistNode} key={node.slug}>
-      <Link
-        to={`/lineup/${node.slug}`}
-      >
-        <div className={styles.image}>
-          <Img
-            alt={node.name}
-            fluid={node.headerImage.fluid}
-            style={{ position: 'initial' }}
-          />
-        </div>
-        <div className={styles.description}>
-          <p>{node.name}</p>
-          <span>
-            {!dayFilter && dagindeling && `${node.day}`}
-            {dayFilter && podiumindeling && `${getTimeFromContentfulResponse(node.showStart)}`}
-            {dagindeling && podiumindeling && (
-              <span className={styles.stage}><br/>{node.stage}</span>
-            )}
-          </span>
-        </div>
-      </Link>
-    </div>
-  );
-};
+  isFilteredByDay,
+  showDayInfo,
+  showStageInfo,
+  viewStyles,
+}: TProps) => (
+  <div className={styles.artistNode} key={artist.slug} style={viewStyles}>
+    <Link to={`/lineup/${artist.slug}`}>
+      <div className={styles.image}>
+        <Img alt={artist.name} fluid={artist.headerImage.fluid} style={{ position: 'initial' }} />
+      </div>
+      <div className={styles.description}>
+        <p>{artist.name}</p>
+        <span>
+          {!isFilteredByDay && showDayInfo && `${artist.day}`}
+          {isFilteredByDay && showStageInfo && `${getTimeFromContentfulResponse(artist.showStart)}`}
+          {showDayInfo && showStageInfo && (
+            <span className={styles.stage}>
+              <br />
+              {artist.stage}
+            </span>
+          )}
+        </span>
+      </div>
+    </Link>
+  </div>
+);
 
 export default LineUpItem;

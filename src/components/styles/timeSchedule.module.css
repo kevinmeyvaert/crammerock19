@@ -1,0 +1,22 @@
+.tijdWrapper {
+    padding: 0 20px;
+}
+  
+.dayRow {
+    width: 100%;
+    display: flex;
+}
+
+.stageColumn {
+    width: 32%;
+    flex-direction: column;
+    }
+
+@media only screen and (max-width: 730px) {
+    .dayRow {
+        flex-direction: column;
+    }
+    .stageColumn {
+        width: 100%;
+    }
+}

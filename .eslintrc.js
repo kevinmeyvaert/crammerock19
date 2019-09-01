@@ -1,5 +1,5 @@
 module.exports = {
-  "extends": "eslint-config-airbnb",
+  "extends": "./node_modules/@inthepocket/itp-react-scripts/dist/config/eslintrc.js",
   "parser": "babel-eslint",
   "env": {
     "browser": true,
