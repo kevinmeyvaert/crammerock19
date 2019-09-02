@@ -50,6 +50,12 @@
   .artistNode {
     width: 100%;
   }
+  .mobileImage {
+    display: none;
+  }
+  .description span {
+    text-align: right !important;
+  }
 }
 
 @keyframes fadein {

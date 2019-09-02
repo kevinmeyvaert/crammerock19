@@ -14,6 +14,16 @@
     padding-left: 10px;
   }
 
+  .wrapper h3 {
+    color: #324C59;
+    font-family: 'Oswald';
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0px;
+    padding-left: 10px;
+    margin-top: -5px;
+  }
+
   .wrapper h2 span {
     color: #23786A;
   }

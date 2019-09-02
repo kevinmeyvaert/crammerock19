@@ -16,6 +16,7 @@ type TProps = {
   showDayInfo: boolean,
   showStageInfo: boolean,
   viewStyles: { [key: string]: string },
+  hideImageOnMobile?: boolean,
 };
 
 const LineUpItem = ({
@@ -24,11 +25,12 @@ const LineUpItem = ({
   showDayInfo,
   showStageInfo,
   viewStyles,
+  hideImageOnMobile,
 }: TProps) => (
   <div className={styles.artistNode} key={artist.slug} style={viewStyles}>
     <Link to={`/lineup/${artist.slug}`}>
       <div className={styles.image}>
-        <Img alt={artist.name} fluid={artist.headerImage.fluid} style={{ position: 'initial' }} />
+        <Img alt={artist.name} fluid={artist.headerImage.fluid} style={{ position: 'initial' }} className={hideImageOnMobile ? styles.mobileImage : undefined} />
       </div>
       <div className={styles.description}>
         <p>{artist.name}</p>
@@ -46,5 +48,9 @@ const LineUpItem = ({
     </Link>
   </div>
 );
+
+LineUpItem.defaultProps = {
+  hideImageOnMobile: false,
+} 
 
 export default LineUpItem;
