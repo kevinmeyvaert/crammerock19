@@ -131,6 +131,7 @@ const Live = props => {
             Crammerock 2019
             <span> Live Feed</span>
           </h2>
+          <h3>Vermeld ons met #crammerock op je socials!</h3>
           <div className={styles.row}>
             {enrichedLiveStream.length > 0
               ? enrichedLiveStream.map((item, index) => renderLiveBlock(item, index))
