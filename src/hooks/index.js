@@ -75,10 +75,10 @@ export const useLiveOnStage = (artists: TArtist[]) => {
       next: {
         club:
           nextPlaying.find(a => findStageFn(a, STAGES.CLUB)) ||
-          (nowDay === DAYS.EN.FRIDAY ? { ...clubArtists[0] } : { ...clubArtists[8] }),
+          (nowDay === DAYS.EN.SATURDAY ?  { ...clubArtists[8] } : { ...clubArtists[0] }),
         main:
           nextPlaying.find(a => findStageFn(a, 'Main')) ||
-          (nowDay === DAYS.EN.FRIDAY ? { ...mainArtists[0] } : { ...mainArtists[12] }),
+          (nowDay === DAYS.EN.SATURDAY ? { ...mainArtists[12] } : { ...mainArtists[0] }),
       },
     });
   }, [time]);
