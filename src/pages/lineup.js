@@ -54,6 +54,7 @@ const LineUp = props => {
           onFilterLineUp={handleFilterLineUp}
           dayFilter={dayFilter}
         />
+        <a href="/blokkenschema2019.pdf" className={styles.blokkenschema} target="_blank">Blokkenschema</a>
         <div className={styles.artistWrapper}>
           {dayFilter !== LINEUP_FILTERS.SCHEDULE &&
             artists.length > 0 &&
