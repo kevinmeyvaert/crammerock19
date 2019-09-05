@@ -35,7 +35,8 @@
   .row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     width: 100% ;
     padding: 10px 0;
     margin-bottom: 20px;
@@ -53,6 +54,7 @@
     padding: 10px;
     width: 33%;
     color: white;
+    margin-bottom: 10px;
   }
 
   .liveTwitterItem {
