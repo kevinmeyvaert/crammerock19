@@ -34,6 +34,16 @@ const renderLiveBlock = (item, index) => {
         </a>
       </div>
     );
+  } if (item.internal.type === LIVESTREAM_CONTENT_TYPE.FACEBOOK_VIDEO) {
+    return (
+      <div className={styles.liveTwitterItem} key={index}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: item.html,
+          }}
+        />
+      </div>
+    );
   }
   return <p>hey</p>;
 };
@@ -157,6 +167,12 @@ export const pageQuery = graphql`
             }
           }
           liveContent {
+            ... on ContentfulLiveFacebookVideo {
+              facebookVideoUrl
+              internal {
+                type
+              }
+            }
             ... on ContentfulLiveInstagramPost {
               instagramPostUrl
               internal {

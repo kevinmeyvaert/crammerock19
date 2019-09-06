@@ -82,6 +82,13 @@ const Navigation = (props: TProps) => {
               </Link>
             </li>
           )}
+          <li className={styles.tickets}>
+              <Link
+                to="/live"
+              >
+                Crammerock live
+              </Link>
+            </li>
           {ticketpagina && (
             <li className={styles.tickets}>
               <Link
