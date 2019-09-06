@@ -63,7 +63,7 @@ const Live = props => {
       <Header title={title} image={headerImage.file.url} />
       {liveOnStage && (
         <div className={styles.wrapper}>
-          <div className={styles.row}>
+          {/* <div className={styles.row}>
             <div className={styles.item}>
               <h2>
                 On Stage
@@ -136,7 +136,7 @@ const Live = props => {
                 />
               </div>
             )}
-          </div>
+          </div> */}
           <h2>
             Crammerock 2019
             <span> Live Feed</span>
