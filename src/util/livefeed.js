@@ -6,6 +6,7 @@ import bigInt from 'big-integer';
 export const LIVESTREAM_CONTENT_TYPE = {
   INSTAGRAM: 'ContentfulLiveInstagramPost',
   TWITTER: 'ContentfulLiveTwitterPost',
+  FACEBOOK_VIDEO: 'ContentfulLiveFacebookVideo',
 };
 
 export type TLiveStreamContentType = $Values<typeof LIVESTREAM_CONTENT_TYPE>;
@@ -41,7 +42,7 @@ export const getInstagramData = item => {
         },
       }))
       .catch(err => console.log(err));
-  }
+    }
 };
 
 export const useEnrichedLiveStream = liveStreamData => {

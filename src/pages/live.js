@@ -34,6 +34,16 @@ const renderLiveBlock = (item, index) => {
         </a>
       </div>
     );
+  } if (item.internal.type === LIVESTREAM_CONTENT_TYPE.FACEBOOK_VIDEO) {
+    return (
+      <div className={styles.liveTwitterItem} key={index}>
+        <a href={item.facebookVideoUrl}>
+          <img src={item.facebookVideoCover.file.url} className={styles.liveInstagramItemImg} />
+        </a>
+        <p>{item.facebookVideoTitel}</p>
+        <a href={item.facebookVideoUrl} className={styles.button} target="_blank">Bekijk de video!</a>
+      </div>
+    );
   }
   return <p>hey</p>;
 };
@@ -157,6 +167,18 @@ export const pageQuery = graphql`
             }
           }
           liveContent {
+            ... on ContentfulLiveFacebookVideo {
+              facebookVideoTitel
+              facebookVideoCover {
+                file {
+                  url
+                }
+              }
+              facebookVideoUrl
+              internal {
+                type
+              }
+            }
             ... on ContentfulLiveInstagramPost {
               instagramPostUrl
               internal {
