@@ -28,22 +28,6 @@ function getInstagramUrlFromMediaId(resMediaId) {
   return `https://www.instagram.com/p/${shortenedId}/`;
 }
 
-
-export const getFacebookVideoData = item => {
-  if (item.internal.type === LIVESTREAM_CONTENT_TYPE.FACEBOOK_VIDEO) {
-    return fetch(`https://www.facebook.com/plugins/video/oembed.json/?url=${item.facebookVideoUrl}`)
-      .then(res => res.json())
-      .then(post => {
-        return ({
-        author: post.author_name,
-        html: post.html,
-        internal: {
-          type: item.internal.type,
-        },
-      })})
-      .catch(err => console.log(err));
-  }
-}
 export const getInstagramData = item => {
   if (item.internal.type === LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
     return fetch(`https://api.instagram.com/oembed/?url=${item.instagramPostUrl}`)
@@ -69,10 +53,6 @@ export const useEnrichedLiveStream = liveStreamData => {
       if (item.internal.type === LIVESTREAM_CONTENT_TYPE.INSTAGRAM) {
         const igData = getInstagramData(item);
         return igData;
-      }
-      if (item.internal.type === LIVESTREAM_CONTENT_TYPE.FACEBOOK_VIDEO) {
-        const fbData = getFacebookVideoData(item);
-        return fbData;
       }
       return item;
     });
