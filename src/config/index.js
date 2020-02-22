@@ -1,5 +1,5 @@
 export const config = {
-  siteName: 'Crammerock 2019',
+  siteName: 'Crammerock 2020',
   facebookUrl: 'https://www.facebook.com/Crammerock/',
   twitterUrl: 'https://twitter.com/crammerock',
   instagramUrl: 'https://instagram.com/crammerock',

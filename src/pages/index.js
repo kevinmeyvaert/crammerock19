@@ -40,11 +40,11 @@ const RootIndex = (props) => {
           },
           {
             property: 'description',
-            content: 'Klaar voor de 29ste editie van Crammerock! Op vrijdag 6/9 en zaterdag 7/9 in Stekene.',
+            content: 'Klaar voor de 30ste editie van Crammerock! Op vrijdag 4/9 en zaterdag 5/9 in Stekene.',
           },
           {
             property: 'og:description',
-            content: 'Klaar voor de 29ste editie van Crammerock! Op vrijdag 6/9 en zaterdag 7/9 in Stekene.',
+            content: 'Klaar voor de 30ste editie van Crammerock! Op vrijdag 4/9 en zaterdag 5/9 in Stekene.',
           },
           {
             property: 'og:url',
@@ -116,7 +116,7 @@ const RootIndex = (props) => {
           />
           <ContentBlock
             externalLink="https://www.facebook.com/events/2542508382531682/"
-            title="4 - 6 September 2020"
+            title="4 - 5 September 2020"
             subTitle="RSVP op Facebook"
             image="/19block.jpg"
           />

@@ -198,7 +198,7 @@ const Footer = () => {
       </div>
       <div className={styles.sub}>
         <p>
-          <span role="img" aria-label="copyright">&copy;</span> 2019 Crammerock VZW
+          <span role="img" aria-label="copyright">&copy;</span>2020 Crammerock VZW
         </p>
         <p className={styles.credits}>
           Website: Kevin • Ontwerp: Marieke, Jonas
