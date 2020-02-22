@@ -40,11 +40,11 @@ const RootIndex = (props) => {
           },
           {
             property: 'description',
-            content: 'Klaar voor de 29ste editie van Crammerock! Op vrijdag 6/9 en zaterdag 7/9 in Stekene.',
+            content: 'Klaar voor de 30ste editie van Crammerock! Op vrijdag 4/9 en zaterdag 5/9 in Stekene.',
           },
           {
             property: 'og:description',
-            content: 'Klaar voor de 29ste editie van Crammerock! Op vrijdag 6/9 en zaterdag 7/9 in Stekene.',
+            content: 'Klaar voor de 30ste editie van Crammerock! Op vrijdag 4/9 en zaterdag 5/9 in Stekene.',
           },
           {
             property: 'og:url',
@@ -97,17 +97,17 @@ const RootIndex = (props) => {
               contentfulImage={node.featuredImage.file.url}
             />
           ))}
-          <ContentBlock
+          {/* <ContentBlock
             link="/tickets"
             title="Koop Tickets"
             image="/kooptickets.jpg"
-          />
-          <ContentBlock
+          /> */}
+          {/* <ContentBlock
             link={`/lineup/${randomArtist.slug}`}
             title={randomArtist.name}
             subTitle={randomArtist.day}
             fluidImage={randomArtist.headerImage.fluid}
-          />
+          /> */}
           <ContentBlock
             externalLink="https://www.facebook.com/Crammerock/videos/1549510151819448/"
             title="Aftermovie 2018"
@@ -115,8 +115,8 @@ const RootIndex = (props) => {
             image="/aftermovie.jpg"
           />
           <ContentBlock
-            externalLink="https://www.facebook.com/events/265783484259438/"
-            title="6 - 7 September 2019"
+            externalLink="https://www.facebook.com/events/2542508382531682/"
+            title="4 - 5 September 2020"
             subTitle="RSVP op Facebook"
             image="/19block.jpg"
           />
