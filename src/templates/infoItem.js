@@ -127,7 +127,6 @@ export const pageQuery = graphql`
       }
       infoBlocks {
         ...campingBlockFields
-        ...ticketsBlockFields
         ...duurzaamBlockFields
         ...festivalBlockFields
         ...mobiliteitBlockFields
@@ -159,14 +158,6 @@ export const pageQuery = graphql`
     }
   }
   fragment campingBlockFields on ContentfulCampingInfoBlocks {
-    title
-    content {
-      childMarkdownRemark {
-        html
-      }
-    }
-  }
-  fragment ticketsBlockFields on ContentfulTicketsInfoBlocks {
     title
     content {
       childMarkdownRemark {

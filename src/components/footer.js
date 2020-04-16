@@ -88,16 +88,6 @@ const Footer = () => {
           <h2>Info</h2>
           <li>
             <Link
-              to="/info/tickets"
-              activeStyle={{
-                borderBottom: 'thick solid #A3D7DD',
-              }}
-            >
-              Tickets
-            </Link>
-          </li>
-          <li>
-            <Link
               to="/info/festival"
               activeStyle={{
                 borderBottom: 'thick solid #A3D7DD',
