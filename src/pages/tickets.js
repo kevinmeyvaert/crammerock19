@@ -66,15 +66,6 @@ const Tickets = (props) => {
             <img src="/tickets-kids-zaterdag.jpg" alt="Tickets Kids Zaterdag" />
           </div>
         </div>
-        <h2>Vaak gestelde vragen</h2>
-        {info.faqGroup && info.faqGroup.questions.map(block => (
-          <FoldItem
-            key={block.title}
-            activeBlock={activeBlock}
-            block={block}
-            onSectionClick={handleSectionClick}
-          />
-        ))}
       </div>
     </Template>
   );
@@ -88,18 +79,6 @@ export const pageQuery = graphql`
       edges {
         node {
           ticketpagina
-        }
-      }
-    }
-    contentfulInfoPages(slug: { eq: "tickets"}) {
-      faqGroup {
-        questions {
-          title
-          content {
-            childMarkdownRemark {
-              html
-            }
-          }
         }
       }
     }
