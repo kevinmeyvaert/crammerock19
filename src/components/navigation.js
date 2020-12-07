@@ -100,6 +100,13 @@ const Navigation = (props: TProps) => {
               </Link>
             </li>
           )}
+          <li className={styles.tickets}>
+              <a
+                href="http://advent.crammerock.be"
+              >
+                Speel mee met Kerstgemis!
+              </a>
+            </li>
         </ul>
       )}
     </nav>
